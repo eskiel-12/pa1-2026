@@ -162,7 +162,7 @@
 </style>
 
 <!-- HERO -->
-<div class="hero-detail" style="background-image: url('{{ $informasi->gambar ?: '/image/placeholder.jpg' }}')">
+<div class="hero-detail" style="background-image: url('{{ $informasi->gambar ?: asset('uploads/del.jpeg') }}')">
     <div class="hero-overlay"></div>
     <div class="hero-text">
         <h1>{{ $informasi->judul }}</h1>

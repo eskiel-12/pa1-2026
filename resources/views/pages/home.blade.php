@@ -719,7 +719,7 @@
             <div class="hero-content">
                 <div>
                     <div class="hero-subtitle"> Global Geopark</div>
-                    <h1 class="hero-title"> MUARA · SIBANDANG
+                    <h1 class="hero-title"> MUARA · SIBANDANG</h1>
                     <div class="hero-divider"></div>
                     <a href="#destinasi" class="hero-btn">Jelajahi Sekarang</a>
                 </div>
@@ -823,17 +823,12 @@
                     sehingga dikenal sebagai “supervolcano tectonic explosive”.
                 </p>
             </div>
-
+            <div class="about-image" data-aos="fade-left">
+                <img src="{{ asset('uploads/A1.JPEG') }}" alt="Danau Toba">
+            </div>
         </div>
     </div>
 </section>
-                </div>
-                <div class="about-image" data-aos="fade-left">
-                    <img src="{{ asset('uploads/A1.JPEG') }}" alt="Danau Toba">
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- ==================== DESTINASI ==================== -->
     <section id="destinasi" class="section section-white">

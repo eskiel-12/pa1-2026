@@ -17,10 +17,10 @@ use App\Http\Controllers\SearchController;
 
 // Destinasi Routes
 Route::get('/destinasi', [DestinasiController::class, 'index'])->name('destinasi');
-Route::get('/destinasi/{id}', [DestinasiController::class, 'show'])->name('destinasi.show');
 Route::get('/destinasi/alam', [DestinasiController::class, 'alam'])->name('destinasi.alam');
 Route::get('/destinasi/buatan', [DestinasiController::class, 'buatan'])->name('destinasi.buatan');
 Route::get('/destinasi/budaya', [DestinasiController::class, 'budaya'])->name('destinasi.budaya');
+Route::get('/destinasi/{id}', [DestinasiController::class, 'show'])->name('destinasi.show')->whereNumber('id');
 
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');

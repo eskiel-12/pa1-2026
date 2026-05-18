@@ -1137,26 +1137,29 @@
     });
 
     // ==================== SEARCH & FILTER FUNCTIONALITY ====================
-    // Data destinasi dari database
-    const destinasiData = @json($destinasi->map(function($item) {
-        $tags = $item->tags;
-        if (is_string($tags)) {
-            $tags = json_decode($tags, true) ?? [];
-        } elseif (is_null($tags)) {
-            $tags = [];
-        }
-        return [
-            'id' => $item->id,
-            'nama' => $item->nama,
-            'kategori' => strtolower($item->kategori),
-            'lokasi' => $item->lokasi,
-            'deskripsi' => $item->deskripsi,
-            'gambar' => $item->gambar,
-            'tags' => $tags,
-            'maps' => $item->maps,
-            'rating' => 4.5 // Default rating since not in DB
-        ];
-    }));
+    @php
+        $destinasiData = $destinasi->map(function ($item) {
+            $tags = $item->tags;
+            if (is_string($tags)) {
+                $tags = json_decode($tags, true) ?: [];
+            } elseif (is_null($tags)) {
+                $tags = [];
+            }
+            return [
+                'id' => $item->id,
+                'nama' => $item->nama,
+                'kategori' => strtolower($item->kategori),
+                'lokasi' => $item->lokasi,
+                'deskripsi' => $item->deskripsi,
+                'gambar' => $item->gambar,
+                'tags' => $tags,
+                'maps' => $item->maps,
+                'rating' => 4.5,
+            ];
+        });
+    @endphp
+
+    const destinasiData = @json($destinasiData);
 
     // DOM elements
     const searchInput = document.getElementById('searchInput');
@@ -1288,7 +1291,7 @@
 
         card.innerHTML = `
             <div class="result-card-image">
-                <img src="${destinasi.gambar}" alt="${destinasi.nama}" onerror="this.src='/image/placeholder.jpg'">
+                <img src="${destinasi.gambar}" alt="${destinasi.nama}" onerror="this.src='/uploads/del.jpeg'">
                 <span class="result-card-badge">${kategoriLabels[destinasi.kategori]}</span>
             </div>
             <div class="result-card-content">

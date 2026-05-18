@@ -9,7 +9,7 @@
         .destinasi-hero {
             height: 50vh;
             background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5)),
-                        url('/image/destinasi-hero.jpg');
+                        url('{{ asset('uploads/A1.JPEG') }}');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -297,9 +297,9 @@
             <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">Jelajahi 4 Geosite Unggulan Caldera Danau Toba</p>
             <div data-aos="fade-up" data-aos-delay="200">
                 <button class="filter-btn active" data-filter="all">Semua</button>
-                <button class="filter-btn" data-filter="geologi">Geologi</button>
+                <button class="filter-btn" data-filter="alam">Alam</button>
+                <button class="filter-btn" data-filter="buatan">Buatan</button>
                 <button class="filter-btn" data-filter="budaya">Budaya</button>
-                <button class="filter-btn" data-filter="petualangan">Petualangan</button>
             </div>
         </div>
     </section>
@@ -309,9 +309,9 @@
         <div class="destinasi-grid" id="destinasiGrid">
             
             <!-- BALIGE -->
-            <div class="dest-card" data-category="budaya kota" data-aos="fade-up" data-aos-delay="0">
+            <div class="dest-card" data-category="buatan kota" data-aos="fade-up" data-aos-delay="0">
                 <div class="dest-img-wrapper">
-                    <img src="/image/balige.jpg" class="dest-img" alt="Balige">
+                    <img src="{{ asset('uploads/A2.JPG') }}" class="dest-img" alt="Balige" onerror="this.onerror=null;this.src='{{ asset('uploads/del.jpeg') }}'">
                     <span class="dest-badge budaya">KOTA BUDAYA</span>
                     <div class="dest-overlay">
                         <p><i class="fas fa-map-marker-alt me-1"></i> Kabupaten Toba Samosir</p>
@@ -338,7 +338,7 @@
             <!-- MEAT -->
             <div class="dest-card" data-category="budaya sejarah" data-aos="fade-up" data-aos-delay="100">
                 <div class="dest-img-wrapper">
-                    <img src="/image/meat.jpg" class="dest-img" alt="Meat">
+                    <img src="{{ asset('uploads/A3.JPG') }}" class="dest-img" alt="Meat" onerror="this.onerror=null;this.src='{{ asset('uploads/del.jpeg') }}'">
                     <span class="dest-badge budaya">DESA ADAT</span>
                     <div class="dest-overlay">
                         <p><i class="fas fa-map-marker-alt me-1"></i> Pulau Sibandang</p>
@@ -363,9 +363,9 @@
             </div>
             
             <!-- BATU BAHISAN -->
-            <div class="dest-card" data-category="geologi fotografi" data-aos="fade-up" data-aos-delay="200">
+            <div class="dest-card" data-category="alam fotografi" data-aos="fade-up" data-aos-delay="200">
                 <div class="dest-img-wrapper">
-                    <img src="/image/batu-bahisan.jpg" class="dest-img" alt="Batu Bahisan">
+                    <img src="{{ asset('uploads/A4.JPG') }}" class="dest-img" alt="Batu Bahisan" onerror="this.onerror=null;this.src='{{ asset('uploads/del.jpeg') }}'">
                     <span class="dest-badge geologi">GEOLOGI UNIK</span>
                     <div class="dest-overlay">
                         <p><i class="fas fa-map-marker-alt me-1"></i> Pulau Sibandang</p>
@@ -390,9 +390,9 @@
             </div>
             
             <!-- LIANG SIPEGE -->
-            <div class="dest-card" data-category="petualangan geologi" data-aos="fade-up" data-aos-delay="300">
+            <div class="dest-card" data-category="alam petualangan" data-aos="fade-up" data-aos-delay="300">
                 <div class="dest-img-wrapper">
-                    <img src="/image/liang-sipege.jpg" class="dest-img" alt="Liang Sipege">
+                    <img src="{{ asset('uploads/A5.JPG') }}" class="dest-img" alt="Liang Sipege" onerror="this.onerror=null;this.src='{{ asset('uploads/del.jpeg') }}'">
                     <span class="dest-badge petualangan">PETUALANGAN</span>
                     <div class="dest-overlay">
                         <p><i class="fas fa-map-marker-alt me-1"></i> Pulau Sibandang</p>

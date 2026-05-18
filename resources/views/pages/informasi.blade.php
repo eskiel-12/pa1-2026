@@ -752,7 +752,7 @@
             @forelse($informasi as $item)
             <div class="informasi-card">
                 <div class="informasi-image">
-                    <img src="{{ $item->gambar ?: '/image/placeholder.jpg' }}" alt="{{ $item->judul }}">
+                    <img src="{{ $item->gambar ?: asset('uploads/del.jpeg') }}" alt="{{ $item->judul }}">
                 </div>
                 <div class="informasi-content">
                     <span class="informasi-date">{{ $item->created_at->format('d M Y') }}</span>

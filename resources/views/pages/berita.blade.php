@@ -64,8 +64,7 @@
 .berita-hero {
     height: auto;
     min-height: 400px;
-    background: url('{{ asset("image/B1.jpeg") }}');
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-color: #0d1b2a;
@@ -423,7 +422,7 @@
 
 
 <!-- HERO dengan background berita.jpg -->
-<section class="berita-hero">
+<section class="berita-hero" style="background-image: url('{{ asset(optional($berita->first())->gambar ?: 'image/B1.jpeg') }}');">
     <div>
         <h1 data-aos="fade-up">Berita & Event</h1>
         <p data-aos="fade-up">Informasi terkini seputar Geopark Danau Toba</p>
@@ -453,20 +452,22 @@
 
 <script>
     // DATA BERITA DARI DATABASE
-    const beritaData = @php
-        echo json_encode(collect($berita->items())->map(function($item) {
+    @php
+        $beritaData = collect($berita->items())->map(function($item) {
             return [
                 'id' => $item->id,
                 'title' => $item->judul,
                 'excerpt' => strip_tags($item->konten),
                 'content' => $item->konten,
-                'image' => $item->gambar,
+                'image' => $item->gambar ? asset($item->gambar) : asset('uploads/del.jpeg'),
                 'date' => $item->tanggal_terbit ? $item->tanggal_terbit->format('d M Y') : $item->created_at->format('d M Y'),
                 'slug' => $item->slug,
                 'kategori' => $item->kategori ? $item->kategori->nama : 'Umum'
             ];
-        })->all());
-    @endphp;
+        })->all();
+    @endphp
+    const beritaData = {!! json_encode($beritaData, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_QUOT | JSON_HEX_APOS) !!};
+    const defaultImage = '{{ asset('uploads/del.jpeg') }}';
 
     let currentPage = 1;
     const itemsPerPage = 6;
@@ -500,7 +501,7 @@
         grid.innerHTML = beritaToShow.map(berita => `
             <div class="berita-card" onclick="openModal(${berita.id})">
                 <div class="berita-image">
-                    <img src="${berita.image || '/image/placeholder.jpg'}" alt="${berita.title}" onerror="this.src='/image/placeholder.jpg'">
+                    <img src="${berita.image || defaultImage}" alt="${berita.title}" onerror="this.src=defaultImage">
                 </div>
                 <div class="berita-content">
                     <span class="berita-date">${berita.date}</span>
