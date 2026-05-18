@@ -422,7 +422,7 @@
 
 
 <!-- HERO dengan background berita.jpg -->
-<section class="berita-hero" style="background-image: url('{{ asset(optional($berita->first())->gambar ?: 'image/B1.jpeg') }}');">
+<section class="berita-hero" style="background-image: url('{{ optional($berita->first())->gambar_url ?: asset('image/B1.jpeg') }}');">
     <div>
         <h1 data-aos="fade-up">Berita & Event</h1>
         <p data-aos="fade-up">Informasi terkini seputar Geopark Danau Toba</p>
@@ -459,7 +459,7 @@
                 'title' => $item->judul,
                 'excerpt' => strip_tags($item->konten),
                 'content' => $item->konten,
-                'image' => $item->gambar ? asset($item->gambar) : asset('uploads/del.jpeg'),
+                'image' => $item->gambar ? $item->gambar_url : asset('uploads/del.jpeg'),
                 'date' => $item->tanggal_terbit ? $item->tanggal_terbit->format('d M Y') : $item->created_at->format('d M Y'),
                 'slug' => $item->slug,
                 'kategori' => $item->kategori ? $item->kategori->nama : 'Umum'

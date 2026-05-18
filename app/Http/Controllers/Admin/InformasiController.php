@@ -43,7 +43,8 @@ class InformasiController extends Controller
             $gambar = $request->file('gambar');
             $filename = time() . '_' . Str::slug($request->judul) . '.' . $gambar->getClientOriginalExtension();
             $path = $gambar->storeAs('informasi', $filename, 'public');
-            $data['gambar'] = str_replace('public/', 'storage/', $path);
+            // Simpan path relatif pada disk 'public'
+            $data['gambar'] = $path;
         }
 
         Informasi::create($data);
@@ -77,16 +78,13 @@ class InformasiController extends Controller
         ];
 
         if ($request->hasFile('gambar')) {
-            if ($informasi->gambar) {
-                $oldPath = str_replace('storage/', 'public/', $informasi->gambar);
-                if (Storage::exists($oldPath)) {
-                    Storage::delete($oldPath);
-                }
+            if ($informasi->gambar && Storage::disk('public')->exists($informasi->gambar)) {
+                Storage::disk('public')->delete($informasi->gambar);
             }
             $gambar = $request->file('gambar');
             $filename = time() . '_' . Str::slug($request->judul) . '.' . $gambar->getClientOriginalExtension();
             $path = $gambar->storeAs('informasi', $filename, 'public');
-            $data['gambar'] = str_replace('public/', 'storage/', $path);
+            $data['gambar'] = $path;
         }
 
         $informasi->update($data);
@@ -97,11 +95,8 @@ class InformasiController extends Controller
     public function destroy($id)
     {
         $informasi = Informasi::findOrFail($id);
-        if ($informasi->gambar) {
-            $gambarPath = str_replace('storage/', 'public/', $informasi->gambar);
-            if (Storage::exists($gambarPath)) {
-                Storage::delete($gambarPath);
-            }
+        if ($informasi->gambar && Storage::disk('public')->exists($informasi->gambar)) {
+            Storage::disk('public')->delete($informasi->gambar);
         }
         $informasi->delete();
         return redirect()->route('admin.informasi.index')->with('success', 'Informasi berhasil dihapus!');

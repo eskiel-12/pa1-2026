@@ -1151,7 +1151,7 @@
                 'kategori' => strtolower($item->kategori),
                 'lokasi' => $item->lokasi,
                 'deskripsi' => $item->deskripsi,
-                'gambar' => $item->gambar,
+                'gambar' => $item->gambar_url,
                 'tags' => $tags,
                 'maps' => $item->maps,
                 'rating' => 4.5,
