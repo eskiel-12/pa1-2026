@@ -33,17 +33,16 @@ class BeritaController extends Controller
             'tanggal_terbit' => 'required',
         ]);
 
-        // Upload gambar ke storage
+        // Upload gambar ke storage dan simpan path relatif tanpa prefix tambahan
         $gambar = $request->file('gambar');
         $filename = time() . '_' . Str::slug($request->judul) . '.' . $gambar->getClientOriginalExtension();
         $path = $gambar->storeAs('berita', $filename, 'public');
-        $gambarPath = str_replace('public/', 'storage/', $path);
 
         Berita::create([
             'judul' => $request->judul,
             'slug' => $this->generateSlug($request->judul),
             'konten' => $request->konten,
-            'gambar' => $gambarPath,
+            'gambar' => $path,
             'kategori_id' => $request->kategori_id,
             'penulis' => $request->penulis ?? 'Admin',
             'tanggal_terbit' => $request->tanggal_terbit,
@@ -86,16 +85,15 @@ class BeritaController extends Controller
         // Upload gambar baru jika ada
         if ($request->hasFile('gambar')) {
             // Hapus gambar lama
-            $oldPath = str_replace('storage/', 'public/', $berita->gambar);
-            if (Storage::exists($oldPath)) {
-                Storage::delete($oldPath);
+            if ($berita->gambar && Storage::disk('public')->exists($berita->gambar)) {
+                Storage::disk('public')->delete($berita->gambar);
             }
 
             // Upload gambar baru
             $gambar = $request->file('gambar');
             $filename = time() . '_' . Str::slug($request->judul) . '.' . $gambar->getClientOriginalExtension();
             $path = $gambar->storeAs('berita', $filename, 'public');
-            $data['gambar'] = str_replace('public/', 'storage/', $path);
+            $data['gambar'] = $path;
         }
 
         $berita->update($data);

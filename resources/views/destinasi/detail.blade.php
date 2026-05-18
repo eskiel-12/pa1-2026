@@ -60,7 +60,7 @@
 </style>
 
 <!-- HERO -->
-<div class="hero-detail" style="background-image: url('{{ $destinasi->gambar }}')">
+<div class="hero-detail" style="background-image: url('{{ $destinasi->gambar_url }}')">
     <div class="hero-overlay"></div>
     <div class="hero-text">
         <h1 class="display-3 fw-bold">{{ $destinasi->nama }}</h1>

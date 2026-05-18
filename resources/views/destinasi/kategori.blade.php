@@ -387,7 +387,7 @@
             @forelse($destinasi as $item)
             <div class="dest-card" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
                 <div class="card-image">
-                    <img src="{{ $item->gambar }}" alt="{{ $item->nama }}">
+                    <img src="{{ $item->gambar_url }}" alt="{{ $item->nama }}">
                     <span class="card-badge">{{ $kategori }}</span>
                 </div>
                 <div class="card-content">
