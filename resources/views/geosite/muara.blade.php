@@ -890,9 +890,7 @@
             <div class="divider"></div>
         </div>
         <div class="galeri-tabs">
-            <button class="tab-btn active" data-tab="pantai1">Pantai 1</button>
-            <button class="tab-btn" data-tab="pantai2">Pantai 2</button>
-            <button class="tab-btn" data-tab="pantai3">Pantai 3</button>
+            <button class="tab-btn active" data-tab="pantai1">Pantai</button>
         </div>
         <div class="galeri-grid" id="galeriGrid">
             <div class="galeri-item pantai1"><img src="{{ asset('uploads/A1.jpeg') }}"></div>
