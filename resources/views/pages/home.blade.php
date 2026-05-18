@@ -20,19 +20,19 @@
         transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         border: 1px solid rgba(255, 255, 255, 0.2);
     }
-    
+
     .logo-container:hover {
         background: #0a4a7a;
         box-shadow: 0 12px 30px rgba(0, 51, 102, 0.4);
         transform: translateY(-2px);
     }
-    
+
     .flag-logo-wrapper {
         display: flex;
         align-items: center;
         gap: 12px;
     }
-    
+
     .flag-img {
         width: 100px;
         height: auto;
@@ -41,18 +41,18 @@
         transition: transform 0.2s ease;
         border: 1px solid rgba(255,255,255,0.3);
     }
-    
+
     .flag-img:hover {
         transform: scale(1.05);
     }
-    
+
     .logo-divider {
         width: 2px;
         height: 35px;
         background: rgba(255,255,255,0.3);
         border-radius: 2px;
     }
-    
+
     .del-logo-wrapper {
         display: flex;
         align-items: center;
@@ -60,28 +60,28 @@
         cursor: pointer;
         transition: all 0.2s ease;
     }
-    
+
     .del-logo-wrapper:hover {
         transform: scale(1.02);
     }
-    
+
     .del-img {
         width: 50px;
         height: auto;
         border-radius: 8px;
         transition: transform 0.2s ease;
     }
-    
+
     .del-img:hover {
         transform: scale(1.05);
     }
-    
+
     .geotoba-wrapper {
         display: flex;
         align-items: center;
         gap: 12px;
     }
-    
+
     .geotoba-text {
         font-size: 1.5rem;
         font-weight: 800;
@@ -90,14 +90,14 @@
         font-family: 'Inter', 'Poppins', sans-serif;
         line-height: 1.2;
     }
-    
+
     .geotoba-sub {
         font-size: 0.7rem;
         font-weight: 500;
         color: rgba(255,255,255,0.8);
         letter-spacing: 0.5px;
     }
-    
+
     @media (max-width: 768px) {
         .logo-container {
             top: 12px;
@@ -121,7 +121,7 @@
             height: 28px;
         }
     }
-    
+
     @media (max-width: 576px) {
         .logo-container {
             padding: 5px 14px;
@@ -143,7 +143,7 @@
             height: 24px;
         }
     }
-    
+
     /* ==================== HERO SLIDER ==================== */
     .hero-section {
         height: 100vh;
@@ -151,13 +151,13 @@
         overflow: hidden;
         margin-top: 0;
     }
-    
+
     .slides-container {
         position: relative;
         width: 100%;
         height: 100%;
     }
-    
+
     .slide {
         position: absolute;
         top: 0;
@@ -172,16 +172,16 @@
         transition: opacity 1.5s ease-in-out, transform 6s ease-out;
         z-index: 1;
     }
-    
+
     .slide.active {
         opacity: 1;
         z-index: 2;
         transform: scale(1);
     }
-    
+
     /* Overlay biru gradasi pada slide */
     /* Banner images are now loaded dynamically from database */
-    
+
     .hero-content {
         position: absolute;
         z-index: 10;
@@ -239,7 +239,7 @@
         opacity: 0.9;
         animation: fadeUp 0.8s ease;
     }
-    
+
     .hero-title {
         font-size: 3.8rem;
         font-weight: 700;
@@ -250,7 +250,7 @@
         text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
         animation: fadeUp 0.8s ease 0.1s both;
     }
-    
+
     .hero-divider {
         width: 60px;
         height: 2px;
@@ -258,7 +258,7 @@
         margin: 0 auto 30px;
         animation: fadeUp 0.8s ease 0.2s both;
     }
-    
+
     .hero-btn {
         display: inline-block;
         background: #c6a43b;
@@ -275,19 +275,19 @@
         border: none;
         cursor: pointer;
     }
-    
+
     .hero-btn:hover {
         background: white;
         color: #003366;
         transform: translateY(-3px);
         letter-spacing: 0.3em;
     }
-    
+
     @keyframes fadeUp {
         from { opacity: 0; transform: translateY(40px); }
         to { opacity: 1; transform: translateY(0); }
     }
-    
+
     /* Slider Dots */
     .slider-dots {
         position: absolute;
@@ -298,7 +298,7 @@
         gap: 12px;
         z-index: 15;
     }
-    
+
     .dot {
         width: 10px;
         height: 10px;
@@ -307,17 +307,17 @@
         cursor: pointer;
         transition: all 0.4s ease;
     }
-    
+
     .dot.active {
         background: #c6a43b;
         width: 28px;
         border-radius: 10px;
     }
-    
+
     .dot:hover {
         background: #c6a43b;
     }
-    
+
     /* Scroll Indicator */
     .scroll-indicator {
         position: absolute;
@@ -337,25 +337,25 @@
         align-items: center;
         gap: 8px;
     }
-    
+
     .scroll-indicator .line {
         width: 1px;
         height: 30px;
         background: white;
         margin-top: 5px;
     }
-    
+
     @keyframes bounce {
         0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.8; }
         50% { transform: translateX(-50%) translateY(-10px); opacity: 0.4; }
     }
-    
+
     /* ==================== SECTION UMUM ==================== */
     .section { padding: 90px 0; }
     .section-white { background: linear-gradient(135deg, #f0f7ff 0%, #e8f0fa 100%); }
     .section-light { background: linear-gradient(135deg, #e0ecf7 0%, #d4e4f2 100%); }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    
+
     .section-title {
         text-align: center;
         margin-bottom: 60px;
@@ -380,7 +380,7 @@
         font-size: 0.85rem;
         line-height: 1.6;
     }
-    
+
     /* ==================== STATS ==================== */
     .stats-grid {
         display: flex;
@@ -389,15 +389,15 @@
         flex-wrap: wrap;
         gap: 40px;
     }
-    .stat-item { 
-        flex: 1; 
-        min-width: 100px; 
+    .stat-item {
+        flex: 1;
+        min-width: 100px;
         transition: transform 0.3s ease;
         padding: 20px;
         background: rgba(0, 51, 102, 0.05);
         border-radius: 16px;
     }
-    .stat-item:hover { 
+    .stat-item:hover {
         transform: translateY(-5px);
         background: rgba(0, 51, 102, 0.1);
     }
@@ -415,7 +415,7 @@
         color: #003366;
         font-weight: 600;
     }
-    
+
     /* ==================== ABOUT ==================== */
     .about-grid {
         display: flex;
@@ -447,7 +447,7 @@
     }
     .about-image:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0, 51, 102, 0.25); }
     .about-image img { width: 100%; height: auto; display: block; }
-    
+
     /* ==================== DESTINASI ==================== */
     .destinasi-list { display: flex; flex-direction: column; gap: 80px; }
     .destinasi-item {
@@ -536,7 +536,7 @@
         letter-spacing: 0.2em;
         transform: translateY(-2px);
     }
-    
+
     /* ==================== GALLERY ==================== */
     .gallery-grid {
         display: grid;
@@ -568,7 +568,7 @@
         transition: opacity 0.3s ease;
     }
     .gallery-item:hover::after { opacity: 1; }
-    
+
     /* ==================== CTA ==================== */
     .cta-section {
         background: linear-gradient(135deg, #003366 0%, #0a4a7a 50%, #005c8a 100%);
@@ -591,8 +591,8 @@
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
     }
-    .cta-content { 
-        max-width: 600px; 
+    .cta-content {
+        max-width: 600px;
         margin: 0 auto;
         position: relative;
         z-index: 2;
@@ -634,7 +634,7 @@
         color: #003366;
         transform: translateY(-3px);
     }
-    
+
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 992px) {
         .hero-title { font-size: 2.8rem; }
@@ -663,8 +663,8 @@
     }
 </style>
 
-   
-        
+
+
     <!-- ==================== HERO SLIDER ==================== -->
     <section class="hero-section" id="home">
         <div class="slides-container">
@@ -700,7 +700,7 @@
                 <div class="slide slide-5"></div>
             @endif
         </div>
-        
+
         <div class="slider-dots">
             @if($banners->count() > 0)
                 @foreach($banners as $index => $banner)
@@ -714,7 +714,7 @@
                 <div class="dot" data-slide="4"></div>
             @endif
         </div>
-        
+
         @if($banners->count() === 0)
             <div class="hero-content">
                 <div>
@@ -725,7 +725,7 @@
                 </div>
             </div>
         @endif
-        
+
         <div class="scroll-indicator" onclick="document.getElementById('destinasi').scrollIntoView({behavior:'smooth'})">
             <span>SCROLL</span>
             <div class="line"></div>
@@ -764,8 +764,8 @@
                     <h3>Warisan Geologi </h3>
                     <!-- PARAGRAF -->
             <p class="text-muted text-center mb-4" style="line-height: 1.8;">
-                Setelah letusan super Gunung Toba sekitar 74.000 tahun yang lalu, blok-blok uluran yang runtuh karena aktivitas tektono-vulkanik terangkat kembali menjadi Kaldera Raksasa dan (Danau Toba) termasuk terciptanya Pulau Samosir. 
-                Kaldera Toba merupakan keajaiban geologi dan juga memiliki nilai budaya dan ekologis yang tinggi. 
+                Setelah letusan super Gunung Toba sekitar 74.000 tahun yang lalu, blok-blok uluran yang runtuh karena aktivitas tektono-vulkanik terangkat kembali menjadi Kaldera Raksasa dan (Danau Toba) termasuk terciptanya Pulau Samosir.
+                Kaldera Toba merupakan keajaiban geologi dan juga memiliki nilai budaya dan ekologis yang tinggi.
                 Terbentuknya Kaldera Toba mengalami 4 periode letusan diantaranya:
             </p>
 
@@ -817,14 +817,14 @@
             <!-- PENJELASAN AKHIR -->
             <div class="mt-5 p-4 rounded-4 text-center"
                  style="background: linear-gradient(135deg, #1a1a2e, #16213e); color: white;">
-                 
+
                 <p class="mb-0" style="line-height: 1.8;">
-                    Letusan keempat terkenal sebagai letusan “supervolcano”, terjadi melalui proses ledakan vulkanik-tektonik 
+                    Letusan keempat terkenal sebagai letusan “supervolcano”, terjadi melalui proses ledakan vulkanik-tektonik
                     sehingga dikenal sebagai “supervolcano tectonic explosive”.
                 </p>
             </div>
             <div class="about-image" data-aos="fade-left">
-                <img src="{{ asset('uploads/A1.JPEG') }}" alt="Danau Toba">
+                <img src="{{ asset('uploads/A1.jpeg') }}" alt="Danau Toba">
             </div>
         </div>
     </div>
@@ -839,7 +839,7 @@
                 <p>Jelajahi destinasi menarik di Danau Toba</p>
             </div>
             <div class="destinasi-list">
-                
+
                 <!-- Sibandang -->
                 <div class="destinasi-item" data-aos="fade-up">
                     <div class="destinasi-image">
@@ -984,7 +984,7 @@
                 slide.classList.remove('active');
                 if (dots[i]) dots[i].classList.remove('active');
             });
-            
+
             slides[index].classList.add('active');
             if (dots[index]) dots[index].classList.add('active');
             currentSlide = index;
@@ -1020,14 +1020,14 @@
                 }
             });
         });
-       
+
         function openGallery(el){
     let imgSrc = el.querySelector('img').src;
     document.getElementById('lightbox-img').src = imgSrc;
     document.getElementById('lightbox').style.display = 'flex';
 }
 
-function closeGallery(e){       
+function closeGallery(e){
     if(!e || e.target.id === 'lightbox'){
         document.getElementById('lightbox').style.display = 'none';
     }

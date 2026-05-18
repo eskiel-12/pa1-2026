@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Geosite Danau Toba')</title>
-    
-    <!-- Bootstrap CSS -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <style>
         * { font-family: 'Inter', sans-serif; }
         :root {
@@ -41,268 +40,73 @@
             justify-content: space-between;
             width: 100%;
         }
-        .logo-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 0;
-            padding: 0;
-        }
-        .logo-img {
-            height: 40px;
-            width: auto;
-            border-radius: 6px;
-            object-fit: cover;
-        }
-        .logo-divider {
-            width: 1px;
-            height: 28px;
-            background: rgba(255, 255, 255, 0.3);
-        }
-        .navbar-brand {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: white !important;
-            margin: 0;
-            padding: 0;
-        }
+        .logo-wrapper { display: flex; align-items: center; gap: 10px; margin: 0; padding: 0; }
+        .logo-img { height: 40px; width: auto; border-radius: 6px; object-fit: cover; }
+        .logo-divider { width: 1px; height: 28px; background: rgba(255, 255, 255, 0.3); }
+        .navbar-brand { font-size: 1.3rem; font-weight: 700; color: white !important; margin: 0; padding: 0; }
         .navbar-brand span { color: var(--gold); }
-        .nav-link {
-            color: white !important;
-            font-weight: 500;
-            margin: 0 0.3rem;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-        }
-        .nav-link:hover {
-            color: var(--gold) !important;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .nav-link.active {
-            color: var(--gold) !important;
-            background: rgba(198, 164, 59, 0.15);
-        }
+        .nav-link { color: white !important; font-weight: 500; margin: 0 0.3rem; transition: all 0.3s ease; font-size: 0.95rem; padding: 0.5rem 1rem; border-radius: 8px; }
+        .nav-link:hover { color: var(--gold) !important; background: rgba(255, 255, 255, 0.1); }
+        .nav-link.active { color: var(--gold) !important; background: rgba(198, 164, 59, 0.15); }
         .navbar-nav { margin: 0; padding: 0; }
-        .dropdown-menu {
-            background: rgba(0, 51, 102, 0.98);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 0.5rem 0;
-            margin-top: 0.5rem;
-        }
-        .dropdown-item {
-            color: white;
-            padding: 8px 20px;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-        }
-        .dropdown-item:hover {
-            background: rgba(198, 164, 59, 0.15);
-            color: var(--gold);
-            transform: translateX(5px);
-        }
-        .dropdown-header {
-            color: var(--gold);
-            padding: 8px 20px;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .dropdown-divider {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin: 0.5rem 0;
-        }
-        .navbar-toggler {
-            border: none;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 10px 14px;
-            border-radius: 10px;
-        }
+        .dropdown-menu { background: rgba(0, 51, 102, 0.98); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 0.5rem 0; margin-top: 0.5rem; }
+        .dropdown-item { color: white; padding: 8px 20px; font-size: 0.85rem; transition: all 0.3s ease; }
+        .dropdown-item:hover { background: rgba(198, 164, 59, 0.15); color: var(--gold); transform: translateX(5px); }
+        .dropdown-header { color: var(--gold); padding: 8px 20px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+        .dropdown-divider { border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 0.5rem 0; }
+        .navbar-toggler { border: none; background: rgba(255, 255, 255, 0.15); padding: 10px 14px; border-radius: 10px; }
         .navbar-toggler:focus { box-shadow: none; outline: none; }
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-            width: 24px;
-            height: 24px;
-        }
-        .footer {
-            background: var(--blue-dark);
-            color: white;
-            padding: 40px 0 20px;
-            margin-top: 0;
-        }
-        .footer h5 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-        .footer h5::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 35px;
-            height: 2px;
-            background: var(--gold);
-        }
-        .footer a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 0.8rem;
-        }
-        .footer a:hover {
-            color: var(--gold);
-            transform: translateX(5px);
-            display: inline-block;
-        }
+        .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); width: 24px; height: 24px; }
+        .footer { background: var(--blue-dark); color: white; padding: 40px 0 20px; margin-top: 0; }
+        .footer h5 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; position: relative; display: inline-block; }
+        .footer h5::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 35px; height: 2px; background: var(--gold); }
+        .footer a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: all 0.3s ease; font-size: 0.8rem; }
+        .footer a:hover { color: var(--gold); transform: translateX(5px); display: inline-block; }
         .social-icons { display: flex; gap: 10px; margin-top: 15px; }
-        .social-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
+        .social-icons a { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); transition: all 0.3s ease; font-size: 1rem; }
         .social-icons a:hover { background: var(--gold); transform: translateY(-3px); }
         .social-icons a:hover i { color: var(--blue-dark); }
-        .copyright {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 15px;
-            margin-top: 25px;
-            text-align: center;
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.5);
-        }
-        .back-to-top {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: var(--gold);
-            color: var(--blue-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
+        .copyright { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 15px; margin-top: 25px; text-align: center; font-size: 0.7rem; color: rgba(255, 255, 255, 0.5); }
+        .back-to-top { position: fixed; bottom: 25px; right: 25px; width: 42px; height: 42px; border-radius: 50%; background: var(--gold); color: var(--blue-dark); display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
         .back-to-top.show { opacity: 1; visibility: visible; }
         .back-to-top:hover { background: white; transform: translateY(-3px); }
         .goog-te-banner-frame, .skiptranslate { display: none !important; }
         body { top: 0 !important; }
+        .lang-toggle { cursor: pointer; background: #1a4a7a; border-radius: 50px; padding: 4px; display: flex; align-items: center; border: 1px solid rgba(255,255,255,0.3); user-select: none; }
+        .lang-btn { padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; transition: all 0.3s ease; pointer-events: none; }
+        .lang-btn.active { background: #c6a43b; color: #003366; }
+        .lang-btn.inactive { background: transparent; color: white; }
+        .navbar-search-form { display: flex; align-items: center; gap: 0.2rem; border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 999px; padding: 0.1rem 0.5rem 0.1rem 0.75rem; background: rgba(255, 255, 255, 0.08); transition: all 0.3s ease; }
+        .navbar-search-form:focus-within { border-color: rgba(198, 164, 59, 0.6); background: rgba(255, 255, 255, 0.12); }
+        .navbar-search-form input { width: 110px; border: none; outline: none; background: transparent; color: white; font-size: 0.78rem; padding: 0.15rem 0; }
+        .navbar-search-form input::placeholder { color: rgba(255, 255, 255, 0.6); font-size: 0.78rem; }
+        .navbar-search-form button { border: none; background: transparent; color: rgba(255, 255, 255, 0.8); cursor: pointer; font-size: 0.8rem; padding: 0.2rem 0.1rem; display: flex; align-items: center; transition: color 0.2s ease; }
+        .navbar-search-form button:hover { color: #c6a43b; }
 
-        /* Tombol Bahasa */
-        .lang-toggle {
-            cursor: pointer;
-            background: #1a4a7a;
-            border-radius: 50px;
-            padding: 4px;
-            display: flex;
-            align-items: center;
-            border: 1px solid rgba(255,255,255,0.3);
-            user-select: none;
-        }
-        .lang-btn {
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            pointer-events: none;
-        }
-        .lang-btn.active {
-            background: #c6a43b;
-            color: #003366;
-        }
-        .lang-btn.inactive {
-            background: transparent;
-            color: white;
-        }
+        /* Ambient Audio */
+        .ambient-wrapper { position: fixed; bottom: 90px; left: 25px; z-index: 997; }
+        .ambient-btn { width: 44px; height: 44px; border-radius: 50%; background: #003366; color: white; border: 2px solid #c6a43b; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+        .ambient-btn:hover { background: #c6a43b; }
+        .ambient-panel { position: absolute; bottom: 58px; left: 0; background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); width: 260px; padding: 14px; display: none; flex-direction: column; gap: 10px; }
+        .ambient-panel.open { display: flex; }
+        .ambient-header { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 600; color: #003366; }
+        .ambient-close { background: none; border: none; font-size: 1.3rem; cursor: pointer; color: #999; }
+        .ambient-body { display: flex; align-items: center; gap: 10px; }
+        .ambient-play-btn { width: 32px; height: 32px; border-radius: 50%; background: #c6a43b; color: #003366; border: none; cursor: pointer; }
+        .ambient-slider { flex: 1; accent-color: #c6a43b; }
+        .ambient-volume-label { font-size: 0.7rem; color: #666; }
+        .ambient-track-info { font-size: 0.7rem; color: #999; text-align: center; }
+        .ambient-next-btn { background: none; border: none; color: #c6a43b; cursor: pointer; font-size: 0.8rem; }
 
-        /* ===================== */
-        /* Search Form - Global  */
-        /* ===================== */
-        .navbar-search-form {
-            display: flex;
-            align-items: center;
-            gap: 0.2rem;
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            border-radius: 999px;
-            padding: 0.1rem 0.5rem 0.1rem 0.75rem;
-            background: rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease;
-        }
-        .navbar-search-form:focus-within {
-            border-color: rgba(198, 164, 59, 0.6);
-            background: rgba(255, 255, 255, 0.12);
-        }
-        .navbar-search-form input {
-            width: 110px;
-            border: none;
-            outline: none;
-            background: transparent;
-            color: white;
-            font-size: 0.78rem;
-            padding: 0.15rem 0;
-        }
-        .navbar-search-form input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.78rem;
-        }
-        .navbar-search-form button {
-            border: none;
-            background: transparent;
-            color: rgba(255, 255, 255, 0.8);
-            cursor: pointer;
-            font-size: 0.8rem;
-            padding: 0.2rem 0.1rem;
-            display: flex;
-            align-items: center;
-            transition: color 0.2s ease;
-        }
-        .navbar-search-form button:hover {
-            color: #c6a43b;
-        }
-        
         @media (max-width: 991px) {
             .navbar .container { padding: 0 15px; }
             .logo-img { height: 35px; }
             .logo-divider { height: 25px; }
             .navbar-brand { font-size: 1.2rem; }
-            .navbar-collapse {
-                background: rgba(0, 51, 102, 0.98);
-                padding: 1rem;
-                border-radius: 16px;
-                margin-top: 1rem;
-                max-height: 80vh;
-                overflow-y: auto;
-            }
+            .navbar-collapse { background: rgba(0, 51, 102, 0.98); padding: 1rem; border-radius: 16px; margin-top: 1rem; max-height: 80vh; overflow-y: auto; }
             .nav-link { text-align: center; padding: 0.7rem !important; font-size: 0.9rem; }
-            /* Search Form override untuk mobile */
-            .navbar-search-form {
-                width: 100%;
-                margin-top: 0.5rem;
-                padding: 0.15rem 0.6rem 0.15rem 0.85rem;
-            }
-            .navbar-search-form input {
-                width: 100%;
-                font-size: 0.82rem;
-            }
+            .navbar-search-form { width: 100%; margin-top: 0.5rem; padding: 0.15rem 0.6rem 0.15rem 0.85rem; }
+            .navbar-search-form input { width: 100%; font-size: 0.82rem; }
             .dropdown-menu { background: rgba(0, 51, 102, 0.9); margin: 0.5rem 0; }
             .dropdown-item { text-align: center; }
         }
@@ -322,49 +126,26 @@
             .navbar-toggler { padding: 8px 12px; }
         }
     </style>
-    
     @stack('styles')
 </head>
 <body>
-    <!-- Google Translate -->
     <div id="google_translate_element" style="display:none"></div>
-
     <script type="text/javascript">
     function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-            pageLanguage: 'id',
-            includedLanguages: 'en,id',
-            autoDisplay: false
-        }, 'google_translate_element');
+        new google.translate.TranslateElement({ pageLanguage: 'id', includedLanguages: 'en,id', autoDisplay: false }, 'google_translate_element');
     }
-
     function translateTo(lang) {
         var select = document.querySelector('.goog-te-combo');
-        if (select) {
-            select.value = lang;
-            select.dispatchEvent(new Event('change'));
-        }
+        if (select) { select.value = lang; select.dispatchEvent(new Event('change')); }
     }
-
     var currentLang = 'id';
-
     function toggleLanguage() {
-        if (currentLang === 'id') {
-            currentLang = 'en';
-            translateTo('en');
-            document.getElementById('btnID').className = 'lang-btn inactive';
-            document.getElementById('btnEN').className = 'lang-btn active';
-        } else {
-            currentLang = 'id';
-            translateTo('id');
-            document.getElementById('btnID').className = 'lang-btn active';
-            document.getElementById('btnEN').className = 'lang-btn inactive';
-        }
+        if (currentLang === 'id') { currentLang = 'en'; translateTo('en'); document.getElementById('btnID').className = 'lang-btn inactive'; document.getElementById('btnEN').className = 'lang-btn active'; }
+        else { currentLang = 'id'; translateTo('id'); document.getElementById('btnID').className = 'lang-btn active'; document.getElementById('btnEN').className = 'lang-btn inactive'; }
     }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
             <div class="logo-wrapper">
@@ -372,69 +153,41 @@
                 <div class="logo-divider"></div>
                 <img src="{{ asset('uploads/del.jpeg') }}" alt="Logo Del" class="logo-img">
                 <div class="logo-divider"></div>
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Geo<span>Toba</span>
-                </a>
+                <a class="navbar-brand" href="{{ url('/') }}">Geo<span>Toba</span></a>
             </div>
-            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ url('/') }}">
-                            <i class="fas fa-home me-1"></i> Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('informasi') ? 'active' : '' }}" href="{{ url('/informasi') }}">
-                            <i class="fas fa-info-circle me-1"></i> Informasi
-                        </a>
-                    </li>
-                    
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ url('/') }}"><i class="fas fa-home me-1"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('informasi') ? 'active' : '' }}" href="{{ url('/informasi') }}"><i class="fas fa-info-circle me-1"></i> Informasi</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ request()->routeIs('destinasi*') ? 'active' : '' }}" 
-                           href="#" id="destinasiDropdown" role="button" 
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-map-marked-alt me-1"></i> Destinasi
-                        </a>
+                        <a class="nav-link dropdown-toggle {{ request()->routeIs('destinasi*') || request()->routeIs('geosite*') ? 'active' : '' }}" href="#" id="destinasiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-map-marked-alt me-1"></i> Destinasi</a>
                         <ul class="dropdown-menu" aria-labelledby="destinasiDropdown">
                             <li><h6 class="dropdown-header">KATEGORI DESTINASI</h6></li>
                             <li><a class="dropdown-item" href="{{ url('/destinasi/alam') }}">Destinasi Alam</a></li>
                             <li><a class="dropdown-item" href="{{ url('/destinasi/buatan') }}">Destinasi Buatan</a></li>
                             <li><a class="dropdown-item" href="{{ url('/destinasi/budaya') }}">Destinasi Budaya</a></li>
                             <li><hr class="dropdown-divider"></li>
+                            <li><h6 class="dropdown-header">GEOSITE PULAU SIBANDANG</h6></li>
+                            <li><a class="dropdown-item" href="{{ url('/geosite/sibandang') }}"><i class="fas fa-map-pin me-2"></i>Sibandang</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/geosite/muara') }}"><i class="fas fa-map-pin me-2"></i>Muara</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/geosite/sampuran') }}"><i class="fas fa-map-pin me-2"></i>Sampuran</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/geosite/papande') }}"><i class="fas fa-map-pin me-2"></i>Papande</a></li>
+                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ url('/destinasi') }}">Semua Destinasi</a></li>
                         </ul>
                     </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('galeri') ? 'active' : '' }}" href="{{ url('/galeri') }}">
-                            <i class="fas fa-images me-1"></i> Galeri
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('berita') ? 'active' : '' }}" href="{{ url('/berita') }}">
-                            <i class="fas fa-newspaper me-1"></i> Berita
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('kontak') ? 'active' : '' }}" href="{{ url('/kontak') }}">
-                            <i class="fas fa-envelope me-1"></i> Kontak
-                        </a>
-                    </li>
-
-                    <!-- Search Form -->
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('galeri') ? 'active' : '' }}" href="{{ url('/galeri') }}"><i class="fas fa-images me-1"></i> Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('berita') ? 'active' : '' }}" href="{{ url('/berita') }}"><i class="fas fa-newspaper me-1"></i> Berita</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('kontak') ? 'active' : '' }}" href="{{ url('/kontak') }}"><i class="fas fa-envelope me-1"></i> Kontak</a></li>
                     <li class="nav-item ms-2 d-flex align-items-center">
                         <form class="navbar-search-form" action="{{ url('/search') }}" method="GET">
                             <input type="search" name="q" value="{{ request('q') }}" placeholder="Cari..." aria-label="Pencarian">
                             <button type="submit" aria-label="Cari"><i class="fas fa-search"></i></button>
                         </form>
                     </li>
-
-                    <!-- Tombol Bahasa Toggle -->
                     <li class="nav-item ms-2 d-flex align-items-center">
                         <div class="lang-toggle" onclick="toggleLanguage()">
                             <span id="btnID" class="lang-btn active">ID</span>
@@ -446,9 +199,7 @@
         </div>
     </nav>
 
-    <main>
-        @yield('content')
-    </main>
+    <main>@yield('content')</main>
 
     <footer class="footer">
         <div class="container">
@@ -456,6 +207,7 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <h5>Geo<span style="color: #c6a43b;">Toba</span></h5>
                     <p style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Sistem Informasi Geosite Danau Toba - Menyajikan informasi lengkap tentang keindahan geologi dan budaya Batak di kawasan Danau Toba.</p>
+                    <p style="font-size: 0.7rem; color: rgba(255,255,255,0.4);">Musik: D'Bamboo Official</p>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -476,60 +228,81 @@
                 <div class="col-lg-3 col-md-6 mb-4">
                     <h5>Destinasi</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="{{ url('/destinasi/alam') }}">Destinasi Alam</a></li>
-                        <li class="mb-2"><a href="{{ url('/destinasi/buatan') }}">Destinasi Buatan</a></li>
-                        <li class="mb-2"><a href="{{ url('/destinasi/budaya') }}">Destinasi Budaya</a></li>
-                        <li class="mb-2"><a href="{{ url('/destinasi') }}">Semua Destinasi</a></li>
+                        <li class="mb-2"><a href="{{ url('/geosite/sibandang') }}">Sibandang</a></li>
+                        <li class="mb-2"><a href="{{ url('/geosite/muara') }}">Muara</a></li>
+                        <li class="mb-2"><a href="{{ url('/geosite/sampuran') }}">Sampuran</a></li>
+                        <li class="mb-2"><a href="{{ url('/geosite/papande') }}">Papande</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4">
                     <h5>Kontak</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2">
-                            <i class="fas fa-map-marker-alt me-2" style="color: #c6a43b;"></i> 
-                            Danau Toba, Sumatera Utara
-                        </li>
-                        <li class="mb-2">
-                            <i class="fas fa-phone me-2" style="color: #c6a43b;"></i> 
-                            +62 812 3456 7890
-                        </li>
-                        <li class="mb-2">
-                            <i class="fas fa-envelope me-2" style="color: #c6a43b;"></i> 
-                            info@geotoba.com
-                        </li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2" style="color: #c6a43b;"></i> Danau Toba, Sumatera Utara</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2" style="color: #c6a43b;"></i> +62 812 3456 7890</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2" style="color: #c6a43b;"></i> info@geotoba.com</li>
                     </ul>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2026 GeoToba - Geopark Danau Toba. All rights reserved.</p>
-            </div>
+            <div class="copyright"><p>&copy; 2026 GeoToba - Geopark Danau Toba. All rights reserved.</p></div>
         </div>
     </footer>
 
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
+    <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
+
+    <!-- Ambient Sound Control -->
+    <div class="ambient-wrapper" id="ambientWrapper">
+        <button class="ambient-btn" id="ambientToggle" title="Suara & Musik"><i class="fas fa-volume-up" id="ambientIcon"></i></button>
+        <div class="ambient-panel" id="ambientPanel">
+            <div class="ambient-header"><span>Suara & Musik</span><button type="button" class="ambient-close" id="ambientClose">&times;</button></div>
+            <div class="ambient-body">
+                <button class="ambient-play-btn" id="ambientPlayBtn"><i class="fas fa-play"></i></button>
+                <input type="range" id="ambientVolume" min="0" max="100" value="15" class="ambient-slider">
+                <span class="ambient-volume-label" id="ambientVolumeLabel">15%</span>
+            </div>
+            <div class="ambient-track-info" id="ambientTrackInfo"></div>
+            <button class="ambient-next-btn" id="ambientNextBtn"><i class="fas fa-forward"></i> Selanjutnya</button>
+        </div>
     </div>
+    <audio id="ambientAudio" preload="none"></audio>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
     <script>
         AOS.init({ duration: 1000, once: true });
-        
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', function() {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
+        window.addEventListener('scroll', function() { navbar.classList.toggle('scrolled', window.scrollY > 50); });
         const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', function() {
-            backToTop.classList.toggle('show', window.scrollY > 300);
+        window.addEventListener('scroll', function() { backToTop.classList.toggle('show', window.scrollY > 300); });
+        backToTop.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // Audio
+        const tracks = [
+            { src: "{{ asset('music/Arang_Arang_Dairi.mp3') }}", title: "Arang Arang Dairi" },
+            { src: "{{ asset('music/Horbo_Paung.mp3') }}", title: "Horbo Paung" },
+            { src: "{{ asset('music/Siboru_Uluan.mp3') }}", title: "Siboru Uluan" },
+            { src: "{{ asset('music/Sulaman_Barat.mp3') }}", title: "Sulaman Barat" }
+        ];
+        const ambAudio = document.getElementById('ambientAudio');
+        const ambPanel = document.getElementById('ambientPanel');
+        let ambPlaying = false, currentTrack = -1, recent = [];
+        function playTrack(i) {
+            currentTrack = i; ambAudio.src = tracks[i].src; ambAudio.load();
+            ambAudio.play().then(() => { ambPlaying = true; document.getElementById('ambientPlayBtn').innerHTML = '<i class="fas fa-pause"></i>'; document.getElementById('ambientTrackInfo').textContent = tracks[i].title; document.getElementById('ambientIcon').classList.replace('fa-volume-mute','fa-volume-up'); }).catch(()=>{});
+            recent = recent.filter(x => x !== i); recent.push(i); if(recent.length > 3) recent.shift();
+        }
+        function nextTrack() { let n; do { n = Math.floor(Math.random() * tracks.length); } while(n === currentTrack && tracks.length > 1); playTrack(n); }
+        document.getElementById('ambientToggle').addEventListener('click', () => ambPanel.classList.toggle('open'));
+        document.getElementById('ambientClose').addEventListener('click', () => ambPanel.classList.remove('open'));
+        document.getElementById('ambientPlayBtn').addEventListener('click', () => {
+            if(ambPlaying) { ambAudio.pause(); ambPlaying = false; document.getElementById('ambientPlayBtn').innerHTML = '<i class="fas fa-play"></i>'; document.getElementById('ambientIcon').classList.replace('fa-volume-up','fa-volume-mute'); }
+            else { if(currentTrack === -1) playTrack(Math.floor(Math.random() * tracks.length)); else { ambAudio.play(); ambPlaying = true; document.getElementById('ambientPlayBtn').innerHTML = '<i class="fas fa-pause"></i>'; document.getElementById('ambientIcon').classList.replace('fa-volume-mute','fa-volume-up'); } }
         });
-        
-        backToTop.addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        document.getElementById('ambientNextBtn').addEventListener('click', nextTrack);
+        document.getElementById('ambientVolume').addEventListener('input', function() { ambAudio.volume = this.value / 100; document.getElementById('ambientVolumeLabel').textContent = this.value + '%'; });
+        ambAudio.addEventListener('ended', nextTrack);
+        ambAudio.volume = 0.15;
+        setTimeout(() => { if(!ambPlaying) playTrack(Math.floor(Math.random() * tracks.length)); }, 5000);
     </script>
-    
     @stack('scripts')
 </body>
 </html>
