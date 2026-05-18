@@ -816,7 +816,7 @@
                 <img src="{{ asset('uploads/A4.JPG') }}" class="card-img">
                 <div class="card-content">
                     <h3>Hotel Muara Nauli</h3>
-                    <p>Pemandangan langsung Danau Toba.</p>
+                    <p>Hotel Muara Nauli memadukan nuansa tradisional yang hangat dengan kenyamanan modern.</p>
                     <div class="card-price">💰 [HARGA2] / malam</div>
                     <div class="card-contact">📞 [085361006767]</div>
                     <div class="card-address">📍 [Jl. Sisingamangaraja No.1, Hutana Godang, Kec. Muara, Muara Tapanuli Utara, Sumatera Utara 22312]</div>
