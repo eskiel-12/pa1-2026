@@ -208,7 +208,7 @@ body {
                 @if($galeri->count())
                     @foreach($galeri as $item)
                         <div class="story-card" onclick="openLightbox({{ $loop->index }})">
-                            <img src="{{ asset($item->gambar) }}" alt="{{ $item->judul }}">
+                            <img src="{{ $item->gambar_url }}" alt="{{ $item->judul }}">
                             <div class="story-text">
                                 <h3>{{ $item->judul }}</h3>
                                 <p>{{ \Illuminate\Support\Str::limit($item->deskripsi ?? '', 60) }}</p>
@@ -253,7 +253,7 @@ body {
 <script>
 const images = @json($galeri->map(function($item) {
     return [
-        'src' => asset($item->gambar),
+        'src' => $item->gambar_url,
         'desc' => $item->judul ? $item->judul . ($item->deskripsi ? ' - ' . $item->deskripsi : '') : ($item->deskripsi ?? 'Galeri Foto'),
     ];
 }));

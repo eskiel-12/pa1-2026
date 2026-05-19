@@ -459,7 +459,7 @@
                 'title' => $item->judul,
                 'excerpt' => strip_tags($item->konten),
                 'content' => $item->konten,
-                'image' => $item->gambar ? asset($item->gambar) : asset('uploads/del.jpeg'),
+                'image' => $item->gambar_url,
                 'date' => $item->tanggal_terbit ? $item->tanggal_terbit->format('d M Y') : $item->created_at->format('d M Y'),
                 'slug' => $item->slug,
                 'kategori' => $item->kategori ? $item->kategori->nama : 'Umum'

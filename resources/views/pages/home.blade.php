@@ -670,7 +670,7 @@
         <div class="slides-container">
             @if($banners->count() > 0)
                 @foreach($banners as $index => $banner)
-                    <div class="slide {{ $index === 0 ? 'active' : '' }}" style="background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('{{ asset($banner->url_gambar) }}');">
+                    <div class="slide {{ $index === 0 ? 'active' : '' }}" style="background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('{{ $banner->gambar_url }}');">
                         @if($banner->judul || $banner->deskripsi)
                             <div class="hero-content">
                                 <div>

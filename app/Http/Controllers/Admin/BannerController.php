@@ -97,8 +97,8 @@ class BannerController extends Controller
 
         if ($request->hasFile('gambar')) {
             // Hapus gambar lama
-            if ($banner->gambar && Storage::disk('public')->exists($banner->gambar)) {
-                Storage::disk('public')->delete($banner->gambar);
+            if ($banner->gambar && Storage::exists($banner->gambar)) {
+                Storage::delete($banner->gambar);
             }
 
             $gambarPath = $request->file('gambar')->store('banner', 'public');
@@ -117,8 +117,8 @@ class BannerController extends Controller
     public function destroy(Banner $banner)
     {
         // Hapus gambar dari storage
-        if ($banner->gambar && Storage::disk('public')->exists($banner->gambar)) {
-            Storage::disk('public')->delete($banner->gambar);
+        if ($banner->gambar && Storage::exists($banner->gambar)) {
+            Storage::delete($banner->gambar);
         }
 
         $banner->delete();

@@ -40,8 +40,6 @@ class GaleriController extends Controller
         $folder = 'image/galeri';
         $filename = time() . '_' . Str::slug($request->judul) . '.' . $gambar->getClientOriginalExtension();
         $path = $gambar->storeAs($folder, $filename, 'public');
-        $gambarPath = 'storage/' . $path;
-        $urlGambar = asset($gambarPath);
 
         // Format tanggal_foto
         $tanggal_foto = null;
@@ -55,8 +53,8 @@ class GaleriController extends Controller
             'slug' => $this->generateSlug($request->judul),
             'kategori' => 'Galeri',
             'deskripsi' => $request->deskripsi,
-            'gambar' => $gambarPath,
-            'url_gambar' => $urlGambar,
+            'gambar' => $path,
+            'url_gambar' => $path,
             'lokasi' => $request->lokasi,
             'tanggal_foto' => $tanggal_foto,
             'status' => $request->has('status') ? 1 : 0,
@@ -105,9 +103,8 @@ class GaleriController extends Controller
         // Upload gambar baru jika ada
         if ($request->hasFile('gambar')) {
             // Hapus gambar lama
-            $oldPath = str_replace('storage/', 'public/', $galeri->gambar);
-            if (Storage::disk('public')->exists($oldPath)) {
-                Storage::disk('public')->delete($oldPath);
+            if ($galeri->gambar && Storage::exists($galeri->gambar)) {
+                Storage::delete($galeri->gambar);
             }
 
             // Upload gambar baru
@@ -115,8 +112,8 @@ class GaleriController extends Controller
             $folder = 'image/galeri';
             $filename = time() . '_' . Str::slug($request->judul) . '.' . $gambar->getClientOriginalExtension();
             $path = $gambar->storeAs($folder, $filename, 'public');
-            $data['gambar'] = 'storage/' . $path;
-            $data['url_gambar'] = asset($data['gambar']);
+            $data['gambar'] = $path;
+            $data['url_gambar'] = $path;
         }
 
         $galeri->update($data);
@@ -155,9 +152,8 @@ class GaleriController extends Controller
         $galeri = Galeri::findOrFail($id);
         
         // Hapus file gambar
-        $gambarPath = str_replace('storage/', 'public/', $galeri->gambar);
-        if (Storage::disk('public')->exists($gambarPath)) {
-            Storage::disk('public')->delete($gambarPath);
+        if ($galeri->gambar && Storage::exists($galeri->gambar)) {
+            Storage::delete($galeri->gambar);
         }
         
         $galeri->delete();

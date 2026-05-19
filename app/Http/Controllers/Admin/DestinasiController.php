@@ -53,9 +53,9 @@ class DestinasiController extends Controller
 
         // Handle image upload
         if ($request->hasFile('gambar')) {
-            $imageName = time() . '.' . $request->gambar->extension();
-            $request->gambar->move(public_path('uploads/destinasi'), $imageName);
-            $data['gambar'] = 'uploads/destinasi/' . $imageName;
+            $filename = time() . '_' . Str::slug($request->nama) . '.' . $request->gambar->getClientOriginalExtension();
+            $path = $request->gambar->storeAs('destinasi', $filename, 'public');
+            $data['gambar'] = $path;
         }
 
         Destinasi::create($data);
@@ -109,14 +109,21 @@ class DestinasiController extends Controller
 
         // Handle image upload
         if ($request->hasFile('gambar')) {
-            // Delete old image
-            if ($destinasi->gambar && file_exists(public_path($destinasi->gambar))) {
-                unlink(public_path($destinasi->gambar));
+            // Delete old image (support both old path format and new format)
+            if ($destinasi->gambar) {
+                // Try storage path first
+                if (Storage::exists($destinasi->gambar)) {
+                    Storage::delete($destinasi->gambar);
+                }
+                // Try public path (for old format like uploads/destinasi/xxx)
+                elseif (file_exists(public_path($destinasi->gambar))) {
+                    unlink(public_path($destinasi->gambar));
+                }
             }
 
-            $imageName = time() . '.' . $request->gambar->extension();
-            $request->gambar->move(public_path('uploads/destinasi'), $imageName);
-            $data['gambar'] = 'uploads/destinasi/' . $imageName;
+            $filename = time() . '_' . Str::slug($request->nama) . '.' . $request->gambar->getClientOriginalExtension();
+            $path = $request->gambar->storeAs('destinasi', $filename, 'public');
+            $data['gambar'] = $path;
         }
 
         $destinasi->update($data);
@@ -131,9 +138,16 @@ class DestinasiController extends Controller
     {
         $destinasi = Destinasi::findOrFail($id);
 
-        // Delete image file
-        if ($destinasi->gambar && file_exists(public_path($destinasi->gambar))) {
-            unlink(public_path($destinasi->gambar));
+        // Delete image file (support both storage and public paths)
+        if ($destinasi->gambar) {
+            // Try storage path first
+            if (Storage::exists($destinasi->gambar)) {
+                Storage::delete($destinasi->gambar);
+            }
+            // Try public path (for old format like uploads/destinasi/xxx)
+            elseif (file_exists(public_path($destinasi->gambar))) {
+                unlink(public_path($destinasi->gambar));
+            }
         }
 
         $destinasi->delete();
