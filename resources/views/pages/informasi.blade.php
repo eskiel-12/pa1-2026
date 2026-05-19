@@ -593,7 +593,7 @@
 
             <div class="sejarah-item" data-aos="fade-right">
                 <div class="sejarah-image">
-                    <img src="/image/A10.jpeg" alt="Letusan Supervolcano">
+                    <img src="/uploads/A1.jpeg" alt="Letusan Supervolcano">
                 </div>
 
                 <div class="sejarah-text">
@@ -611,7 +611,7 @@
 
             <div class="sejarah-item reverse" data-aos="fade-left">
                 <div class="sejarah-image">
-                    <img src="/image/C1.jpeg" alt="Kaldera Toba">
+                    <img src="/uploads/A2.jpg" alt="Kaldera Toba">
                 </div>
 
                 <div class="sejarah-text">
@@ -628,7 +628,7 @@
 
             <div class="sejarah-item" data-aos="fade-right">
                 <div class="sejarah-image">
-                    <img src="/image/C2.jpeg" alt="Geopark Toba">
+                    <img src="/uploads/A3.jpg" alt="Geopark Toba">
                 </div>
 
                 <div class="sejarah-text">

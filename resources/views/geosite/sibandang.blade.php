@@ -686,7 +686,7 @@
         <div class="nav-logo">
             <img src="{{ asset('uploads/del.jpeg') }}" alt="Bendera" class="flag-img">
             <div class="logo-divider"></div>
-            <img src="{{ asset('uploads/del.jpeg') }}" alt="D el" class="del-img">
+            <img src="{{ asset('uploads/logobankindonesia.jpeg') }}" alt="D el" class="del-img">
             <div class="logo-divider"></div>
             <div class="logo-text">
                 <h4>GEOTOBA</h4>
@@ -762,19 +762,39 @@
             <h2>UMKM Lokal</h2>
             <div class="divider"></div>
         </div>
-        <div class="grid-3">
-            @foreach($umkm as $item)
-            <div class="card">
-                <img src="{{ asset($item->gambar) }}" class="card-img">
-                <div class="card-content">
-                    <h3>{{ $item->nama }}</h3>
-                    <p>{{ $item->deskripsi }}</p>
-                    <div class="card-location">📍 {{ $item->lokasi }}</div>
-                    <div class="card-contact">📞 {{ $item->kontak }}</div>
-                </div>
+        <section>
+    <div class="grid-3">
+
+        <div class="card">
+            <img src="/uploads/A7.jpg" class="card-img">
+            <div class="card-content">
+                <h3>Tenun Ulos</h3>
+                <p>UMKM kopi khas Sumatera Utara.</p>
+                <div class="card-location">📍 Balige</div>
+                <div class="card-contact">📞 08123456789</div>
             </div>
-            @endforeach
         </div>
+
+        <div class="card">
+            <img src="/uploads/A6.jpg" class="card-img">
+            <div class="card-content">
+                <h3>Mangga Muara</h3>
+                <p>Kerajinan kain ulos tradisional.</p>
+                <div class="card-location">📍 Meat</div>
+                <div class="card-contact">📞 082345678901</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="/uploads/A5.jpg" class="card-img">
+            <div class="card-content">
+                <h3>Kerajinan Kayu</h3>
+                <p>Souvenir khas Danau Toba.</p>
+                <div class="card-location">📍 Muara</div>
+                <div class="card-contact">📞 083456789012</div>
+            </div>
+        </div>
+
     </div>
 </section>
 
@@ -835,7 +855,7 @@
         </div>
         <div class="grid-2">
             <div class="fasilitas-item">
-                <img src="{{ asset('uploads/A1.jpeg') }}" class="fasilitas-img">
+                <img src="{{ asset('uploads/A7.jpg') }}" class="fasilitas-img">
                 <div class="fasilitas-content">
                     <h4>Area Parkir</h4>
                     <p>Luas dan aman</p>
