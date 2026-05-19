@@ -772,24 +772,6 @@
                     <div class="card-contact">📞 [KONTAK_UMKM1]</div>
                 </div>
             </div>
-            <div class="card">
-                <img src="{{ asset('uploads/A1.jpeg') }}" class="card-img">
-                <div class="card-content">
-                    <h3>Anyaman Bambu</h3>
-                    <p>Kerajinan tangan dari bambu.</p>
-                    <div class="card-location">📍 Desa Meat</div>
-                    <div class="card-contact">📞 [KONTAK_UMKM2]</div>
-                </div>
-            </div>
-            <div class="card">
-                <img src="{{ asset('uploads/A2.JPG') }}" class="card-img">
-                <div class="card-content">
-                    <h3>Madu Hutan</h3>
-                    <p>Madu alami premium dari hutan sekitar.</p>
-                    <div class="card-location">📍 Kawasan Hutan</div>
-                    <div class="card-contact">📞 [KONTAK_UMKM3]</div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
