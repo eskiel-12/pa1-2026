@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class Destinasi extends Model
 {
+    use HasFactory;
 
     protected $table = 'destinasi';
 
@@ -17,12 +19,24 @@ class Destinasi extends Model
         'deskripsi',
         'lokasi',
         'kategori',
+        'kategori_id',
         'tags',
         'maps',
         'status',
         'views',
         'url_gambar'
     ];
+
+    protected $casts = [
+        'status' => 'boolean',
+        'views' => 'integer',
+        'tags' => 'array',
+    ];
+
+    public function kategoriRelation()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id');
+    }
 
     protected $appends = ['gambar_url'];
 

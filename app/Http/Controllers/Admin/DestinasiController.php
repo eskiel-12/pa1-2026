@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Destinasi;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -45,6 +46,14 @@ class DestinasiController extends Controller
 
         $data = $request->all();
         $data['slug'] = Str::slug($request->nama);
+
+        $kategori = Kategori::firstOrCreate([
+            'nama' => $request->kategori,
+        ], [
+            'slug' => Str::slug($request->kategori),
+            'deskripsi' => null,
+        ]);
+        $data['kategori_id'] = $kategori->id;
 
         // Handle tags
         if ($request->tags) {
@@ -101,6 +110,14 @@ class DestinasiController extends Controller
 
         $data = $request->all();
         $data['slug'] = Str::slug($request->nama);
+
+        $kategori = Kategori::firstOrCreate([
+            'nama' => $request->kategori,
+        ], [
+            'slug' => Str::slug($request->kategori),
+            'deskripsi' => null,
+        ]);
+        $data['kategori_id'] = $kategori->id;
 
         // Handle tags
         if ($request->tags) {

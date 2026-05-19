@@ -11,13 +11,18 @@ class Informasi extends Model
     use HasFactory;
     
     protected $table = 'informasi';
-    protected $fillable = ['judul', 'slug', 'konten', 'gambar', 'kategori', 'penulis', 'status', 'views'];
+    protected $fillable = ['judul', 'slug', 'konten', 'gambar', 'kategori', 'kategori_id', 'penulis', 'status', 'views'];
 
     protected $appends = ['gambar_url'];
 
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function kategoriRelation()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id');
     }
 
     /**

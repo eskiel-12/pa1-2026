@@ -15,9 +15,19 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('slug')->unique();
-            $table->string('gambar');
+            $table->string('gambar')->nullable();
+            $table->string('url_gambar')->nullable();
             $table->text('deskripsi');
+            $table->string('lokasi')->nullable();
+            $table->string('kategori')->nullable();
+            $table->json('tags')->nullable();
+            $table->string('maps')->nullable();
+            $table->boolean('status')->default(true);
+            $table->integer('views')->default(0);
             $table->timestamps();
+
+            $table->index('kategori');
+            $table->index('status');
         });
     }
 

@@ -20,6 +20,7 @@ class Galeri extends Model
         'gambar',
         'url_gambar',
         'kategori',
+        'kategori_id',
         'lokasi',
         'tanggal_foto',
         'status',
@@ -37,6 +38,11 @@ class Galeri extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function kategoriRelation()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id');
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Galeri;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -47,11 +48,19 @@ class GaleriController extends Controller
             $tanggal_foto = Carbon::parse($request->tanggal_foto)->format('Y-m-d');
         }
 
+        $kategori = Kategori::firstOrCreate([
+            'nama' => 'Galeri',
+        ], [
+            'slug' => 'galeri',
+            'deskripsi' => 'Kategori unggulan untuk galeri foto',
+        ]);
+
         // Simpan ke database
         Galeri::create([
             'judul' => $request->judul,
             'slug' => $this->generateSlug($request->judul),
             'kategori' => 'Galeri',
+            'kategori_id' => $kategori->id,
             'deskripsi' => $request->deskripsi,
             'gambar' => $path,
             'url_gambar' => $path,
@@ -90,10 +99,18 @@ class GaleriController extends Controller
             $tanggal_foto = Carbon::parse($request->tanggal_foto)->format('Y-m-d');
         }
 
+        $kategori = Kategori::firstOrCreate([
+            'nama' => $galeri->kategori ?? 'Galeri',
+        ], [
+            'slug' => Str::slug($galeri->kategori ?? 'Galeri'),
+            'deskripsi' => 'Kategori unggulan untuk galeri foto',
+        ]);
+
         $data = [
             'judul' => $request->judul,
             'slug' => $this->generateSlug($request->judul, $galeri->id),
             'kategori' => $galeri->kategori ?? 'Galeri',
+            'kategori_id' => $kategori->id,
             'deskripsi' => $request->deskripsi,
             'lokasi' => $request->lokasi,
             'tanggal_foto' => $tanggal_foto,

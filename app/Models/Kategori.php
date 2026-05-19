@@ -16,4 +16,24 @@ class Kategori extends Model
     {
         return $this->hasMany(Berita::class, 'kategori_id');
     }
+
+    public function destinasi()
+    {
+        return $this->hasMany(Destinasi::class, 'kategori_id');
+    }
+
+    public function galeri()
+    {
+        return $this->hasMany(Galeri::class, 'kategori_id');
+    }
+
+    public function informasi()
+    {
+        return $this->hasMany(Informasi::class, 'kategori_id');
+    }
+
+    public function umkms()
+    {
+        return $this->hasMany(Umkm::class, 'kategori_id');
+    }
 }

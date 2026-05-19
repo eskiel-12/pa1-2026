@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Informasi;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -29,11 +30,19 @@ class InformasiController extends Controller
             'kategori' => 'required',
         ]);
 
+        $kategori = Kategori::firstOrCreate([
+            'nama' => $request->kategori,
+        ], [
+            'slug' => Str::slug($request->kategori),
+            'deskripsi' => null,
+        ]);
+
         $data = [
             'judul' => $request->judul,
             'slug' => $this->generateSlug($request->judul),
             'konten' => $request->konten,
             'kategori' => $request->kategori,
+            'kategori_id' => $kategori->id,
             'penulis' => $request->penulis ?? 'Admin',
             'status' => $request->has('status'),
             'views' => 0,
@@ -67,11 +76,19 @@ class InformasiController extends Controller
             'kategori' => 'required',
         ]);
 
+        $kategori = Kategori::firstOrCreate([
+            'nama' => $request->kategori,
+        ], [
+            'slug' => Str::slug($request->kategori),
+            'deskripsi' => null,
+        ]);
+
         $data = [
             'judul' => $request->judul,
             'slug' => $this->generateSlug($request->judul, $informasi->id),
             'konten' => $request->konten,
             'kategori' => $request->kategori,
+            'kategori_id' => $kategori->id,
             'penulis' => $request->penulis ?? 'Admin',
             'status' => $request->has('status'),
         ];
