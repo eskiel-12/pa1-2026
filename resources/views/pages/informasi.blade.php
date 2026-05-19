@@ -741,7 +741,7 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
         <h1>Informasi</h1>
-        <p>Berita & Informasi Terbaru</p>
+        <p>Informasi Terbaru</p>
     </div>
 </section>
 
