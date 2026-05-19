@@ -46,4 +46,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // RELASI KE BERITA
+    public function berita()
+    {
+        return $this->hasMany(Berita::class);
+    }
+
+    // RELASI KE INFORMASI
+    public function informasi()
+    {
+        return $this->hasMany(Informasi::class);
+    }
 }
