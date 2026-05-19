@@ -10,6 +10,7 @@ use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\GeositeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\KontakController;
 
 
 // ==================== FRONTEND ROUTES ====================
@@ -83,9 +84,8 @@ Route::get('/umkm', [HomeController::class, 'umkm'])->name('umkm');
 Route::get('/budaya', [HomeController::class, 'budaya'])->name('budaya');
 
 // Kontak
-Route::get('/kontak', function () {
-    return view('pages.kontak');
-})->name('kontak');
+Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
+Route::post('/kontak/pesan', [KontakController::class, 'storeMessage'])->name('kontak.storeMessage');
 
 // ==================== AUTH ROUTES ====================
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
