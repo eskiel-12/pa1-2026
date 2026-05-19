@@ -467,56 +467,6 @@
                 </div>
             </div>
         </div>
-        
-        <div class="row g-4">
-            <!-- FORM KONTAK -->
-            <div class="col-lg-6" data-aos="fade-right">
-                <div class="form-card">
-                    <h3>Kirim Pesan</h3>
-                    @if($errors->any())
-                        <div class="alert alert-danger">
-                            <ul class="mb-0">
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    @if(session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-                    <form action="{{ route('kontak.storeMessage') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror" placeholder="Nama Lengkap" name="nama" value="{{ old('nama') }}" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ old('email') }}" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="tel" class="form-control @error('telepon') is-invalid @enderror" placeholder="Nomor Telepon" name="telepon" value="{{ old('telepon') }}">
-                        </div>
-                        <div class="mb-3">
-                            <select class="form-select @error('subjek') is-invalid @enderror" name="subjek" required>
-                                <option value="" disabled selected>-- Pilih Subjek --</option>
-                                <option value="Informasi Wisata" {{ old('subjek') == 'Informasi Wisata' ? 'selected' : '' }}>Informasi Wisata</option>
-                                <option value="Reservasi Tiket" {{ old('subjek') == 'Reservasi Tiket' ? 'selected' : '' }}>Reservasi Tiket</option>
-                                <option value="Kerjasama" {{ old('subjek') == 'Kerjasama' ? 'selected' : '' }}>Kerjasama</option>
-                                <option value="Saran & Masukan" {{ old('subjek') == 'Saran & Masukan' ? 'selected' : '' }}>Saran & Masukan</option>
-                                <option value="Lainnya" {{ old('subjek') == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
-                            </select>
-                        </div>
-                        <div class="mb-4">
-                            <textarea class="form-control @error('pesan') is-invalid @enderror" rows="5" placeholder="Pesan Anda..." name="pesan" required>{{ old('pesan') }}</textarea>
-                        </div>
-                        <button type="submit" class="btn-send">
-                            Kirim Pesan <i class="fas fa-paper-plane ms-2"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
             
             <!-- MAPS & SOSIAL -->
             <div class="col-lg-6" data-aos="fade-left">
