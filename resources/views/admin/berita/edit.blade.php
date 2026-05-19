@@ -43,7 +43,7 @@
             
             <div class="mb-3">
                 <label>Gambar Saat Ini</label><br>
-                <img src="{{ $berita->gambar_url }}" width="100" class="mb-2">
+                <img src="{{ asset($berita->gambar) }}" width="100" class="mb-2">
                 <input type="file" id="gambar" name="gambar" class="form-control" accept="image/*">
                 <div class="mt-3">
                     <img id="beritaPreview" src="#" alt="Preview Gambar Baru" class="img-fluid rounded d-none" style="max-width: 100%; max-height: 300px;" />

@@ -26,7 +26,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>
                         @if($item->gambar)
-                            <img src="{{ $item->gambar_url }}" class="preview-img" alt="Gambar Informasi">
+                            <img src="{{ asset($item->gambar) }}" class="preview-img" alt="Gambar Informasi">
                         @else
                             -
                         @endif

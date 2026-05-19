@@ -422,7 +422,7 @@
 
 
 <!-- HERO dengan background berita.jpg -->
-<section class="berita-hero" style="background-image: url('{{ optional($berita->first())->gambar_url ?: asset('image/B1.jpeg') }}');">
+<section class="berita-hero" style="background-image: url('{{ asset(optional($berita->first())->gambar ?: 'image/B1.jpeg') }}');">
     <div>
         <h1 data-aos="fade-up">Berita & Event</h1>
         <p data-aos="fade-up">Informasi terkini seputar Geopark Danau Toba</p>
@@ -459,50 +459,18 @@
                 'title' => $item->judul,
                 'excerpt' => strip_tags($item->konten),
                 'content' => $item->konten,
-                'image' => $item->gambar ? $item->gambar_url : asset('uploads/del.jpeg'),
+                'image' => $item->gambar ? asset($item->gambar) : asset('uploads/del.jpeg'),
                 'date' => $item->tanggal_terbit ? $item->tanggal_terbit->format('d M Y') : $item->created_at->format('d M Y'),
                 'slug' => $item->slug,
                 'kategori' => $item->kategori ? $item->kategori->nama : 'Umum'
             ];
         })->all();
     @endphp
-    let beritaData = {!! json_encode($beritaData, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_QUOT | JSON_HEX_APOS) !!};
+    const beritaData = {!! json_encode($beritaData, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_QUOT | JSON_HEX_APOS) !!};
     const defaultImage = '{{ asset('uploads/del.jpeg') }}';
 
     let currentPage = 1;
     const itemsPerPage = 6;
-
-    function normalizeBeritaItem(item) {
-        return {
-            id: item.id,
-            title: item.title || item.judul || '',
-            excerpt: item.excerpt || stripTags(item.content || item.konten || ''),
-            content: item.content || item.konten || '',
-            image: item.image || item.gambar || defaultImage,
-            date: item.date || item.tanggal_terbit || '',
-            slug: item.slug || '',
-            kategori: item.kategori || 'Umum'
-        };
-    }
-
-    function stripTags(html) {
-        return String(html).replace(/<[^>]*>/g, '');
-    }
-
-    function addBerita(item) {
-        beritaData.push(normalizeBeritaItem(item));
-        const totalPages = Math.ceil(beritaData.length / itemsPerPage);
-        if (currentPage > totalPages) {
-            currentPage = totalPages;
-        }
-        renderBerita();
-    }
-
-    function setBeritaData(items) {
-        beritaData = items.map(normalizeBeritaItem);
-        currentPage = 1;
-        renderBerita();
-    }
 
     function renderBerita() {
         const startIndex = (currentPage - 1) * itemsPerPage;
@@ -531,7 +499,7 @@
         }
         
         grid.innerHTML = beritaToShow.map(berita => `
-            <div class="berita-card" data-berita-id="${berita.id}">
+            <div class="berita-card" onclick="openModal(${berita.id})">
                 <div class="berita-image">
                     <img src="${berita.image || defaultImage}" alt="${berita.title}" onerror="this.src=defaultImage">
                 </div>
@@ -581,17 +549,13 @@
     }
     
     function openModal(id) {
-        const normalizedId = String(id);
-        const berita = beritaData.find(b => String(b.id) === normalizedId);
+        const berita = beritaData.find(b => b.id === id);
         if (!berita) return;
         
-        document.getElementById('modalImage').src = berita.image || defaultImage;
-        document.getElementById('modalImage').onerror = function() {
-            this.src = defaultImage;
-        };
-        document.getElementById('modalDate').innerText = berita.date || '';
-        document.getElementById('modalTitle').innerText = berita.title || 'Detail Berita';
-        document.getElementById('modalText').innerHTML = berita.content || '<p>Tidak ada detail berita tambahan.</p>';
+        document.getElementById('modalImage').src = berita.image;
+        document.getElementById('modalDate').innerText = berita.date;
+        document.getElementById('modalTitle').innerText = berita.title;
+        document.getElementById('modalText').innerHTML = berita.content;
         document.getElementById('modal').classList.add('active');
         document.body.style.overflow = 'hidden';
     }
@@ -601,39 +565,12 @@
         document.body.style.overflow = '';
     }
     
-    const modalElement = document.getElementById('modal');
-    if (modalElement) {
-        modalElement.addEventListener('click', function(event) {
-            if (event.target === modalElement) {
-                closeModal();
-            }
-        });
-    }
-
-    const beritaGridEl = document.getElementById('beritaGrid');
-    if (beritaGridEl) {
-        beritaGridEl.addEventListener('click', function(event) {
-            const card = event.target.closest('.berita-card');
-            if (!card) return;
-            const id = card.getAttribute('data-berita-id');
-            if (id) {
-                openModal(id);
-            }
-        });
-    }
-    
     // Tutup modal dengan ESC
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closeModal();
         }
     });
-
-    window.addBerita = addBerita;
-    window.setBeritaData = setBeritaData;
-    window.openModal = openModal;
-    window.changePage = changePage;
-    window.closeModal = closeModal;
     
     renderBerita();
 </script>

@@ -40,7 +40,7 @@
             <div class="mb-3">
                 <label>Gambar Saat Ini</label>
                 @if($informasi->gambar)
-                    <br><img src="{{ $informasi->gambar_url }}" width="100" class="mb-2">
+                    <br><img src="{{ asset($informasi->gambar) }}" width="100" class="mb-2">
                 @endif
                 <input type="file" id="gambar" name="gambar" class="form-control" accept="image/*">
                 <div class="mt-3">

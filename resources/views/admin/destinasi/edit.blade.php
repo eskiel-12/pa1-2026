@@ -101,11 +101,11 @@
                                 <div class="form-group">
                                     <label>Gambar Saat Ini</label>
                                     <div class="text-center">
-                                            @if($destinasi->gambar)
-                                                <img src="{{ $destinasi->gambar_url }}" alt="{{ $destinasi->nama }}" class="img-fluid" style="max-height: 200px;">
-                                            @else
-                                                <div class="text-muted">Tidak ada gambar</div>
-                                            @endif
+                                        @if($destinasi->gambar)
+                                            <img src="{{ asset($destinasi->gambar) }}" alt="{{ $destinasi->nama }}" class="img-fluid" style="max-height: 200px;">
+                                        @else
+                                            <div class="text-muted">Tidak ada gambar</div>
+                                        @endif
                                     </div>
                                 </div>
 

@@ -33,7 +33,7 @@
                             <tr>
                                 <td>
                                     @if($item->gambar)
-                                        <img src="{{ $item->gambar_url }}" alt="{{ $item->nama }}" class="img-thumbnail" style="width: 60px; height: 40px; object-fit: cover;">
+                                        <img src="{{ asset($item->gambar) }}" alt="{{ $item->nama }}" class="img-thumbnail" style="width: 60px; height: 40px; object-fit: cover;">
                                     @else
                                         <span class="text-muted">No Image</span>
                                     @endif

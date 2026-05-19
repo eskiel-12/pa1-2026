@@ -162,7 +162,7 @@
 </style>
 
 <!-- HERO -->
-<div class="hero-detail" style="background-image: url('{{ $informasi->gambar_url }}')">
+<div class="hero-detail" style="background-image: url('{{ $informasi->gambar ?: asset('uploads/del.jpeg') }}')">
     <div class="hero-overlay"></div>
     <div class="hero-text">
         <h1>{{ $informasi->judul }}</h1>
@@ -182,7 +182,7 @@
             <h1 class="content-title">{{ $informasi->judul }}</h1>
 
             @if($informasi->gambar)
-            <img src="{{ $informasi->gambar_url }}" alt="{{ $informasi->judul }}" class="content-image">
+            <img src="{{ $informasi->gambar }}" alt="{{ $informasi->judul }}" class="content-image">
             @endif
 
             <div class="content-body">

@@ -24,7 +24,7 @@
                 @forelse($berita as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td><img src="{{ $item->gambar_url }}" class="preview-img"></td>
+                    <td><img src="{{ asset($item->gambar) }}" class="preview-img"></td>
                     <td><strong>{{ Str::limit($item->judul, 30) }}</strong></td>
                     <td><span class="badge-info badge">{{ $item->kategori->nama ?? '-' }}</span></td>
                     <td>{{ $item->tanggal_terbit->format('d/m/Y') }}</td>
