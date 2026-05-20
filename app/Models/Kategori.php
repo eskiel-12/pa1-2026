@@ -11,18 +11,9 @@ class Kategori extends Model
     protected $fillable = [
         'nama',
         'slug',
-        'deskripsi'
+        'deskripsi',
+        'status'
     ];
-
-    public function berita()
-    {
-        return $this->hasMany(Berita::class);
-    }
-
-    public function galeri()
-    {
-        return $this->hasMany(Galeri::class, 'kategori_id');
-    }
 
     public function destinasi()
     {
