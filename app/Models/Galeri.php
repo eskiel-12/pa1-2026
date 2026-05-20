@@ -13,7 +13,6 @@ class Galeri extends Model
         'judul',
         'slug',
         'kategori',
-        'kategori_id',
         'deskripsi',
         'gambar',
         'url_gambar',
@@ -23,26 +22,24 @@ class Galeri extends Model
         'views'
     ];
 
+    // ACCESSOR URL GAMBAR
     public function getGambarUrlAttribute()
     {
         if (!$this->gambar) {
             return asset('images/no-image.png');
         }
 
+        // jika sudah URL lengkap
         if (filter_var($this->gambar, FILTER_VALIDATE_URL)) {
             return $this->gambar;
         }
 
+        // jika ada public/
         if (str_contains($this->gambar, 'public/')) {
             $path = str_replace('public/', '', $this->gambar);
             return Storage::url($path);
         }
 
         return Storage::url($this->gambar);
-    }
-
-    public function kategori()
-    {
-        return $this->belongsTo(Kategori::class, 'kategori_id');
     }
 }
