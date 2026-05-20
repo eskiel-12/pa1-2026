@@ -8,27 +8,12 @@ class Berita extends Model
 {
     protected $table = 'berita';
 
-    protected $fillable = [
-        'judul',
-        'slug',
-        'konten',
-        'gambar',
-        'kategori_id',
-        'user_id',
-        'penulis',
-        'tanggal_terbit',
-        'status',
-        'views',
-        'komentar'
+    protected $casts = [
+        'tanggal_terbit' => 'datetime',
     ];
 
     public function kategori()
     {
-        return $this->belongsTo(Kategori::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Kategori::class, 'kategori_id');
     }
 }

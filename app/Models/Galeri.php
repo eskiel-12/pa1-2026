@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Galeri extends Model
 {
@@ -11,34 +12,37 @@ class Galeri extends Model
     protected $fillable = [
         'judul',
         'slug',
+        'kategori',
+        'kategori_id',
         'deskripsi',
         'gambar',
         'url_gambar',
-        'kategori',
         'lokasi',
         'tanggal_foto',
         'status',
         'views'
     ];
 
-    protected $casts = [
-        'status' => 'boolean',
-        'tanggal_foto' => 'date',
-        'views' => 'integer',
-    ];
-
-    protected $appends = ['gambar_url'];
-
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
-
-    /**
-     * Get the image URL for the gallery item
-     */
     public function getGambarUrlAttribute()
     {
-        return $this->belongsTo(Kategori::class);
+        if (!$this->gambar) {
+            return asset('images/no-image.png');
+        }
+
+        if (filter_var($this->gambar, FILTER_VALIDATE_URL)) {
+            return $this->gambar;
+        }
+
+        if (str_contains($this->gambar, 'public/')) {
+            $path = str_replace('public/', '', $this->gambar);
+            return Storage::url($path);
+        }
+
+        return Storage::url($this->gambar);
+    }
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id');
     }
 }
