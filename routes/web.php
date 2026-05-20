@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\InformasiController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\KontakController as AdminKontakController;
+use App\Http\Controllers\Admin\UmkmController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\GeositeController;
 use App\Http\Controllers\HomeController;
@@ -114,6 +115,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('banner', BannerController::class)->names('admin.banner');
     Route::resource('kontak', AdminKontakController::class)->names('admin.kontak');
     Route::resource('destinasi', App\Http\Controllers\Admin\DestinasiController::class)->names('admin.destinasi');
+    Route::resource('umkm', UmkmController::class)->names('admin.umkm');
     Route::post('galeri/toggle-status/{id}', [GaleriController::class, 'toggleStatus'])->name('admin.galeri.toggle-status');
     Route::get('language/{lang}', [App\Http\Controllers\LanguageController::class, 'switch'])->name('language.switch');
 

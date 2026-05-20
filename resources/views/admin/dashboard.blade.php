@@ -47,6 +47,12 @@
     </div>
     <div class="col-6 col-md-3">
         <div class="stat-card">
+            <div class="stat-number">{{ \App\Models\Umkm::count() }}</div>
+            <div class="stat-label">Total UMKM</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="stat-card">
             <div class="stat-number">{{ \App\Models\Banner::count() }}</div>
             <div class="stat-label">Total Banner</div>
         </div>
@@ -88,6 +94,7 @@
     <a href="{{ route('admin.informasi.create') }}" class="action-btn"><i class="fas fa-plus-circle"></i> Informasi</a>
     <a href="{{ route('admin.banner.create') }}" class="action-btn"><i class="fas fa-plus-circle"></i> Banner</a>
     <a href="{{ route('admin.destinasi.create') }}" class="action-btn"><i class="fas fa-plus-circle"></i> Destinasi</a>
+    <a href="{{ route('admin.umkm.create') }}" class="action-btn"><i class="fas fa-plus-circle"></i> UMKM</a>
     <a href="{{ url('/') }}" target="_blank" class="action-btn"><i class="fas fa-globe"></i> Website</a>
 </div>
 @endsection

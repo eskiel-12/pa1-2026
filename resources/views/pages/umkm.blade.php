@@ -11,24 +11,25 @@
         </div>
 
         <div class="row gy-4">
-            <div class="col-md-4">
-                <div class="card p-4 shadow-sm h-100">
-                    <h3 class="h5">Tenun Ulos</h3>
-                    <p>Produk kain tradisional Batak dengan motif khas dan proses tenun manual.</p>
+            @forelse($umkms as $umkm)
+                <div class="col-md-6 col-lg-4">
+                    <div class="card p-3 shadow-sm h-100">
+                        @if($umkm->gambar)
+                            <img src="{{ asset($umkm->gambar) }}" alt="{{ $umkm->nama }}" class="card-img-top rounded mb-3" style="height: 240px; object-fit: cover;">
+                        @endif
+                        <div class="card-body p-0">
+                            <h3 class="h5">{{ $umkm->nama }}</h3>
+                            <p>{{ Str::limit($umkm->deskripsi, 150) }}</p>
+                            <p class="mb-1"><strong>Lokasi:</strong> {{ $umkm->lokasi }}</p>
+                            <p class="mb-0"><strong>Kontak:</strong> {{ $umkm->kontak }}</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 shadow-sm h-100">
-                    <h3 class="h5">Olahan Makanan Lokal</h3>
-                    <p>Jajanan khas Danau Toba seperti omelette ikan, ikan asin, dan sambal natsum.</p>
+            @empty
+                <div class="col-12">
+                    <div class="alert alert-info">Belum ada data UMKM. Silakan tambahkan melalui dashboard admin.</div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 shadow-sm h-100">
-                    <h3 class="h5">Kerajinan Kayu</h3>
-                    <p>Souvenir ukiran Batak, alat musik tradisional, dan dekorasi rumah.</p>
-                </div>
-            </div>
+            @endforelse
         </div>
     </div>
 </section>

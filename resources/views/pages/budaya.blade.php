@@ -10,20 +10,24 @@
             <p class="lead">Pelajari tradisi, seni, dan warisan budaya masyarakat Danau Toba.</p>
         </div>
 
-        <div class="row gy-4">
-            <div class="col-md-6">
-                <div class="card p-4 shadow-sm h-100">
-                    <h3 class="h5">Tari Tradisional</h3>
-                    <p>Tari Tor-Tor dan pertunjukan adat yang masih dilestarikan hingga sekarang.</p>
-                </div>
+        @if($budayaItems->isEmpty())
+            <div class="alert alert-info">Belum ada informasi budaya yang tersedia. Silakan tambahkan konten Budaya melalui dashboard admin.</div>
+        @else
+            <div class="row gy-4">
+                @foreach($budayaItems as $item)
+                    <div class="col-md-6">
+                        <div class="card p-4 shadow-sm h-100">
+                            @if($item->gambar)
+                                <img src="{{ $item->gambar }}" alt="{{ $item->judul }}" class="card-img-top rounded mb-3" style="height: 240px; object-fit: cover;">
+                            @endif
+                            <h3 class="h5">{{ $item->judul }}</h3>
+                            <p>{{ Str::limit(strip_tags($item->konten), 180) }}</p>
+                            <a href="{{ route('informasi.detail', $item->slug) }}" class="btn btn-primary btn-sm">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-            <div class="col-md-6">
-                <div class="card p-4 shadow-sm h-100">
-                    <h3 class="h5">Rumah Adat</h3>
-                    <p>Rumah adat Batak dengan arsitektur khas dan makna simbolis setiap detailnya.</p>
-                </div>
-            </div>
-        </div>
+        @endif
     </div>
 </section>
 @endsection

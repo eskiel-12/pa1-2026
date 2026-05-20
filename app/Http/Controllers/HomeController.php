@@ -5,46 +5,31 @@ namespace App\Http\Controllers;
 use App\Models\Galeri;
 use App\Models\Berita;
 use App\Models\Banner;
+use App\Models\Destinasi;
+use App\Models\Umkm;
+use App\Models\Informasi;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $galeri = Galeri::latest()->take(6)->get();
-        $berita = Berita::with('kategori')->latest()->take(3)->get();
+        $galeri = Galeri::where('status', true)->latest()->take(6)->get();
+        $berita = Berita::with('kategori')->where('status', true)->latest()->take(3)->get();
         $banners = Banner::where('status', true)->orderBy('urutan')->get();
-
-        $destinasi = [
-            (object)[
-                'slug' => 'meat',
-                'nama' => 'Meat',
-                'gambar' => '/images/1.jpeg',
-                'deskripsi' => 'Desa adat dengan makam Raja Hunsa dan budaya Batak'
-            ],
-            (object)[
-                'slug' => 'batu-bahisan',
-                'nama' => 'Batu Bahisan',
-                'gambar' => '/images/2.jpeg',
-                'deskripsi' => 'Formasi batuan unik dengan spot foto Instagramable'
-            ],
-            (object)[
-                'slug' => 'liang-sipege',
-                'nama' => 'Liang Sipege',
-                'gambar' => '/images/3.jpeg',
-                'deskripsi' => 'Goa alami dengan stalaktit dan stalakmit'
-            ]
-        ];
+        $destinasi = Destinasi::where('status', true)->latest()->take(4)->get();
 
         return view('pages.home', compact('galeri', 'berita', 'destinasi', 'banners'));
     }
 
     public function umkm()
     {
-        return view('pages.umkm');
+        $umkms = Umkm::all();
+        return view('pages.umkm', compact('umkms'));
     }
 
     public function budaya()
     {
-        return view('pages.budaya');
+        $budayaItems = Informasi::where('status', true)->where('kategori', 'Budaya')->latest()->get();
+        return view('pages.budaya', compact('budayaItems'));
     }
 }

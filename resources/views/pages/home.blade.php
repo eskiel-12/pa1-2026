@@ -839,86 +839,38 @@
                 <p>Jelajahi destinasi menarik di Danau Toba</p>
             </div>
             <div class="destinasi-list">
-                
-                <!-- Sibandang -->
-                <div class="destinasi-item" data-aos="fade-up">
-                    <div class="destinasi-image">
-                        <img src="{{ asset('uploads/A2.JPG') }}" alt="Sibandang">
-                    </div>
-                    <div class="destinasi-content">
-                        <div class="destinasi-number">01 — GEOSITE</div>
-                        <h3>Sibandang</h3>
-                        <div class="destinasi-location">Pulau Sibandang, Danau Toba</div>
-                        <p class="destinasi-desc">Pulau Sibandang adalah sebuah pulau di kawasan Danau Toba yang dikenal dengan keindahan alamnya dan kekayaan budaya Batak. Pulau ini memiliki suasana yang tenang, dikelilingi perbukitan hijau, serta masyarakat yang masih menjaga tradisi seperti tarian Tortor, adat istiadat, dan kehidupan khas pedesaan. Selain itu, Pulau Sibandang juga terkenal dengan hasil pertanian seperti mangga yang menjadi ciri khas daerah tersebut.</p>
-                        <div class="destinasi-tags">
-                            <span>Makam Raja Hunsa</span>
-                            <span>Tari Hoda-Hoda</span>
-                            <span>Tenun Ulos</span>
-                            <span>Rumah Adat Batak</span>
+                @forelse($destinasi as $item)
+                    @php
+                        $tags = [];
+                        if (is_array($item->tags)) {
+                            $tags = $item->tags;
+                        } elseif ($item->tags) {
+                            $decoded = json_decode($item->tags, true);
+                            $tags = is_array($decoded) ? $decoded : explode(',', $item->tags);
+                        }
+                    @endphp
+                    <div class="destinasi-item {{ $loop->iteration % 2 === 0 ? 'reverse' : '' }}" data-aos="fade-up">
+                        <div class="destinasi-image">
+                            <img src="{{ $item->gambar_url }}" alt="{{ $item->nama }}">
                         </div>
-                        <a href="{{ url('/geosite/sibandang') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
-                    </div>
-                </div>
-
-                <!-- Muara-->
-                <div class="destinasi-item" data-aos="fade-up">
-                    <div class="destinasi-image">
-                        <img src="{{ asset('uploads/A3.JPG') }}" alt="Muara">
-                    </div>
-                    <div class="destinasi-content">
-                        <div class="destinasi-number">02 — GEOSITE</div>
-                        <h3>Muara</h3>
-                        <div class="destinasi-location">Pulau Sibandang, Danau Toba</div>
-                        <p class="destinasi-desc">Desa Muara merupakan salah satu desa di wilayah Kabupaten Tapanuli Utara, Provinsi Sumatera Utara, yang terletak di kawasan pesisir Danau Toba. Desa ini dikenal dengan aktivitas masyarakat yang didominasi oleh perikanan, pertanian, serta perdagangan kecil, didukung oleh letaknya yang strategis sebagai jalur penghubung antarwilayah di sekitar danau. Kehidupan sosialnya masih kuat dipengaruhi budaya Batak dengan nilai adat dan kebersamaan yang terus dijaga.</p>
-                        <div class="destinasi-tags">
-                            <span>Goa Alami</span>
-                            <span>Caving</span>
-                            <span>Stalaktit dan Stalakmit</span>
-                            <span>Edukasi Geologi</span>
+                        <div class="destinasi-content">
+                            <div class="destinasi-number">0{{ $loop->iteration }} — {{ strtoupper($item->kategori ?? 'Destinasi') }}</div>
+                            <h3>{{ $item->nama }}</h3>
+                            <div class="destinasi-location">{{ $item->lokasi ?? 'Lokasi tidak tersedia' }}</div>
+                            <p class="destinasi-desc">{{ Str::limit($item->deskripsi, 240) }}</p>
+                            @if(count($tags))
+                                <div class="destinasi-tags">
+                                    @foreach($tags as $tag)
+                                        <span>{{ trim($tag) }}</span>
+                                    @endforeach
+                                </div>
+                            @endif
+                            <a href="{{ route('destinasi.show', $item->id) }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
                         </div>
-                        <a href="{{ url('/geosite/muara') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
                     </div>
-                </div>
-
-                <!-- Sampuran -->
-                <div class="destinasi-item reverse" data-aos="fade-up">
-                    <div class="destinasi-image">
-                        <img src="{{ asset('uploads/A4.JPG') }}" alt="Sampuran">
-                    </div>
-                    <div class="destinasi-content">
-                        <div class="destinasi-number">03 — GEOSITE</div>
-                        <h3>Sampuran</h3>
-                        <div class="destinasi-location">Pulau Sibandang, Danau Toba</div>
-                        <p class="destinasi-desc">Desa Sampuran merupakan salah satu desa di Kabupaten Toba, Provinsi Sumatera Utara, yang berada di kawasan dataran tinggi sekitar Danau Toba dengan kondisi alam sejuk dan wilayah berbukit. Mayoritas penduduknya bekerja sebagai petani dengan komoditas seperti padi, jagung, dan tanaman hortikultura, serta kehidupan sosial yang masih kental dengan budaya Batak, ditandai oleh gotong royong dan pelaksanaan adat dalam berbagai kegiatan masyarakat.</p>
-                        <div class="destinasi-tags">
-                            <span>Formasi Batuan Unik</span>
-                            <span>Spot Fotografi</span>
-                            <span>Sunrise View</span>
-                            <span>Sunset View</span>
-                        </div>
-                        <a href="{{ url('/geosite/sampuran') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
-                    </div>
-                </div>
-
-                <!-- Papande-->
-                <div class="destinasi-item reverse" data-aos="fade-up">
-                    <div class="destinasi-image">
-                        <img src="{{ asset('uploads/A5.JPG') }}" alt="Papande">
-                    </div>
-                    <div class="destinasi-content">
-                        <div class="destinasi-number">04 — GEOSITE</div>
-                        <h3>Papande</h3>
-                        <div class="destinasi-location">Pulau Sibandang, Danau Toba</div>
-                        <p class="destinasi-desc">Desa Papande adalah sebuah desa di Kabupaten Toba, Provinsi Sumatera Utara, yang berada di kawasan sekitar Danau Toba. Desa ini memiliki lingkungan yang asri dan tenang, dengan masyarakat yang sebagian besar bekerja di bidang pertanian dan perikanan. Kehidupan sosialnya masih kental dengan budaya Batak dan nilai-nilai adat yang kuat.</p>
-                        <div class="destinasi-tags">
-                            <span>Formasi Batuan Unik</span>
-                            <span>Spot Fotografi</span>
-                            <span>Sunrise View</span>
-                            <span>Sunset View</span>
-                        </div>
-                        <a href="{{ url('/geosite/papande') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
-                    </div>
-                </div>
+                @empty
+                    <div class="alert alert-info">Belum ada destinasi unggulan. Silakan tambahkan destinasi melalui dashboard admin.</div>
+                @endforelse
             </div>
         </div>
     </section>
