@@ -21,22 +21,12 @@ class Kategori extends Model
 
     public function galeri()
     {
-        return $this->hasMany(Galeri::class);
-    }
-
-    public function informasi()
-    {
-        return $this->hasMany(Informasi::class);
+        return $this->hasMany(Galeri::class, 'kategori_id');
     }
 
     public function destinasi()
     {
         return $this->hasMany(Destinasi::class, 'kategori_id');
-    }
-
-    public function galeri()
-    {
-        return $this->hasMany(Galeri::class, 'kategori_id');
     }
 
     public function informasi()
