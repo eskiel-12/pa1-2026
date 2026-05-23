@@ -46,6 +46,7 @@ class DestinasiController extends Controller
 
         $data = $request->all();
         $data['slug'] = Str::slug($request->nama);
+        $data['user_id'] = auth()->id();
 
         $kategori = Kategori::firstOrCreate([
             'nama' => $request->kategori,

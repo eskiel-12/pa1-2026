@@ -19,8 +19,14 @@ class Galeri extends Model
         'lokasi',
         'tanggal_foto',
         'status',
-        'views'
+        'views',
+        'user_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     // ACCESSOR URL GAMBAR
     public function getGambarUrlAttribute()

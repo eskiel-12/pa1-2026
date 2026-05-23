@@ -50,6 +50,7 @@ class KontakController extends Controller
             'maps_url' => 'nullable|url|max:500',
         ]);
 
+        $validated['user_id'] = auth()->id();
         Kontak::create($validated);
 
         return redirect()->route('admin.kontak.index')->with('success', 'Data kontak berhasil ditambahkan!');

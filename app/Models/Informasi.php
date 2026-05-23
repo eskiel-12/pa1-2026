@@ -9,6 +9,24 @@ class Informasi extends Model
 {
     protected $table = 'informasi';
 
+    protected $fillable = [
+        'judul',
+        'slug',
+        'konten',
+        'gambar',
+        'kategori',
+        'kategori_id',
+        'penulis',
+        'status',
+        'views',
+        'user_id',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function getGambarUrlAttribute()
     {
         if (!$this->gambar) {

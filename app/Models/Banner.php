@@ -20,6 +20,7 @@ class Banner extends Model
         'link',
         'urutan',
         'status',
+        'user_id',
     ];
 
     protected $casts = [
@@ -32,6 +33,11 @@ class Banner extends Model
     /**
      * Get the image URL for the banner
      */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function getGambarUrlAttribute()
     {
         if (!$this->gambar) {

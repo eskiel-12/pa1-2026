@@ -24,7 +24,8 @@ class Destinasi extends Model
         'maps',
         'status',
         'views',
-        'url_gambar'
+        'url_gambar',
+        'user_id',
     ];
 
     protected $casts = [

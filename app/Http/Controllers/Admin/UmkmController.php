@@ -32,6 +32,7 @@ class UmkmController extends Controller
         ]);
 
         $data = $request->only(['nama', 'deskripsi', 'lokasi', 'kontak']);
+        $data['user_id'] = auth()->id();
 
         if ($request->hasFile('gambar')) {
             $filename = time() . '_' . Str::slug($request->nama) . '.' . $request->gambar->getClientOriginalExtension();

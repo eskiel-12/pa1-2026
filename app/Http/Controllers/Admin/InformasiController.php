@@ -46,6 +46,7 @@ class InformasiController extends Controller
             'penulis' => $request->penulis ?? 'Admin',
             'status' => $request->has('status'),
             'views' => 0,
+            'user_id' => auth()->id(),
         ];
 
         if ($request->hasFile('gambar')) {

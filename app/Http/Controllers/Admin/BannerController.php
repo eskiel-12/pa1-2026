@@ -52,6 +52,7 @@ class BannerController extends Controller
             'link' => $request->link,
             'urutan' => $request->urutan ?? 0,
             'status' => $request->status ?? true,
+            'user_id' => auth()->id(),
         ]);
 
         return redirect()->route('admin.banner.index')->with('success', 'Banner berhasil ditambahkan');

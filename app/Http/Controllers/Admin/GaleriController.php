@@ -68,6 +68,7 @@ class GaleriController extends Controller
             'tanggal_foto' => $tanggal_foto,
             'status' => $request->has('status') ? 1 : 0,
             'views' => 0,
+            'user_id' => auth()->id(),
         ]);
 
         return redirect()->route('admin.galeri.index')

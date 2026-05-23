@@ -27,6 +27,12 @@ class Kontak extends Model
         'twitter',
         'youtube',
         'tiktok',
-        'maps_url'
+        'maps_url',
+        'user_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -49,6 +49,7 @@ class BeritaController extends Controller
             'status' => $request->has('status'),
             'views' => 0,
             'komentar' => 0,
+            'user_id' => auth()->id(),
         ]);
 
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil ditambahkan!');
