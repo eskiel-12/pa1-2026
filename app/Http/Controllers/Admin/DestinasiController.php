@@ -11,26 +11,17 @@ use Illuminate\Support\Facades\Storage;
 
 class DestinasiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $destinasi = Destinasi::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.destinasi.index', compact('destinasi'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('admin.destinasi.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -72,27 +63,18 @@ class DestinasiController extends Controller
         return redirect()->route('admin.destinasi.index')->with('success', 'Destinasi berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         $destinasi = Destinasi::findOrFail($id);
         return view('admin.destinasi.show', compact('destinasi'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $destinasi = Destinasi::findOrFail($id);
         return view('admin.destinasi.edit', compact('destinasi'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $destinasi = Destinasi::findOrFail($id);
@@ -128,11 +110,10 @@ class DestinasiController extends Controller
         if ($request->hasFile('gambar')) {
             // Delete old image (support both old path format and new format)
             if ($destinasi->gambar) {
-                // Try storage path first
-                if (Storage::exists($destinasi->gambar)) {
-                    Storage::delete($destinasi->gambar);
+                // SUDAH DIPERBAIKI: Menggunakan disk('public')
+                if (Storage::disk('public')->exists($destinasi->gambar)) {
+                    Storage::disk('public')->delete($destinasi->gambar);
                 }
-                // Try public path (for old format like uploads/destinasi/xxx)
                 elseif (file_exists(public_path($destinasi->gambar))) {
                     unlink(public_path($destinasi->gambar));
                 }
@@ -148,20 +129,16 @@ class DestinasiController extends Controller
         return redirect()->route('admin.destinasi.index')->with('success', 'Destinasi berhasil diperbarui');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $destinasi = Destinasi::findOrFail($id);
 
         // Delete image file (support both storage and public paths)
         if ($destinasi->gambar) {
-            // Try storage path first
-            if (Storage::exists($destinasi->gambar)) {
-                Storage::delete($destinasi->gambar);
+            // SUDAH DIPERBAIKI: Menggunakan disk('public')
+            if (Storage::disk('public')->exists($destinasi->gambar)) {
+                Storage::disk('public')->delete($destinasi->gambar);
             }
-            // Try public path (for old format like uploads/destinasi/xxx)
             elseif (file_exists(public_path($destinasi->gambar))) {
                 unlink(public_path($destinasi->gambar));
             }

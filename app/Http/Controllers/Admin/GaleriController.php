@@ -63,7 +63,7 @@ class GaleriController extends Controller
             'kategori_id' => $kategori->id,
             'deskripsi' => $request->deskripsi,
             'gambar' => $path,
-            'url_gambar' => $path,
+            'url_gambar' => Storage::url($path), // Simpan URL agar format sama dengan banner
             'lokasi' => $request->lokasi,
             'tanggal_foto' => $tanggal_foto,
             'status' => $request->has('status') ? 1 : 0,
@@ -119,9 +119,9 @@ class GaleriController extends Controller
 
         // Upload gambar baru jika ada
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama
-            if ($galeri->gambar && Storage::exists($galeri->gambar)) {
-                Storage::delete($galeri->gambar);
+            // Hapus gambar lama (SUDAH DITAMBAHKAN DISK PUBLIC)
+            if ($galeri->gambar && Storage::disk('public')->exists($galeri->gambar)) {
+                Storage::disk('public')->delete($galeri->gambar);
             }
 
             // Upload gambar baru
@@ -129,8 +129,9 @@ class GaleriController extends Controller
             $folder = 'image/galeri';
             $filename = time() . '_' . Str::slug($request->judul) . '.' . $gambar->getClientOriginalExtension();
             $path = $gambar->storeAs($folder, $filename, 'public');
+            
             $data['gambar'] = $path;
-            $data['url_gambar'] = $path;
+            $data['url_gambar'] = Storage::url($path);
         }
 
         $galeri->update($data);
@@ -143,6 +144,7 @@ class GaleriController extends Controller
     {
         $slug = Str::slug($judul);
         $query = Galeri::where('slug', $slug);
+        
         if ($ignoreId) {
             $query->where('id', '<>', $ignoreId);
         }
@@ -168,9 +170,9 @@ class GaleriController extends Controller
     {
         $galeri = Galeri::findOrFail($id);
         
-        // Hapus file gambar
-        if ($galeri->gambar && Storage::exists($galeri->gambar)) {
-            Storage::delete($galeri->gambar);
+        // Hapus file gambar (SUDAH DITAMBAHKAN DISK PUBLIC)
+        if ($galeri->gambar && Storage::disk('public')->exists($galeri->gambar)) {
+            Storage::disk('public')->delete($galeri->gambar);
         }
         
         $galeri->delete();

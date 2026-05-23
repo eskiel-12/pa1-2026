@@ -44,7 +44,7 @@ class InformasiController extends Controller
             'kategori' => $request->kategori,
             'kategori_id' => $kategori->id,
             'penulis' => $request->penulis ?? 'Admin',
-            'status' => $request->has('status'),
+            'status' => $request->has('status') ? 1 : 0, // Mengamankan input checkbox
             'views' => 0,
         ];
 
@@ -90,13 +90,14 @@ class InformasiController extends Controller
             'kategori' => $request->kategori,
             'kategori_id' => $kategori->id,
             'penulis' => $request->penulis ?? 'Admin',
-            'status' => $request->has('status'),
+            'status' => $request->has('status') ? 1 : 0,
         ];
 
         if ($request->hasFile('gambar')) {
             if ($informasi->gambar) {
-                if (Storage::exists($informasi->gambar)) {
-                    Storage::delete($informasi->gambar);
+                // SUDAH DITAMBAHKAN DISK PUBLIC
+                if (Storage::disk('public')->exists($informasi->gambar)) {
+                    Storage::disk('public')->delete($informasi->gambar);
                 }
             }
             $gambar = $request->file('gambar');
@@ -114,8 +115,9 @@ class InformasiController extends Controller
     {
         $informasi = Informasi::findOrFail($id);
         if ($informasi->gambar) {
-            if (Storage::exists($informasi->gambar)) {
-                Storage::delete($informasi->gambar);
+            // SUDAH DITAMBAHKAN DISK PUBLIC
+            if (Storage::disk('public')->exists($informasi->gambar)) {
+                Storage::disk('public')->delete($informasi->gambar);
             }
         }
         $informasi->delete();

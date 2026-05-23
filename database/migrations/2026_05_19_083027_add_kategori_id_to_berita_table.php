@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('berita', function (Blueprint $table) {
-
-            $table->foreignId('kategori_id')
-                  ->nullable()
-                  ->constrained('kategori')
-                  ->onDelete('cascade');
-
+            // Only add if it doesn't exist, handled by later migration
+            if (!Schema::hasColumn('berita', 'kategori_id')) {
+                $table->foreignId('kategori_id')
+                      ->nullable()
+                      ->constrained('kategori')
+                      ->onDelete('cascade');
+            }
         });
     }
 

@@ -116,7 +116,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('kontak', AdminKontakController::class)->names('admin.kontak');
     Route::resource('destinasi', App\Http\Controllers\Admin\DestinasiController::class)->names('admin.destinasi');
     Route::resource('umkm', UmkmController::class)->names('admin.umkm');
-    Route::post('galeri/toggle-status/{id}', [GaleriController::class, 'toggleStatus'])->name('admin.galeri.toggle-status');
+    Route::post('galeri/toggle-status/{id}',[GaleriController::class, 'toggleStatus'])->name('admin.galeri.toggle-status');
     Route::get('language/{lang}', [App\Http\Controllers\LanguageController::class, 'switch'])->name('language.switch');
 
     

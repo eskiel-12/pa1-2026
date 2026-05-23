@@ -56,10 +56,18 @@ return new class extends Migration
 
     private function hasForeignKey(string $table, string $column, string $referencedTable): bool
     {
-        $database = DB::getDatabaseName();
+        $database = config('database.default');
+        
+        // For SQLite, we can't reliably check for foreign keys using information_schema
+        // So we'll just check if the column exists
+        if ($database === 'sqlite') {
+            return true; // Assume it's already set up if column exists
+        }
+        
+        $databaseName = DB::getDatabaseName();
 
         $foreign = DB::table('information_schema.key_column_usage')
-            ->where('table_schema', $database)
+            ->where('table_schema', $databaseName)
             ->where('table_name', $table)
             ->where('column_name', $column)
             ->where('referenced_table_name', $referencedTable)

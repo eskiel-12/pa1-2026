@@ -84,9 +84,9 @@ class BeritaController extends Controller
 
         // Upload gambar baru jika ada
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama
-            if ($berita->gambar && Storage::exists($berita->gambar)) {
-                Storage::delete($berita->gambar);
+            // Hapus gambar lama (Sudah diperbaiki disk-nya)
+            if ($berita->gambar && Storage::disk('public')->exists($berita->gambar)) {
+                Storage::disk('public')->delete($berita->gambar);
             }
 
             // Upload gambar baru
@@ -105,9 +105,9 @@ class BeritaController extends Controller
     {
         $berita = Berita::findOrFail($id);
         
-        // Hapus file gambar
-        if ($berita->gambar && Storage::exists($berita->gambar)) {
-            Storage::delete($berita->gambar);
+        // Hapus file gambar (Sudah diperbaiki disk-nya)
+        if ($berita->gambar && Storage::disk('public')->exists($berita->gambar)) {
+            Storage::disk('public')->delete($berita->gambar);
         }
         
         $berita->delete();
@@ -118,6 +118,7 @@ class BeritaController extends Controller
     {
         $slug = Str::slug($judul);
         $query = Berita::where('slug', $slug);
+        
         if ($ignoreId) {
             $query->where('id', '<>', $ignoreId);
         }
