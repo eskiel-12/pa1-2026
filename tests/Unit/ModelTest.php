@@ -101,6 +101,13 @@ class ModelTest extends TestCase
         $this->assertSame(Kategori::class, $relation->getRelated()::class);
     }
 
+    public function test_destinasi_belongs_to_kategori_relation(): void
+    {
+        $relation = (new Destinasi())->kategoriRelation();
+        $this->assertInstanceOf(BelongsTo::class, $relation);
+        $this->assertSame(Kategori::class, $relation->getRelated()::class);
+    }
+
     public function test_kategori_has_many_relations(): void
     {
         $kategori = new Kategori();
