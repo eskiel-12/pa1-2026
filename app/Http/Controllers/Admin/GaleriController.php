@@ -75,6 +75,12 @@ class GaleriController extends Controller
             ->with('success', 'Galeri berhasil ditambahkan');
     }
 
+    public function show($id)
+    {
+        $galeri = Galeri::findOrFail($id);
+        return view('admin.galeri.show', compact('galeri'));
+    }
+
     public function edit($id)
     {
         $galeri = Galeri::findOrFail($id);

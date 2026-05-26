@@ -81,11 +81,15 @@
     <div class="card-custom mb-5">
         <h2 class="mb-4">Galeri</h2>
         <div class="row gallery">
-            @foreach($destinasi->galeri as $img)
+            @forelse($galeri as $img)
                 <div class="col-md-4 mb-3">
                     <img src="{{ $img }}" class="w-100">
                 </div>
-            @endforeach
+            @empty
+                <div class="col-12">
+                    <p>Tidak ada galeri untuk destinasi ini.</p>
+                </div>
+            @endforelse
         </div>
     </div>
 
@@ -99,6 +103,60 @@
             height="400" 
             style="border:none;">
         </iframe>
+    </div>
+
+    <!-- UMKM -->
+    <div class="card-custom mb-5">
+        <h2 class="mb-3">UMKM di Sekitar</h2>
+        <div class="row">
+            @forelse($umkms as $u)
+                <div class="col-md-4 mb-3">
+                    <div class="card p-3 h-100">
+                        <img src="{{ $u->gambar ? \Illuminate\Support\Facades\Storage::url($u->gambar) : asset('images/no-image.png') }}" class="w-100 mb-2" style="height:150px;object-fit:cover;border-radius:8px;">
+                        <h5>{{ $u->nama }}</h5>
+                        <p class="mb-0">{{ \Illuminate\Support\Str::limit($u->deskripsi, 100) }}</p>
+                    </div>
+                </div>
+            @empty
+                <div class="col-12">Tidak ada UMKM terdaftar di lokasi ini.</div>
+            @endforelse
+        </div>
+    </div>
+
+    <!-- AKOMODASI -->
+    <div class="card-custom mb-5">
+        <h2 class="mb-3">Akomodasi</h2>
+        <div class="row">
+            @forelse($akomodasis as $a)
+                <div class="col-md-4 mb-3">
+                    <div class="card p-3 h-100">
+                        <img src="{{ $a->gambar_url ?? asset('images/no-image.png') }}" class="w-100 mb-2" style="height:150px;object-fit:cover;border-radius:8px;">
+                        <h5>{{ $a->nama }}</h5>
+                        <p class="mb-0">{{ \Illuminate\Support\Str::limit($a->deskripsi, 100) }}</p>
+                    </div>
+                </div>
+            @empty
+                <div class="col-12">Tidak ada akomodasi terdaftar di lokasi ini.</div>
+            @endforelse
+        </div>
+    </div>
+
+    <!-- TRANSPORTASI -->
+    <div class="card-custom mb-5">
+        <h2 class="mb-3">Transportasi</h2>
+        <div class="row">
+            @forelse($transportasis as $t)
+                <div class="col-md-4 mb-3">
+                    <div class="card p-3 h-100">
+                        <img src="{{ $t->gambar_url ?? asset('images/no-image.png') }}" class="w-100 mb-2" style="height:150px;object-fit:cover;border-radius:8px;">
+                        <h5>{{ $t->nama }}</h5>
+                        <p class="mb-0">{{ \Illuminate\Support\Str::limit($t->deskripsi, 100) }}</p>
+                    </div>
+                </div>
+            @empty
+                <div class="col-12">Tidak ada informasi transportasi untuk lokasi ini.</div>
+            @endforelse
+        </div>
     </div>
 
     <!-- BUTTON -->

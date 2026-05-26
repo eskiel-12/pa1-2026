@@ -44,6 +44,12 @@ class UmkmController extends Controller
         return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil ditambahkan');
     }
 
+    public function show($id)
+    {
+        $umkm = Umkm::findOrFail($id);
+        return view('admin.umkm.show', compact('umkm'));
+    }
+
     public function edit($id)
     {
         $umkm = Umkm::findOrFail($id);

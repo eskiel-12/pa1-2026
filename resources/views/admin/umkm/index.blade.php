@@ -34,6 +34,7 @@
                             @endif
                         </td>
                         <td>
+                            <a href="{{ route('admin.umkm.show', $umkm->id) }}" class="btn btn-sm btn-info">Lihat</a>
                             <a href="{{ route('admin.umkm.edit', $umkm->id) }}" class="btn btn-sm btn-primary">Edit</a>
                             <form action="{{ route('admin.umkm.destroy', $umkm->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Hapus UMKM ini?');">
                                 @csrf

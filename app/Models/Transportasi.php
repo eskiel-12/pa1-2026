@@ -6,31 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
-class Umkm extends Model
+class Transportasi extends Model
 {
     use HasFactory;
 
-    protected $table = 'umkms';
+    protected $table = 'transportasis';
 
     protected $fillable = [
-        'nama',
-        'deskripsi',
-        'gambar',
-        'lokasi',
-        'kontak',
-        'kategori_id',
-        'user_id',
+        'nama', 'slug', 'deskripsi', 'gambar', 'lokasi', 'kontak', 'status', 'user_id'
     ];
-
-    public function kategori()
-    {
-        return $this->belongsTo(Kategori::class, 'kategori_id');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function getGambarUrlAttribute()
     {

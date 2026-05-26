@@ -4,10 +4,10 @@
 <div class="container-fluid">
     <div class="row mb-4">
         <div class="col-md-6">
-            <h2>Edit UMKM</h2>
+            <h2>Edit Akomodasi</h2>
         </div>
         <div class="col-md-6 text-end">
-            <a href="{{ route('admin.umkm.index') }}" class="btn btn-secondary">
+            <a href="{{ route('admin.akomodasi.index') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Kembali
             </a>
         </div>
@@ -27,14 +27,14 @@
 
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('admin.umkm.update', $umkm->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.akomodasi.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 
                 <div class="mb-3">
-                    <label for="nama" class="form-label">Nama UMKM <span class="text-danger">*</span></label>
+                    <label for="nama" class="form-label">Nama <span class="text-danger">*</span></label>
                     <input type="text" class="form-control @error('nama') is-invalid @enderror" 
-                           id="nama" name="nama" value="{{ old('nama', $umkm->nama) }}" placeholder="Nama UMKM" required>
+                           id="nama" name="nama" value="{{ old('nama', $item->nama) }}" placeholder="Nama akomodasi" required>
                     @error('nama')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -43,7 +43,7 @@
                 <div class="mb-3">
                     <label for="deskripsi" class="form-label">Deskripsi</label>
                     <textarea class="form-control @error('deskripsi') is-invalid @enderror" 
-                              id="deskripsi" name="deskripsi" rows="5" placeholder="Deskripsi UMKM">{{ old('deskripsi', $umkm->deskripsi) }}</textarea>
+                              id="deskripsi" name="deskripsi" rows="5" placeholder="Deskripsi akomodasi">{{ old('deskripsi', $item->deskripsi) }}</textarea>
                     @error('deskripsi')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -53,7 +53,7 @@
                     <div class="col-md-6 mb-3">
                         <label for="lokasi" class="form-label">Lokasi</label>
                         <input type="text" class="form-control @error('lokasi') is-invalid @enderror" 
-                               id="lokasi" name="lokasi" value="{{ old('lokasi', $umkm->lokasi) }}" placeholder="Lokasi UMKM">
+                               id="lokasi" name="lokasi" value="{{ old('lokasi', $item->lokasi) }}" placeholder="Lokasi akomodasi">
                         @error('lokasi')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -62,7 +62,7 @@
                     <div class="col-md-6 mb-3">
                         <label for="kontak" class="form-label">Kontak</label>
                         <input type="text" class="form-control @error('kontak') is-invalid @enderror" 
-                               id="kontak" name="kontak" value="{{ old('kontak', $umkm->kontak) }}" placeholder="No. HP / Email">
+                               id="kontak" name="kontak" value="{{ old('kontak', $item->kontak) }}" placeholder="No. HP / Email">
                         @error('kontak')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -71,9 +71,9 @@
 
                 <div class="mb-3">
                     <label for="gambar" class="form-label">Gambar</label>
-                    @if($umkm->gambar)
+                    @if($item->gambar)
                         <div class="mb-2">
-                            <img src="{{ \Illuminate\Support\Facades\Storage::url($umkm->gambar) }}" alt="{{ $umkm->nama }}" style="max-width:200px; border-radius:5px;">
+                            <img src="{{ $item->gambar_url }}" alt="{{ $item->nama }}" style="max-width:200px; border-radius:5px;">
                             <p class="text-muted mt-2 mb-0">Gambar saat ini</p>
                         </div>
                     @endif
@@ -85,11 +85,19 @@
                     @enderror
                 </div>
 
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="status" name="status" value="1" 
+                               {{ old('status', $item->status) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="status">Aktif</label>
+                    </div>
+                </div>
+
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save"></i> Simpan Perubahan
                     </button>
-                    <a href="{{ route('admin.umkm.index') }}" class="btn btn-secondary">
+                    <a href="{{ route('admin.akomodasi.index') }}" class="btn btn-secondary">
                         Batal
                     </a>
                 </div>

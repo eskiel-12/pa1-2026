@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Destinasi;
+use App\Models\Galeri;
+use App\Models\Umkm;
+use App\Models\Akomodasi;
+use App\Models\Transportasi;
 
 class DestinasiController extends Controller
 {
@@ -17,19 +21,40 @@ class DestinasiController extends Controller
     {
         $destinasi = Destinasi::where('status', true)->findOrFail($id);
 
-        // Tambahkan galeri jika ada
-        $destinasi->galeri = [
-            $destinasi->gambar,
-            $destinasi->url_gambar ?: $destinasi->gambar,
-            $destinasi->gambar,
-        ];
+        // Dynamic galeri: prefer galeri items where lokasi matches destinasi lokasi or kategori
+        $galeriQuery = Galeri::where('status', true);
+        if ($destinasi->lokasi) {
+            $galeriQuery->where('lokasi', 'like', '%' . $destinasi->lokasi . '%');
+        } else {
+            $galeriQuery->where('kategori', $destinasi->kategori ?? '');
+        }
+        $galeri = $galeriQuery->latest()->take(9)->get()->map(function ($g) {
+            return $g->gambar_url ?? $g->gambar;
+        })->toArray();
+
+        // UMKM related by lokasi
+        $umkms = Umkm::when($destinasi->lokasi, function ($q) use ($destinasi) {
+                $q->where('lokasi', 'like', '%' . $destinasi->lokasi . '%');
+            })
+            ->latest()
+            ->take(6)
+            ->get();
+
+        // Akomodasi and Transportasi (may be empty if none exist)
+        $akomodasis = Akomodasi::where('status', true)
+            ->when($destinasi->lokasi, function ($q) use ($destinasi) {
+                $q->where('lokasi', 'like', '%' . $destinasi->lokasi . '%');
+            })->latest()->take(6)->get();
+
+        $transportasis = Transportasi::where('status', true)
+            ->when($destinasi->lokasi, function ($q) use ($destinasi) {
+                $q->where('lokasi', 'like', '%' . $destinasi->lokasi . '%');
+            })->latest()->take(6)->get();
 
         // Embed maps
-        $destinasi->embed_maps = $destinasi->maps ?
-            'https://www.google.com/maps?q=' . urlencode($destinasi->lokasi) . '&output=embed' :
-            null;
+        $destinasi->embed_maps = $destinasi->maps ? 'https://www.google.com/maps?q=' . urlencode($destinasi->lokasi) . '&output=embed' : null;
 
-        return view('destinasi.detail', compact('destinasi'));
+        return view('destinasi.detail', compact('destinasi', 'galeri', 'umkms', 'akomodasis', 'transportasis'));
     }
 
     // ===================== ALAM =====================

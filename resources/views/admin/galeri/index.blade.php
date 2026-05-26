@@ -30,6 +30,7 @@
                     <td>@if($item->status)<span class="badge-success badge">Aktif</span>@else<span class="badge-danger badge">Tidak</span>@endif</span></td>
                     <td>
                         <div class="d-flex gap-1">
+                            <a href="{{ route('admin.galeri.show', $item->id) }}" class="btn btn-outline-custom" title="Lihat"><i class="fas fa-eye"></i></a>
                             <a href="{{ route('admin.galeri.edit', $item->id) }}" class="btn btn-outline-custom"><i class="fas fa-edit"></i></a>
                             <form action="{{ route('admin.galeri.destroy', $item->id) }}" method="POST" class="d-inline">
                                 @csrf @method('DELETE')
