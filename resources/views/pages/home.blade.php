@@ -3,7 +3,7 @@
     @section('content')
 
 <style>
-    /* ==================== LOGO SECTION STYLE ==================== */
+    /* LOGO SECTION STYLE */
     .logo-container {
         position: fixed;
         top: 20px;
@@ -144,7 +144,7 @@
         }
     }
     
-    /* ==================== HERO SLIDER ==================== */
+    /* HERO SLIDER */
     .hero-section {
         height: 100vh;
         position: relative;
