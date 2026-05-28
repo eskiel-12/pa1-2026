@@ -13,8 +13,18 @@ class Akomodasi extends Model
     protected $table = 'akomodasis';
 
     protected $fillable = [
-        'nama', 'slug', 'deskripsi', 'gambar', 'lokasi', 'kontak', 'status', 'user_id'
+        'nama', 'slug', 'deskripsi', 'gambar', 'lokasi', 'kontak', 'status', 'user_id', 'destinasi_id'
     ];
+
+    public function destinasi()
+    {
+        return $this->belongsTo(Destinasi::class, 'destinasi_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function getGambarUrlAttribute()
     {

@@ -49,6 +49,22 @@
                     @enderror
                 </div>
 
+                <div class="mb-3">
+                    <label for="destinasi_id" class="form-label">Destinasi</label>
+                    <select class="form-control @error('destinasi_id') is-invalid @enderror" 
+                            id="destinasi_id" name="destinasi_id">
+                        <option value="">-- Pilih Destinasi --</option>
+                        @foreach($destinasis as $dest)
+                            <option value="{{ $dest->id }}" {{ old('destinasi_id', $umkm->destinasi_id) == $dest->id ? 'selected' : '' }}>
+                                {{ $dest->nama }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('destinasi_id')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="lokasi" class="form-label">Lokasi</label>

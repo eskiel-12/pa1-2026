@@ -22,34 +22,38 @@ class DestinasiController extends Controller
         $destinasi = Destinasi::where('status', true)->findOrFail($id);
 
         // Dynamic galeri: prefer galeri items where lokasi matches destinasi lokasi or kategori
-        $galeriQuery = Galeri::where('status', true);
-        if ($destinasi->lokasi) {
-            $galeriQuery->where('lokasi', 'like', '%' . $destinasi->lokasi . '%');
-        } else {
-            $galeriQuery->where('kategori', $destinasi->kategori ?? '');
-        }
-        $galeri = $galeriQuery->latest()->take(9)->get()->map(function ($g) {
-            return $g->gambar_url ?? $g->gambar;
-        })->toArray();
+            $galeriQuery = Galeri::where('status', true);
+            if ($destinasi->lokasi) {
+                $galeriQuery->where('lokasi', 'like', '%' . $destinasi->lokasi . '%');
+            } else {
+                $galeriQuery->where('kategori', $destinasi->kategori ?? '');
+            }
+            $galeri = $galeriQuery->latest()->take(9)->get()->map(function ($g) {
+                return $g->gambar_url ?? $g->gambar;
+            })->toArray();
 
         // UMKM related by lokasi
-        $umkms = Umkm::when($destinasi->lokasi, function ($q) use ($destinasi) {
-                $q->where('lokasi', 'like', '%' . $destinasi->lokasi . '%');
-            })
-            ->latest()
-            ->take(6)
-            ->get();
+            $umkms = $destinasi->umkms()->latest()->take(6)->get();
+            if ($umkms->isEmpty() && $destinasi->lokasi) {
+                $umkms = Umkm::where('lokasi', 'like', '%' . $destinasi->lokasi . '%')
+                    ->latest()->take(6)->get();
+            }
 
         // Akomodasi and Transportasi (may be empty if none exist)
-        $akomodasis = Akomodasi::where('status', true)
-            ->when($destinasi->lokasi, function ($q) use ($destinasi) {
-                $q->where('lokasi', 'like', '%' . $destinasi->lokasi . '%');
-            })->latest()->take(6)->get();
+            $akomodasis = $destinasi->akomodasis()->where('status', true)->latest()->take(6)->get();
+            if ($akomodasis->isEmpty() && $destinasi->lokasi) {
+                $akomodasis = Akomodasi::where('status', true)
+                    ->where('lokasi', 'like', '%' . $destinasi->lokasi . '%')
+                    ->latest()->take(6)->get();
+            }
 
-        $transportasis = Transportasi::where('status', true)
-            ->when($destinasi->lokasi, function ($q) use ($destinasi) {
-                $q->where('lokasi', 'like', '%' . $destinasi->lokasi . '%');
-            })->latest()->take(6)->get();
+        // Transportasi: Get from relationship (destinasi_id) or by lokasi
+        $transportasis = $destinasi->transportasis()->where('status', true)->latest()->take(6)->get();
+        if ($transportasis->isEmpty() && $destinasi->lokasi) {
+            $transportasis = Transportasi::where('status', true)
+                ->where('lokasi', 'like', '%' . $destinasi->lokasi . '%')
+                ->latest()->take(6)->get();
+        }
 
         // Embed maps
         $destinasi->embed_maps = $destinasi->maps ? 'https://www.google.com/maps?q=' . urlencode($destinasi->lokasi) . '&output=embed' : null;

@@ -28,17 +28,19 @@
                         <td>{{ $umkm->nama }}</td>
                         <td>{{ $umkm->lokasi }}</td>
                         <td>{{ $umkm->kontak }}</td>
+                                                <td>{{ $umkm->destinasi?->nama ?? '-' }}</td>
                         <td>
                             @if($umkm->gambar)
                                 <img src="{{ asset($umkm->gambar) }}" alt="{{ $umkm->nama }}" class="preview-img">
                             @endif
-                        </td>
-                        <td>
-                            <a href="{{ route('admin.umkm.show', $umkm->id) }}" class="btn btn-sm btn-info">Lihat</a>
-                            <a href="{{ route('admin.umkm.edit', $umkm->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                            <form action="{{ route('admin.umkm.destroy', $umkm->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Hapus UMKM ini?');">
-                                @csrf
-                                @method('DELETE')
+                        <tr>
+                            <th>#</th>
+                            <th>Nama</th>
+                            <th>Destinasi</th>
+                            <th>Lokasi</th>
+                            <th>Kontak</th>
+                            <th>Gambar</th>
+                            <th>Aksi</th>
                                 <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                             </form>
                         </td>

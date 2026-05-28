@@ -32,11 +32,25 @@
                     <th width="30%" class="text-center">Aksi</th>
                 </tr>
             </thead>
+                        <thead class="table-dark">
+                            <tr>
+                                <th width="3%">#</th>
+                                <th width="15%">Nama</th>
+                                <th width="15%">Destinasi</th>
+                                <th width="15%">Lokasi</th>
+                                <th width="15%">Kontak</th>
+                                <th width="8%">Status</th>
+                                <th width="29%" class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
             <tbody>
                 @forelse($items as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td><strong>{{ $item->nama }}</strong></td>
+                        <td>{{ $item->lokasi }}</td>
+                        <td>{{ $item->kontak }}</td>
+                        <td>{{ $item->destinasi?->nama ?? '-' }}</td>
                         <td>{{ $item->lokasi }}</td>
                         <td>{{ $item->kontak }}</td>
                         <td>

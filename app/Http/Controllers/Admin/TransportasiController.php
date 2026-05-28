@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transportasi;
+use App\Models\Destinasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -24,7 +25,8 @@ class TransportasiController extends Controller
 
     public function create()
     {
-        return view('admin.transportasi.create');
+        $destinasis = Destinasi::where('status', true)->orderBy('nama')->get();
+        return view('admin.transportasi.create', compact('destinasis'));
     }
 
     public function store(Request $request)
@@ -35,11 +37,14 @@ class TransportasiController extends Controller
             'lokasi' => 'nullable|string|max:255',
             'kontak' => 'nullable|string|max:255',
             'gambar' => 'nullable|image|max:5120',
+            'destinasi_id' => 'nullable|exists:destinasi,id',
+            'status' => 'nullable|boolean',
         ]);
 
-        $data = $request->only(['nama','deskripsi','lokasi','kontak']);
+        $data = $request->only(['nama','deskripsi','lokasi','kontak','destinasi_id']);
         $data['slug'] = Str::slug($request->nama);
         $data['user_id'] = auth()->id();
+        $data['status'] = $request->has('status');
 
         if ($request->hasFile('gambar')) {
             $filename = time().'_'.Str::slug($request->nama).'.'.$request->gambar->getClientOriginalExtension();
@@ -53,7 +58,8 @@ class TransportasiController extends Controller
     public function edit($id)
     {
         $item = Transportasi::findOrFail($id);
-        return view('admin.transportasi.edit', compact('item'));
+        $destinasis = Destinasi::where('status', true)->orderBy('nama')->get();
+        return view('admin.transportasi.edit', compact('item', 'destinasis'));
     }
 
     public function update(Request $request, $id)
@@ -66,10 +72,13 @@ class TransportasiController extends Controller
             'lokasi' => 'nullable|string|max:255',
             'kontak' => 'nullable|string|max:255',
             'gambar' => 'nullable|image|max:5120',
+            'destinasi_id' => 'nullable|exists:destinasi,id',
+            'status' => 'nullable|boolean',
         ]);
 
-        $data = $request->only(['nama','deskripsi','lokasi','kontak']);
+        $data = $request->only(['nama','deskripsi','lokasi','kontak','destinasi_id']);
         $data['slug'] = Str::slug($request->nama);
+        $data['status'] = $request->has('status');
 
         if ($request->hasFile('gambar')) {
             if ($item->gambar && Storage::disk('public')->exists($item->gambar)) {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Umkm;
+use App\Models\Destinasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,8 @@ class UmkmController extends Controller
 
     public function create()
     {
-        return view('admin.umkm.create');
+        $destinasis = Destinasi::where('status', true)->orderBy('nama')->get();
+        return view('admin.umkm.create', compact('destinasis'));
     }
 
     public function store(Request $request)
@@ -29,9 +31,10 @@ class UmkmController extends Controller
             'lokasi' => 'required|string|max:255',
             'kontak' => 'required|string|max:255',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'destinasi_id' => 'nullable|exists:destinasi,id',
         ]);
 
-        $data = $request->only(['nama', 'deskripsi', 'lokasi', 'kontak']);
+        $data = $request->only(['nama', 'deskripsi', 'lokasi', 'kontak', 'destinasi_id']);
         $data['user_id'] = auth()->id();
 
         if ($request->hasFile('gambar')) {
@@ -53,7 +56,8 @@ class UmkmController extends Controller
     public function edit($id)
     {
         $umkm = Umkm::findOrFail($id);
-        return view('admin.umkm.edit', compact('umkm'));
+        $destinasis = Destinasi::where('status', true)->orderBy('nama')->get();
+        return view('admin.umkm.edit', compact('umkm', 'destinasis'));
     }
 
     public function update(Request $request, $id)
@@ -66,9 +70,10 @@ class UmkmController extends Controller
             'lokasi' => 'required|string|max:255',
             'kontak' => 'required|string|max:255',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'destinasi_id' => 'nullable|exists:destinasi,id',
         ]);
 
-        $data = $request->only(['nama', 'deskripsi', 'lokasi', 'kontak']);
+        $data = $request->only(['nama', 'deskripsi', 'lokasi', 'kontak', 'destinasi_id']);
 
         if ($request->hasFile('gambar')) {
             if ($umkm->gambar && Storage::disk('public')->exists($umkm->gambar)) {

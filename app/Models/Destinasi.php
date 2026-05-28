@@ -39,6 +39,26 @@ class Destinasi extends Model
         return $this->belongsTo(Kategori::class, 'kategori_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function akomodasis()
+    {
+        return $this->hasMany(Akomodasi::class, 'destinasi_id');
+    }
+
+    public function transportasis()
+    {
+        return $this->hasMany(Transportasi::class, 'destinasi_id');
+    }
+
+    public function umkms()
+    {
+        return $this->hasMany(Umkm::class, 'destinasi_id');
+    }
+
     protected $appends = ['gambar_url'];
 
     public function getRouteKeyName()
