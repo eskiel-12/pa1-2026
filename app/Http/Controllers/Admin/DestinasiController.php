@@ -78,7 +78,7 @@ class DestinasiController extends Controller
      */
     public function show(string $id)
     {
-        $destinasi = Destinasi::findOrFail($id);
+        $destinasi = Destinasi::with(['akomodasis', 'transportasis'])->findOrFail($id);
         return view('admin.destinasi.show', compact('destinasi'));
     }
 

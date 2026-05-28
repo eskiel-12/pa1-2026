@@ -59,6 +59,18 @@
     </div>
     <div class="col-6 col-md-3">
         <div class="stat-card">
+            <div class="stat-number">{{ \App\Models\Akomodasi::count() }}</div>
+            <div class="stat-label">Total Akomodasi</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="stat-card">
+            <div class="stat-number">{{ \App\Models\Transportasi::count() }}</div>
+            <div class="stat-label">Total Transportasi</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="stat-card">
             <div class="stat-number">{{ \App\Models\User::count() }}</div>
             <div class="stat-label">Total User</div>
         </div>

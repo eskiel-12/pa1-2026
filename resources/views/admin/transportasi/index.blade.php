@@ -26,47 +26,47 @@
                 <tr>
                     <th width="5%">#</th>
                     <th width="20%">Nama</th>
+                    <th width="20%">Destinasi</th>
                     <th width="15%">Lokasi</th>
-                    <th width="20%">Kontak</th>
+                    <th width="15%">Kontak</th>
                     <th width="10%">Status</th>
-                    <th width="30%" class="text-center">Aksi</th>
+                    <th width="15%" class="text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($items as $item)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $loop->iteration + ($items->currentPage() - 1) * $items->perPage() }}</td>
                         <td><strong>{{ $item->nama }}</strong></td>
+                        <td>{{ $item->destinasi?->nama ?? '-' }}</td>
                         <td>{{ $item->lokasi }}</td>
                         <td>{{ $item->kontak }}</td>
-                                                <td>{{ $item->destinasi?->nama ?? '-' }}</td>
                         <td>
                             @if($item->status)
                                 <span class="badge bg-success">Aktif</span>
                             @else
                                 <span class="badge bg-danger">Nonaktif</span>
                             @endif
-                        <tr>
-                            <th width="3%">#</th>
-                            <th width="14%">Nama</th>
-                            <th width="14%">Destinasi</th>
-                            <th width="14%">Lokasi</th>
-                            <th width="14%">Kontak</th>
-                            <th width="8%">Status</th>
-                            <th width="29%" class="text-center">Aksi</th>
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ route('admin.transportasi.show', $item->id) }}" class="btn btn-sm btn-info">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="{{ route('admin.transportasi.edit', $item->id) }}" class="btn btn-sm btn-warning">
+                                <i class="fas fa-edit"></i>
                             </a>
                             <form action="{{ route('admin.transportasi.destroy', $item->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus?')">
-                                    <i class="fas fa-trash"></i> Hapus
+                                    <i class="fas fa-trash"></i>
                                 </button>
                             </form>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" class="text-center text-muted">Tidak ada data transportasi.</td>
+                        <td colspan="7" class="text-center text-muted">Tidak ada data transportasi.</td>
                     </tr>
                 @endforelse
             </tbody>

@@ -114,6 +114,73 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Akomodasi</h5>
+                                    <a href="{{ route('admin.akomodasi.create', ['destinasi_id' => $destinasi->id]) }}" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-plus"></i> Tambah
+                                    </a>
+                                </div>
+                                <div class="card-body p-3">
+                                    @if($destinasi->akomodasis->count())
+                                        <div class="list-group list-group-flush">
+                                            @foreach($destinasi->akomodasis as $akomodasi)
+                                                <div class="list-group-item py-2">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div>
+                                                            <strong>{{ $akomodasi->nama }}</strong><br>
+                                                            <small class="text-muted">{{ $akomodasi->lokasi ?? '-' }}</small>
+                                                        </div>
+                                                        <div class="btn-group btn-group-sm" role="group">
+                                                            <a href="{{ route('admin.akomodasi.edit', $akomodasi->id) }}" class="btn btn-outline-secondary">Edit</a>
+                                                            <a href="{{ route('admin.akomodasi.show', $akomodasi->id) }}" class="btn btn-outline-info">Lihat</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <p class="text-muted mb-0">Belum ada akomodasi untuk destinasi ini.</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Transportasi</h5>
+                                    <a href="{{ route('admin.transportasi.create', ['destinasi_id' => $destinasi->id]) }}" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-plus"></i> Tambah
+                                    </a>
+                                </div>
+                                <div class="card-body p-3">
+                                    @if($destinasi->transportasis->count())
+                                        <div class="list-group list-group-flush">
+                                            @foreach($destinasi->transportasis as $transportasi)
+                                                <div class="list-group-item py-2">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div>
+                                                            <strong>{{ $transportasi->nama }}</strong><br>
+                                                            <small class="text-muted">{{ $transportasi->lokasi ?? '-' }}</small>
+                                                        </div>
+                                                        <div class="btn-group btn-group-sm" role="group">
+                                                            <a href="{{ route('admin.transportasi.edit', $transportasi->id) }}" class="btn btn-outline-secondary">Edit</a>
+                                                            <a href="{{ route('admin.transportasi.show', $transportasi->id) }}" class="btn btn-outline-info">Lihat</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <p class="text-muted mb-0">Belum ada transportasi untuk destinasi ini.</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <a href="{{ route('admin.destinasi.edit', $destinasi->id) }}" class="btn btn-warning">

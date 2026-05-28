@@ -54,7 +54,7 @@
                             id="destinasi_id" name="destinasi_id">
                         <option value="">-- Pilih Destinasi --</option>
                         @foreach($destinasis as $dest)
-                            <option value="{{ $dest->id }}" {{ old('destinasi_id') == $dest->id ? 'selected' : '' }}>
+                            <option value="{{ $dest->id }}" {{ old('destinasi_id', request('destinasi_id')) == $dest->id ? 'selected' : '' }}>
                                 {{ $dest->nama }}
                             </option>
                         @endforeach

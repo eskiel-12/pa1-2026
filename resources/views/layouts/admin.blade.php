@@ -346,6 +346,12 @@
             <a href="{{ route('admin.destinasi.index') }}" class="{{ request()->routeIs('admin.destinasi.*') ? 'active' : '' }}">
                 <i class="fas fa-map-marker-alt"></i> Destinasi
             </a>
+            <a href="{{ route('admin.akomodasi.index') }}" class="{{ request()->routeIs('admin.akomodasi.*') ? 'active' : '' }}">
+                <i class="fas fa-hotel"></i> Akomodasi
+            </a>
+            <a href="{{ route('admin.transportasi.index') }}" class="{{ request()->routeIs('admin.transportasi.*') ? 'active' : '' }}">
+                <i class="fas fa-shuttle-van"></i> Transportasi
+            </a>
             <a href="{{ route('admin.umkm.index') }}" class="{{ request()->routeIs('admin.umkm.*') ? 'active' : '' }}">
                 <i class="fas fa-store"></i> UMKM
             </a>
