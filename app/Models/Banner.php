@@ -30,9 +30,7 @@ class Banner extends Model
 
     protected $appends = ['gambar_url'];
 
-    /**
-     * Get the image URL for the banner
-     */
+    /* Get the image URL for the banner */
     public function user()
     {
         return $this->belongsTo(User::class);
