@@ -62,7 +62,15 @@ Route::get('/galeri', function () {
 Route::get('/berita', function () {
     $berita = App\Models\Berita::with('kategori')->where('status', true)->latest()->paginate(9);
     $kategori = App\Models\Kategori::all();
-    return view('pages.berita', compact('berita', 'kategori'));
+    $heroImage = asset('uploads/del.jpeg');
+
+    if ($firstBerita = $berita->first()) {
+        if ($firstBerita->gambar && \Illuminate\Support\Facades\Storage::disk('public')->exists($firstBerita->gambar)) {
+            $heroImage = \Illuminate\Support\Facades\Storage::disk('public')->url($firstBerita->gambar);
+        }
+    }
+
+    return view('pages.berita', compact('berita', 'kategori', 'heroImage'));
 })->name('berita');
 
 // Detail Berita

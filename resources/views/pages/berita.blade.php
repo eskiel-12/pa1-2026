@@ -422,7 +422,7 @@
 
 
 <!-- HERO dengan background berita.jpg -->
-<section class="berita-hero" style="background-image: url('{{ asset(optional($berita->first())->gambar ?: 'image/B1.jpeg') }}');">
+<section class="berita-hero" style="background-image: url('{{ $heroImage }}');">
     <div>
         <h1 data-aos="fade-up">Berita & Event</h1>
         <p data-aos="fade-up">Informasi terkini seputar Geopark Danau Toba</p>

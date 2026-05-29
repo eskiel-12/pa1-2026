@@ -98,11 +98,13 @@
         <h2 class="mb-3">Lokasi</h2>
 
         <iframe 
-            src="{{ $destinasi->embed_maps ?? $destinasi->maps }}"
-            width="100%" 
-            height="400" 
-            style="border:none;">
-        </iframe>
+    src="https://maps.google.com/maps?q=Muara%20Sibandang&t=&z=13&ie=UTF8&iwloc=&output=embed"
+    width="100%" 
+    height="450" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy">
+</iframe>
     </div>
 
     <!-- UMKM -->

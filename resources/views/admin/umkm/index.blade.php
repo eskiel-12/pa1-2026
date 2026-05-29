@@ -15,6 +15,7 @@
                 <tr>
                     <th>#</th>
                     <th>Nama</th>
+                    <th>Destinasi</th>
                     <th>Lokasi</th>
                     <th>Kontak</th>
                     <th>Gambar</th>
@@ -26,28 +27,27 @@
                     <tr>
                         <td>{{ $loop->iteration + ($umkms->currentPage() - 1) * $umkms->perPage() }}</td>
                         <td>{{ $umkm->nama }}</td>
+                        <td>{{ $umkm->destinasi?->nama ?? '-' }}</td>
                         <td>{{ $umkm->lokasi }}</td>
                         <td>{{ $umkm->kontak }}</td>
-                                                <td>{{ $umkm->destinasi?->nama ?? '-' }}</td>
                         <td>
                             @if($umkm->gambar)
                                 <img src="{{ asset($umkm->gambar) }}" alt="{{ $umkm->nama }}" class="preview-img">
                             @endif
-                        <tr>
-                            <th>#</th>
-                            <th>Nama</th>
-                            <th>Destinasi</th>
-                            <th>Lokasi</th>
-                            <th>Kontak</th>
-                            <th>Gambar</th>
-                            <th>Aksi</th>
-                                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                        </td>
+                        <td>
+                            <a href="{{ route('admin.umkm.show', $umkm->id) }}" class="btn btn-sm btn-info">Detail</a>
+                            <a href="{{ route('admin.umkm.edit', $umkm->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <form action="{{ route('admin.umkm.destroy', $umkm->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus UMKM ini?')">Hapus</button>
                             </form>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6">Belum ada UMKM. Tambahkan melalui tombol Tambah UMKM.</td>
+                        <td colspan="7">Belum ada UMKM. Tambahkan melalui tombol Tambah UMKM.</td>
                     </tr>
                 @endforelse
             </tbody>
