@@ -815,14 +815,15 @@
             </div>
 
             <!-- PENJELASAN AKHIR -->
-            <div class="mt-5 p-4 rounded-4 text-center"
-                 style="background: linear-gradient(135deg, #1a1a2e, #16213e); color: white;">
-                 
-                <p class="mb-0" style="line-height: 1.8;">
-                    Letusan keempat terkenal sebagai letusan “supervolcano”, terjadi melalui proses ledakan vulkanik-tektonik 
-                    sehingga dikenal sebagai “supervolcano tectonic explosive”.
-                </p>
-            </div>
+           <div class="mt-5 mb-5 p-4 rounded-4 text-center"
+     style="background: linear-gradient(135deg, #ffffff, #608aff); color: white;">
+
+    <p class="mb-0" style="line-height: 1.8;">
+        Letusan keempat terkenal sebagai letusan “supervolcano”, terjadi melalui proses ledakan vulkanik-tektonik
+        sehingga dikenal sebagai “supervolcano tectonic explosive”.
+    </p>
+
+</div>
             <div class="about-image" data-aos="fade-left">
                 <img src="{{ asset('uploads/A1.JPEG') }}" alt="Danau Toba">
             </div>
