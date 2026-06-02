@@ -621,6 +621,154 @@
             color: var(--gold-light);
             transform: scale(1.2);
         }
+
+        /* ============================= */
+        /* TOURISM CARD STYLING         */
+        /* ============================= */
+        .card,
+        .feature-card,
+        .info-card,
+        .service-card,
+        .banner-card {
+            border: none;
+            border-radius: 24px;
+            overflow: hidden;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(247, 242, 229, 0.98) 100%);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+            transition: transform 0.35s var(--transition-timing), box-shadow 0.35s var(--transition-timing);
+        }
+
+        .card:hover,
+        .feature-card:hover,
+        .info-card:hover,
+        .service-card:hover,
+        .banner-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.14);
+        }
+
+        .card-body,
+        .feature-card .card-body,
+        .info-card .card-body {
+            padding: 1.75rem 1.5rem;
+        }
+
+        .card-title,
+        .feature-card h3,
+        .info-card h3,
+        .banner-card h3 {
+            color: var(--blue-dark);
+            letter-spacing: -0.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-text,
+        .feature-card p,
+        .info-card p {
+            color: #4f4f4f;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+
+        .card-img-top,
+        .feature-card img,
+        .banner-card img {
+            border-bottom: 1px solid rgba(198, 164, 59, 0.12);
+            transition: transform 0.5s ease, filter 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card:hover .card-img-top,
+        .feature-card:hover img,
+        .banner-card:hover img {
+            transform: scale(1.03);
+        }
+
+        .photo-frame,
+        .card-img-top,
+        .dest-img,
+        .story-card img,
+        .berita-image img,
+        .informasi-image img,
+        .search-card-image img,
+        .result-card-image img,
+        .content-image,
+        .about-image img,
+        .destinasi-image img,
+        .gallery-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 22px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+            transition: transform 0.4s ease, filter 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .photo-frame {
+            overflow: hidden;
+            border-radius: 24px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(243,239,226,0.95));
+            border: 1px solid rgba(198, 164, 59, 0.16);
+        }
+
+        .photo-frame:hover img,
+        .story-card:hover img,
+        .gallery-item:hover img,
+        .dest-img-wrapper:hover .dest-img,
+        .berita-image:hover img,
+        .search-card:hover .search-card-image img,
+        .result-card:hover .result-card-image img {
+            transform: scale(1.04);
+            filter: brightness(1.05) saturate(1.05);
+            box-shadow: 0 24px 55px rgba(0, 0, 0, 0.18);
+        }
+
+        .photo-caption {
+            color: #3d3d3d;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .section-card {
+            position: relative;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(198, 164, 59, 0.18);
+            box-shadow: 0 20px 55px rgba(0, 0, 0, 0.08);
+            border-radius: 28px;
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 28px;
+            pointer-events: none;
+            background: radial-gradient(circle at top left, rgba(198, 164, 59, 0.12), transparent 40%);
+            mix-blend-mode: screen;
+        }
+
+        .section-card > *,
+        .section-card .row,
+        .section-card .col {
+            position: relative;
+            z-index: 1;
+        }
+
+        .decorative-divider {
+            width: 72px;
+            height: 4px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+            margin: 1.5rem auto;
+        }
+
+        .bg-soft {
+            background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(243, 239, 226, 0.95));
+            border-radius: 26px;
+            box-shadow: 0 18px 45px rgba(0,0,0,0.06);
+            border: 1px solid rgba(198, 164, 59, 0.12);
+        }
         
         /* ============================= */
         /* RESPONSIVE DESIGN - TABLET   */

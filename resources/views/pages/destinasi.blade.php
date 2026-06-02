@@ -79,6 +79,53 @@
         .destinasi-hero p {
             animation: fadeInUp 0.8s ease-out 0.1s both;
         }
+
+        .destinasi-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            right: -40px;
+            width: 260px;
+            height: 260px;
+            background: rgba(198, 164, 59, 0.12);
+            border-radius: 50%;
+            filter: blur(64px);
+            pointer-events: none;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            margin-bottom: 18px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.15);
+            color: #f7e09b;
+            font-size: 0.8rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            backdrop-filter: blur(8px);
+        }
+
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 30px;
+            margin-top: 30px;
+            background: #c6a43b;
+            color: #1a1a1a;
+            border-radius: 999px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 36px rgba(198, 164, 59, 0.25);
+        }
         
         /* Filter Buttons */
         .filter-btn {
@@ -120,14 +167,28 @@
         }
         
         .dest-card {
-            background: white;
-            border-radius: 20px;
+            background: rgba(255,255,255,0.98);
+            border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.12), 0 12px 30px rgba(0,0,0,0.08);
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.4s ease;
             cursor: pointer;
             position: relative;
             animation: fadeInUp 0.6s ease-out backwards;
+            border: 1px solid rgba(198,164,59,0.12);
+            backdrop-filter: blur(6px);
+        }
+
+        .dest-card::after {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            width: 70px;
+            height: 4px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #c6a43b, #f0d678);
+            box-shadow: 0 8px 20px rgba(198,164,59,0.15);
         }
 
         .dest-card[data-aos-delay="100"] { animation-delay: 0.1s; }
@@ -626,6 +687,7 @@
     <!-- HERO SECTION -->
     <section class="destinasi-hero">
         <div class="container">
+            <span class="hero-label" data-aos="fade-up">Eksplorasi Geosite</span>
             <h1 class="display-3 fw-bold mb-3" data-aos="fade-up">Destinasi Geosite</h1>
             <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">Jelajahi 4 Geosite Unggulan Caldera Danau Toba</p>
             <div data-aos="fade-up" data-aos-delay="200">
@@ -634,6 +696,7 @@
                 <button class="filter-btn" data-filter="buatan">Buatan</button>
                 <button class="filter-btn" data-filter="budaya">Budaya</button>
             </div>
+            <a href="#destinasiGrid" class="btn-destinasi hero-btn" data-aos="fade-up" data-aos-delay="250">Lihat Destinasi</a>
         </div>
     </section>
 
