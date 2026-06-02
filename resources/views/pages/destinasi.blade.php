@@ -5,6 +5,40 @@
     @section('content')
 
     <style>
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
         /* Hero Section */
         .destinasi-hero {
             height: 50vh;
@@ -20,6 +54,7 @@
             color: white;
             margin-top: 76px;
             position: relative;
+            animation: slideInDown 0.8s ease-out;
         }
         
         .destinasi-hero::before {
@@ -36,6 +71,14 @@
             position: relative;
             z-index: 2;
         }
+
+        .destinasi-hero h1 {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .destinasi-hero p {
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
         
         /* Filter Buttons */
         .filter-btn {
@@ -45,15 +88,27 @@
             padding: 10px 24px;
             border-radius: 50px;
             font-weight: 500;
-            transition: all 0.3s ease;
-            margin: 0 5px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 5px;
             cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            animation: scaleIn 0.5s ease-out backwards;
         }
         
-        .filter-btn:hover, .filter-btn.active {
+        .filter-btn:hover {
             background: #c6a43b;
             border-color: #c6a43b;
             color: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(198, 164, 59, 0.3);
+        }
+
+        .filter-btn.active {
+            background: #c6a43b;
+            border-color: #c6a43b;
+            color: #1a1a1a;
+            box-shadow: 0 5px 15px rgba(198, 164, 59, 0.3);
         }
         
         /* Destination Cards */
@@ -61,7 +116,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            padding: 60px 0;
+            padding: 60px 20px;
         }
         
         .dest-card {
@@ -72,7 +127,12 @@
             transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             cursor: pointer;
             position: relative;
+            animation: fadeInUp 0.6s ease-out backwards;
         }
+
+        .dest-card[data-aos-delay="100"] { animation-delay: 0.1s; }
+        .dest-card[data-aos-delay="200"] { animation-delay: 0.2s; }
+        .dest-card[data-aos-delay="300"] { animation-delay: 0.3s; }
         
         .dest-card:hover {
             transform: translateY(-12px);
@@ -87,13 +147,14 @@
             position: relative;
             overflow: hidden;
             height: 280px;
+            background: linear-gradient(135deg, #e0e0e0, #f0f0f0);
         }
         
         .dest-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .dest-badge {
@@ -102,12 +163,14 @@
             right: 20px;
             background: #c6a43b;
             color: #1a1a1a;
-            padding: 6px 14px;
+            padding: 8px 16px;
             border-radius: 30px;
             font-size: 0.7rem;
             font-weight: 600;
             letter-spacing: 1px;
             z-index: 2;
+            animation: scaleIn 0.5s ease-out 0.3s backwards;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
         
         .dest-badge.geologi {
@@ -135,20 +198,23 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.5), transparent);
             padding: 30px 20px 20px;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(10px);
         }
         
         .dest-card:hover .dest-overlay {
             opacity: 1;
+            transform: translateY(0);
         }
         
         .dest-overlay p {
             color: white;
             font-size: 0.85rem;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            animation: fadeInUp 0.3s ease-out;
         }
         
         .dest-info {
@@ -162,6 +228,7 @@
             font-weight: 600;
             margin-bottom: 8px;
             color: #1a1a1a;
+            transition: color 0.3s ease;
         }
         
         .dest-location {
@@ -173,6 +240,7 @@
             align-items: center;
             justify-content: center;
             gap: 5px;
+            transition: all 0.3s ease;
         }
         
         .dest-location i {
@@ -184,6 +252,7 @@
             color: #666;
             line-height: 1.6;
             margin-bottom: 20px;
+            transition: color 0.3s ease;
         }
         
         .dest-tags {
@@ -196,10 +265,18 @@
         
         .dest-tags span {
             background: #f5f4f0;
-            padding: 4px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.7rem;
             color: #333;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .dest-tags span:hover {
+            background: #c6a43b;
+            color: white;
+            transform: translateY(-2px);
         }
         
         .btn-destinasi {
@@ -213,26 +290,58 @@
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
-            transition: all 0.3s ease;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-destinasi::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(198, 164, 59, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-destinasi:hover::before {
+            width: 300px;
+            height: 300px;
         }
         
         .btn-destinasi:hover {
             background: #c6a43b;
-            color: #1a1a1a;
+            color: white;
             text-decoration: none;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(198, 164, 59, 0.3);
+        }
+
+        .btn-destinasi:active {
+            transform: translateY(-1px);
         }
         
         /* Feature Section */
         .feature-section {
             background: linear-gradient(135deg, #1a1a2e, #16213e);
             color: white;
-            padding: 80px 0;
+            padding: 80px 20px;
         }
         
         .feature-item {
             text-align: center;
-            padding: 20px;
+            padding: 30px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
         }
         
         .feature-icon {
@@ -244,48 +353,272 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .feature-item:hover .feature-icon {
             background: #c6a43b;
-            transform: scale(1.1);
+            transform: scale(1.15) rotateZ(5deg);
+            box-shadow: 0 10px 25px rgba(198, 164, 59, 0.3);
         }
         
         .feature-icon i {
             font-size: 35px;
             color: #c6a43b;
+            transition: color 0.3s ease;
         }
         
         .feature-item:hover .feature-icon i {
             color: white;
+            transform: scale(1.2);
         }
         
         .feature-item h4 {
             font-size: 1.2rem;
             font-weight: 600;
             margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .feature-item:hover h4 {
+            color: #c6a43b;
         }
         
         .feature-item p {
             font-size: 0.85rem;
             color: rgba(255,255,255,0.6);
+            transition: color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .feature-item:hover p {
+            color: rgba(255,255,255,0.8);
         }
         
-        /* Responsive */
+        /* Responsive - Tablet */
         @media (max-width: 768px) {
+            .destinasi-hero {
+                height: 40vh;
+                margin-top: 60px;
+            }
+
+            .destinasi-hero h1 {
+                font-size: 2rem;
+            }
+
+            .destinasi-hero p {
+                font-size: 0.95rem;
+            }
+
             .destinasi-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+                padding: 40px 15px;
             }
             
             .filter-btn {
-                padding: 6px 16px;
+                padding: 8px 18px;
                 font-size: 0.75rem;
+                margin: 4px 2px;
+            }
+
+            .dest-img-wrapper {
+                height: 250px;
+            }
+
+            .dest-info {
+                padding: 20px;
             }
             
             .dest-info h3 {
                 font-size: 1.3rem;
+            }
+
+            .dest-desc {
+                font-size: 0.8rem;
+                margin-bottom: 15px;
+            }
+
+            .dest-tags {
+                gap: 6px;
+                margin-bottom: 15px;
+            }
+
+            .dest-tags span {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+            }
+
+            .btn-destinasi {
+                padding: 8px 24px;
+                font-size: 0.65rem;
+            }
+
+            .feature-section {
+                padding: 60px 20px;
+            }
+
+            .feature-icon {
+                width: 70px;
+                height: 70px;
+            }
+
+            .feature-icon i {
+                font-size: 30px;
+            }
+
+            .feature-item h4 {
+                font-size: 1.1rem;
+            }
+
+            .feature-item p {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Responsive - Mobile */
+        @media (max-width: 576px) {
+            .destinasi-hero {
+                height: 35vh;
+                margin-top: 56px;
+                padding: 20px;
+            }
+
+            .destinasi-hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .destinasi-hero p {
+                font-size: 0.85rem;
+            }
+
+            .destinasi-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+                padding: 30px 10px;
+            }
+
+            .filter-btn {
+                padding: 6px 14px;
+                font-size: 0.7rem;
+                margin: 3px 2px;
+                width: calc(50% - 5px);
+            }
+
+            .dest-img-wrapper {
+                height: 220px;
+            }
+
+            .dest-info {
+                padding: 18px;
+            }
+
+            .dest-info h3 {
+                font-size: 1.15rem;
+                margin-bottom: 6px;
+            }
+
+            .dest-location {
+                font-size: 0.75rem;
+                margin-bottom: 10px;
+            }
+
+            .dest-desc {
+                font-size: 0.75rem;
+                line-height: 1.5;
+                margin-bottom: 12px;
+            }
+
+            .dest-tags {
+                gap: 5px;
+                margin-bottom: 12px;
+            }
+
+            .dest-tags span {
+                font-size: 0.6rem;
+                padding: 3px 8px;
+            }
+
+            .btn-destinasi {
+                padding: 7px 20px;
+                font-size: 0.6rem;
+                letter-spacing: 1px;
+            }
+
+            .feature-section {
+                padding: 40px 15px;
+            }
+
+            .row {
+                margin: -10px;
+            }
+
+            [class*='col-'] {
+                padding: 10px;
+            }
+
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .feature-icon i {
+                font-size: 25px;
+            }
+
+            .feature-item {
+                padding: 20px 10px;
+            }
+
+            .feature-item h4 {
+                font-size: 1rem;
+                margin-bottom: 8px;
+            }
+
+            .feature-item p {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .destinasi-hero {
+                height: 30vh;
+            }
+
+            .destinasi-hero h1 {
+                font-size: 1.25rem;
+            }
+
+            .destinasi-grid {
+                padding: 20px 5px;
+            }
+
+            .filter-btn {
+                padding: 5px 12px;
+                font-size: 0.65rem;
+                margin: 2px 1px;
+            }
+
+            .dest-img-wrapper {
+                height: 200px;
+            }
+
+            .dest-info {
+                padding: 15px;
+            }
+
+            .dest-info h3 {
+                font-size: 1rem;
+            }
+
+            .dest-desc {
+                font-size: 0.7rem;
+            }
+
+            .btn-destinasi {
+                padding: 6px 16px;
+                font-size: 0.55rem;
             }
         }
     </style>
@@ -305,8 +638,8 @@
     </section>
 
     <!-- DESTINASI GRID -->
-    <section class="container">
-        <div class="destinasi-grid" id="destinasiGrid">
+    <section class="container-fluid">
+        <div class="destinasi-grid container" id="destinasiGrid">
             
             <!-- BALIGE -->
             <div class="dest-card" data-category="buatan kota" data-aos="fade-up" data-aos-delay="0">
@@ -331,7 +664,7 @@
                         <span>🍴 Kuliner</span>
                         <span>📸 Spot Foto</span>
                     </div>
-                    <a href="#" class="btn-destinasi">Informasi Kota →</a>
+                    <a href="{{ route('informasi') }}" class="btn-destinasi">Informasi Kota →</a>
                 </div>
             </div>
             
