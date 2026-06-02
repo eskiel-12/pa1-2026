@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sibandang - Geosite Danau Toba</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,8 +12,20 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', 'Poppins', sans-serif;
             background: #fafaf8;
+        }
+
+        h1, h2, h3, h4, h5, h6, .page-title, .section-title, .logo-text h4 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .nav-link, .home-btn, .logo-text p, .menu-label {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .accent-text, .hero-subtitle, .section-note {
+            font-family: 'Playfair Display', serif;
         }
 
         /* ========== NAVBAR ========== */
