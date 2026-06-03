@@ -12,247 +12,80 @@
 }
 
 body {
-    background: #faf8f2;
-}
-
-/* ===================== GALLERY HERO ===================== */
-.gallery-hero {
-    position: relative;
-    overflow: hidden;
-    padding: 90px 20px 70px;
-    background: linear-gradient(135deg, rgba(0, 51, 102, 0.95), rgba(26, 74, 122, 0.90));
-    color: #fff;
-    border-radius: 36px;
-    box-shadow: 0 35px 100px rgba(0, 0, 0, 0.18);
-    margin-bottom: 48px;
-}
-
-.gallery-hero::before,
-.gallery-hero::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.28;
-    pointer-events: none;
-}
-
-.gallery-hero::before {
-    width: 300px;
-    height: 300px;
-    top: -90px;
-    right: -60px;
-    background: rgba(198,164,59,0.25);
-}
-
-.gallery-hero::after {
-    width: 260px;
-    height: 260px;
-    bottom: -90px;
-    left: -50px;
-    background: rgba(255,255,255,0.12);
-}
-
-.gallery-hero-content {
-    position: relative;
-    max-width: 760px;
-    margin: 0 auto;
-    text-align: center;
-    z-index: 1;
-}
-
-.gallery-hero .hero-label {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 18px;
-    padding: 12px 20px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.16);
-    color: #f7e09b;
-    font-size: 0.85rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-}
-
-.gallery-hero h2 {
-    font-size: 3.4rem;
-    margin: 0;
-    line-height: 1.03;
-    letter-spacing: -1px;
-}
-
-.gallery-hero p {
-    max-width: 640px;
-    margin: 20px auto 0;
-    color: rgba(255,255,255,0.86);
-    font-size: 1rem;
-    line-height: 1.8;
-}
-
-.gallery-hero .hero-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 32px;
-    padding: 14px 32px;
-    color: #10293e;
-    background: #f7e09b;
-    border-radius: 999px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.gallery-hero .hero-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 18px 32px rgba(0,0,0,0.12);
+    background: #fff;
 }
 
 /* ===================== SPOTLIGHT SECTION ===================== */
 .spotlight-section {
-    padding: 0;
-    background: transparent;
+    padding: 80px 0;
 }
 
 .spotlight-header {
     text-align: center;
-    margin-bottom: 26px;
-    max-width: 720px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 40px;
 }
 
 .spotlight-header h1 {
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 700;
-    letter-spacing: -0.4px;
-    line-height: 1.08;
 }
 
 .spotlight-header p {
-    color: #5e5e5e;
-    font-size: 15px;
-    margin-top: 10px;
-    line-height: 1.75;
+    color: #777;
+    font-size: 14px;
 }
 
+/* SCROLL */
 .spotlight-wrapper {
-    overflow: visible;
-    padding: 0 0 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.spotlight-wrapper::-webkit-scrollbar {
+    display: none;
 }
 
 .spotlight-track {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 32px;
-    align-items: stretch;
+    display: flex;
+    padding-left: 60px;
 }
 
 /* CARD */
 .story-card {
-    width: 100%;
-    min-height: 420px;
-    border-radius: 30px;
+    min-width: 260px;
+    height: 380px;
+    border-radius: 18px;
     overflow: hidden;
     position: relative;
+    flex-shrink: 0;
+    margin-left: -50px;
     cursor: pointer;
-    box-shadow: 0 26px 85px rgba(0,0,0,0.12), 0 14px 34px rgba(0,0,0,0.08);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-    background: #ffffff;
-    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: 0.3s;
 }
 
-.story-card::after {
-    content: '';
-    position: absolute;
-    top: 18px;
-    left: 18px;
-    width: 64px;
-    height: 4px;
-    background: linear-gradient(90deg, #c6a43b, #f0d678);
-    border-radius: 999px;
-    box-shadow: 0 6px 20px rgba(198,164,59,0.15);
+.story-card:first-child {
+    margin-left: 0;
 }
 
 .story-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.45s ease, filter 0.35s ease;
-}
-
-.story-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(0,0,0,0.10) 100%);
-    pointer-events: none;
-}
-
-.story-badge {
-    position: absolute;
-    top: 22px;
-    left: 22px;
-    z-index: 2;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    background: rgba(255,255,255,0.92);
-    color: #10293e;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
 .story-text {
     position: absolute;
     bottom: 0;
     width: 100%;
-    padding: 26px 24px 24px;
-    color: #ffffff;
-    background: linear-gradient(to top, rgba(14, 18, 39, 0.92), rgba(14, 18, 39, 0.04));
-    backdrop-filter: blur(4px);
-}
-
-.story-text h3 {
-    font-size: 1.18rem;
-    margin-bottom: 8px;
-}
-
-.story-text p {
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.92);
-    line-height: 1.75;
-    margin: 0;
-}
-
-.story-text h3 {
-    font-size: 1.15rem;
-    margin-bottom: 8px;
-    letter-spacing: -0.3px;
-}
-
-.story-text p {
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.9);
-    line-height: 1.75;
-    margin: 0;
+    padding: 15px;
+    color: #fff;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
 }
 
 /* hover */
 .story-card:hover {
-    transform: translateY(-14px);
-    box-shadow: 0 38px 110px rgba(0,0,0,0.22), 0 20px 48px rgba(0,0,0,0.14);
-}
-
-.story-card:hover img {
-    transform: scale(1.06);
-    filter: brightness(1.10) saturate(1.08);
+    transform: translateY(-8px);
 }
 
 /* ===================== LIGHTBOX ===================== */
@@ -361,22 +194,13 @@ body {
 }
 </style>
 
-<section class="gallery-hero">
-    <div class="gallery-hero-content">
-        <span class="hero-label">Travel Highlights</span>
-        <h2>Galeri Wisata Danau Toba yang Memukau</h2>
-        <p>Jelajahi momen terbaik dari destinasi, budaya, dan petualangan; foto-foto ini dirancang untuk menginspirasi perjalanan Anda.</p>
-        <a href="#gallery-cards" class="hero-btn">Telusuri Galeri</a>
-    </div>
-</section>
-
 <!-- ===================== GALLERY ===================== -->
-<section id="gallery-cards" class="spotlight-section">
+<section class="spotlight-section">
     <div class="container">
 
         <div class="spotlight-header">
-            <h1>Galeri Keindahan Wisata</h1>
-            <p>Kumpulan foto destinasi unggulan Danau Toba dan pengalaman wisata yang dirancang untuk memberikan kesan profesional dan estetis.</p>
+            <h1>Stories in the spotlight</h1>
+            <p>Cool things you might've missed</p>
         </div>
 
         <div class="spotlight-wrapper">
@@ -384,7 +208,6 @@ body {
                 @if($galeri->count())
                     @foreach($galeri as $item)
                         <div class="story-card" onclick="openLightbox({{ $loop->index }})">
-                            <div class="story-badge">Eksplorasi</div>
                             <img src="{{ $item->gambar_url }}" alt="{{ $item->judul }}">
                             <div class="story-text">
                                 <h3>{{ $item->judul }}</h3>

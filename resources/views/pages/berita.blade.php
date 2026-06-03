@@ -109,53 +109,6 @@
     text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 }
 
-.berita-hero::after {
-    content: '';
-    position: absolute;
-    width: 260px;
-    height: 260px;
-    background: rgba(255,255,255,0.12);
-    bottom: -80px;
-    left: -60px;
-    border-radius: 50%;
-    filter: blur(72px);
-    pointer-events: none;
-}
-
-.hero-label {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 18px;
-    margin-bottom: 18px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.16);
-    color: #f7e09b;
-    font-size: 0.85rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-}
-
-.hero-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 24px;
-    padding: 12px 28px;
-    color: #10293e;
-    background: #f7e09b;
-    border-radius: 999px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.hero-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 16px 32px rgba(0,0,0,0.12);
-}
-
 .section {
     padding: 60px 0;
 }
@@ -175,83 +128,46 @@
 
 .berita-card {
     background: white;
-    border-radius: 24px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.11), 0 10px 30px rgba(0, 0, 0, 0.08);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
-    position: relative;
-    border: 1px solid rgba(198,164,59,0.14);
-}
-
-.berita-card::after {
-    content: '';
-    position: absolute;
-    top: 18px;
-    left: 18px;
-    width: 60px;
-    height: 4px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, #c6a43b, #f0d678);
-    box-shadow: 0 8px 20px rgba(198,164,59,0.15);
 }
 
 .berita-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.18), 0 14px 42px rgba(0,0,0,0.12);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .berita-image {
     width: 100%;
-    height: 230px;
+    height: 200px;
     overflow: hidden;
-    position: relative;
-}
-
-.berita-image::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.15) 100%);
-    pointer-events: none;
 }
 
 .berita-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease, filter 0.4s ease;
+    transition: 0.3s;
 }
 
 .berita-card:hover .berita-image img {
-    transform: scale(1.06);
-    filter: brightness(1.04) saturate(1.05);
+    transform: scale(1.05);
 }
 
 .berita-content {
-    padding: 24px;
-}
-
-.berita-date,
-.berita-category {
-    display: inline-block;
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 10px;
-    padding: 6px 12px;
-    border-radius: 999px;
+    padding: 20px;
 }
 
 .berita-date {
-    color: #1a3c5e;
-    background: rgba(198,164,59,0.1);
-    margin-right: 10px;
-}
-
-.berita-category {
-    color: #ffffff;
-    background: #1a3c5e;
+    font-size: 0.7rem;
+    color: #c6a43b;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    display: block;
 }
 
 .berita-title {
@@ -508,10 +424,8 @@
 <!-- HERO dengan background berita.jpg -->
 <section class="berita-hero" style="background-image: url('{{ $heroImage }}');">
     <div>
-        <span class="hero-label" data-aos="fade-up">Berita Pariwisata</span>
         <h1 data-aos="fade-up">Berita & Event</h1>
         <p data-aos="fade-up">Informasi terkini seputar Geopark Danau Toba</p>
-        <a href="#beritaGrid" class="hero-btn" data-aos="fade-up">Lihat Semua Berita</a>
     </div>
 </section>
 
@@ -591,9 +505,8 @@
                 </div>
                 <div class="berita-content">
                     <span class="berita-date">${berita.date}</span>
-                    <span class="berita-category">${berita.kategori}</span>
                     <h3 class="berita-title">${berita.title}</h3>
-                    <p class="berita-excerpt">${berita.excerpt.substring(0, 110)}${berita.excerpt.length > 110 ? '...' : ''}</p>
+                    <p class="berita-excerpt">${berita.excerpt.substring(0, 100)}${berita.excerpt.length > 100 ? '...' : ''}</p>
                     <span class="berita-readmore">Baca Selengkapnya →</span>
                 </div>
             </div>
