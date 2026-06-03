@@ -401,7 +401,7 @@
                         <span>#{{ $tag }}</span>
                         @endforeach
                     </div>
-                    <a href="{{ $item->maps }}" target="_blank" class="card-btn">
+                    <a href="{{ route('destinasi.show', $item->id) }}" class="card-btn">
     Jelajahi <i class="fas fa-arrow-right"></i>
 </a>
                 </div>

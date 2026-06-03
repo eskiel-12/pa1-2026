@@ -866,7 +866,10 @@
                                     @endforeach
                                 </div>
                             @endif
-                            <a href="{{ route('destinasi.show', $item->id) }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                <a href="{{ route('destinasi.show', $item->id) }}" class="destinasi-link">Jelajahi</a>
+                                <a href="{{ route('destinasi.show', $item->id) }}" class="destinasi-link" style="border-color: #c6a43b; background: #c6a43b; color: #003366;">Detail →</a>
+                            </div>
                         </div>
                     </div>
                 @empty
