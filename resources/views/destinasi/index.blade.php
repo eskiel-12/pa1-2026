@@ -995,7 +995,7 @@
                 'kategori' => strtolower($item->kategori),
                 'lokasi' => $item->lokasi,
                 'deskripsi' => $item->deskripsi,
-                'gambar' => $item->gambar,
+                'gambar_url' => $item->gambar_url,
                 'tags' => $tags,
                 'maps' => $item->maps,
                 'rating' => 4.5,
@@ -1004,8 +1004,6 @@
     @endphp
 
     const destinasiData = @json($destinasiData);
-
-    // DOM elements
     const searchInput = document.getElementById('searchInput');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const resultsGrid = document.getElementById('resultsGrid');
@@ -1135,7 +1133,7 @@
 
         card.innerHTML = `
             <div class="result-card-image">
-                <img src="${destinasi.gambar}" alt="${destinasi.nama}" onerror="this.src='/uploads/del.jpeg'">
+                <img src="${destinasi.gambar_url || ''}" alt="${destinasi.nama}" onerror="this.style.display='none';">
                 <span class="result-card-badge">${kategoriLabels[destinasi.kategori]}</span>
             </div>
             <div class="result-card-content">

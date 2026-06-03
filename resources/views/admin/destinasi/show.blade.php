@@ -93,7 +93,7 @@
                                 <label>Gambar Destinasi</label>
                                 <div class="text-center">
                                     @if($destinasi->gambar)
-                                        <img src="{{ asset($destinasi->gambar) }}" alt="{{ $destinasi->nama }}" class="img-fluid rounded" style="max-height: 300px;">
+                                        <img src="{{ $destinasi->gambar_url }}" alt="{{ $destinasi->nama }}" class="img-fluid rounded" style="max-height: 300px;">
                                     @else
                                         <div class="text-muted border rounded p-4">
                                             <i class="fas fa-image fa-3x"></i>

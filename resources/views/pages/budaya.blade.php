@@ -18,7 +18,7 @@
                     <div class="col-md-6">
                         <div class="card p-4 shadow-sm h-100">
                             @if($item->gambar)
-                                <img src="{{ $item->gambar }}" alt="{{ $item->judul }}" class="card-img-top rounded mb-3" style="height: 240px; object-fit: cover;">
+                                <img src="{{ $item->gambar_url }}" alt="{{ $item->judul }}" class="card-img-top rounded mb-3" style="height: 240px; object-fit: cover;">
                             @endif
                             <h3 class="h5">{{ $item->judul }}</h3>
                             <p>{{ Str::limit(strip_tags($item->konten), 180) }}</p>

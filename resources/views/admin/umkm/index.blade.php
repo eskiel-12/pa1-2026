@@ -32,7 +32,7 @@
                         <td>{{ $umkm->kontak }}</td>
                         <td>
                             @if($umkm->gambar)
-                                <img src="{{ asset($umkm->gambar) }}" alt="{{ $umkm->nama }}" class="preview-img">
+                                <img src="{{ $umkm->gambar_url }}" alt="{{ $umkm->nama }}" class="preview-img">
                             @endif
                         </td>
                         <td>

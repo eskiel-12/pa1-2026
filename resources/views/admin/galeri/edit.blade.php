@@ -58,7 +58,7 @@
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Gambar Saat Ini</label>
                     <div class="current-image">
-                        <img src="{{ asset($galeri->gambar) }}" class="preview-image" alt="Current Image">
+                        <img src="{{ $galeri->gambar_url }}" class="preview-image" alt="Current Image">
                     </div>
                     <div class="mt-2">
                         <label class="form-label">Ganti Gambar (Opsional)</label>

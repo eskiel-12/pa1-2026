@@ -15,7 +15,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="card p-3 shadow-sm h-100">
                         @if($umkm->gambar)
-                            <img src="{{ asset($umkm->gambar) }}" alt="{{ $umkm->nama }}" class="card-img-top rounded mb-3" style="height: 240px; object-fit: cover;">
+                            <img src="{{ $umkm->gambar_url }}" alt="{{ $umkm->nama }}" class="card-img-top rounded mb-3" style="height: 240px; object-fit: cover;">
                         @endif
                         <div class="card-body p-0">
                             <h3 class="h5">{{ $umkm->nama }}</h3>

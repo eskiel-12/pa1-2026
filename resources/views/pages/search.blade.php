@@ -385,7 +385,7 @@
                                 <div class="search-card">
                                     @if($item->gambar)
                                         <div class="search-card-image">
-                                            <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->judul }}">
+                                            <img src="{{ $item->gambar_url }}" alt="{{ $item->judul }}">
                                         </div>
                                     @else
                                         <div class="search-card-image" style="background: #f5f5f5; display: flex; align-items: center; justify-content: center;">
