@@ -48,7 +48,7 @@
                                 <div class="form-group">
                                     <label>Gambar Banner Saat Ini</label>
                                     <div class="mb-2">
-                                        <img src="{{ asset($banner->url_gambar) }}" alt="{{ $banner->judul }}" class="img-thumbnail" width="200">
+                                        <img src="{{ $banner->gambar_url }}" alt="{{ $banner->judul }}" class="img-thumbnail" width="200">
                                     </div>
                                     <label for="gambar">Ganti Gambar (Opsional)</label>
                                     <input type="file" class="form-control @error('gambar') is-invalid @enderror" id="gambar" name="gambar" accept="image/*">

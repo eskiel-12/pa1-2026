@@ -37,11 +37,7 @@ class Informasi extends Model
             return $this->gambar;
         }
 
-        if (str_contains($this->gambar, 'public/')) {
-            $path = str_replace('public/', '', $this->gambar);
-            return Storage::url($path);
-        }
-
-        return Storage::url($this->gambar);
+        $path = str_replace('public/', '', $this->gambar);
+        return asset('uploads/' . ltrim($path, '/'));
     }
 }

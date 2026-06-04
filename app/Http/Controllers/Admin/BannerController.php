@@ -42,13 +42,11 @@ class BannerController extends Controller
         ]);
 
         $gambarPath = $request->file('gambar')->store('banner', 'public');
-        $urlGambar = Storage::url($gambarPath);
 
         Banner::create([
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
             'gambar' => $gambarPath,
-            'url_gambar' => $urlGambar,
             'link' => $request->link,
             'urutan' => $request->urutan ?? 0,
             'status' => $request->status ?? true,
@@ -104,7 +102,6 @@ class BannerController extends Controller
 
             $gambarPath = $request->file('gambar')->store('banner', 'public');
             $data['gambar'] = $gambarPath;
-            $data['url_gambar'] = Storage::url($gambarPath);
         }
 
         $banner->update($data);

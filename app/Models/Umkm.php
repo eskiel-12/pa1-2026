@@ -36,6 +36,7 @@ class Umkm extends Model
     {
         if (!$this->gambar) return asset('images/no-image.png');
         if (filter_var($this->gambar, FILTER_VALIDATE_URL)) return $this->gambar;
-        return Storage::url($this->gambar);
+        $path = str_replace('public/', '', $this->gambar);
+        return asset('uploads/' . ltrim($path, '/'));
     }
 }

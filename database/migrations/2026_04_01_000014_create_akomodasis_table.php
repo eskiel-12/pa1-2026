@@ -6,9 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
-        Schema::create('transportasis', function (Blueprint $table) {
+        Schema::create('akomodasis', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->string('slug')->unique();
@@ -17,7 +20,8 @@ return new class extends Migration
             $table->string('lokasi')->nullable();
             $table->string('kontak')->nullable();
             $table->boolean('status')->default(true);
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('destinasi_id')->nullable()->constrained('destinasi')->onDelete('cascade');
             $table->timestamps();
 
             $table->index('lokasi');
@@ -25,8 +29,11 @@ return new class extends Migration
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
-        Schema::dropIfExists('transportasis');
+        Schema::dropIfExists('akomodasis');
     }
 };

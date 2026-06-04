@@ -40,13 +40,14 @@ class Berita extends Model
     public function getGambarUrlAttribute()
     {
         if (!$this->gambar) {
-            return null;
+            return asset('images/no-image.png');
         }
 
         if (filter_var($this->gambar, FILTER_VALIDATE_URL)) {
             return $this->gambar;
         }
 
-        return Storage::url($this->gambar);
+        $path = str_replace('public/', '', $this->gambar);
+        return asset('uploads/' . ltrim($path, '/'));
     }
 }

@@ -6,7 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
         Schema::create('informasi', function (Blueprint $table) {
             $table->id();
@@ -18,11 +21,16 @@ return new class extends Migration
             $table->string('penulis');
             $table->boolean('status')->default(true);
             $table->integer('views')->default(0);
+            $table->foreignId('kategori_id')->nullable()->constrained('kategori')->nullOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::dropIfExists('informasi');
     }

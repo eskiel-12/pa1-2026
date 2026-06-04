@@ -40,12 +40,9 @@ class Galeri extends Model
             return $this->gambar;
         }
 
-        // jika ada public/
-        if (str_contains($this->gambar, 'public/')) {
-            $path = str_replace('public/', '', $this->gambar);
-            return Storage::url($path);
-        }
+        // Hapus prefix 'public/' jika ada (data lama)
+        $path = str_replace('public/', '', $this->gambar);
 
-        return Storage::url($this->gambar);
+        return asset('uploads/' . ltrim($path, '/'));
     }
 }

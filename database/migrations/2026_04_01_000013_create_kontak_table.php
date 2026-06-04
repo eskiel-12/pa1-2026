@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('youtube')->nullable();
             $table->string('tiktok')->nullable();
             $table->string('maps_url')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
     }

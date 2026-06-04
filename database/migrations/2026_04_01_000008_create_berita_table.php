@@ -11,23 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('destinasi', function (Blueprint $table) {
+        Schema::create('berita', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('judul');
             $table->string('slug')->unique();
-            $table->string('gambar')->nullable();
-            $table->string('url_gambar')->nullable();
-            $table->text('deskripsi');
-            $table->string('lokasi')->nullable();
-            $table->string('kategori')->nullable();
-            $table->json('tags')->nullable();
-            $table->string('maps')->nullable();
+            $table->text('konten');
+            $table->string('gambar');
+            $table->string('penulis');
+            $table->date('tanggal_terbit');
             $table->boolean('status')->default(true);
             $table->integer('views')->default(0);
+            $table->integer('komentar')->default(0);
+            $table->foreignId('kategori_id')->constrained('kategori')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
-
-            $table->index('kategori');
-            $table->index('status');
         });
     }
 
@@ -36,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('destinasi');
+        Schema::dropIfExists('berita');
     }
 };

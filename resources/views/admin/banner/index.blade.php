@@ -37,7 +37,7 @@
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
                                         <td>
-                                            <img src="{{ asset($banner->url_gambar) }}" alt="{{ $banner->judul }}" class="img-thumbnail" width="100">
+                                            <img src="{{ $banner->gambar_url }}" alt="{{ $banner->judul }}" class="img-thumbnail" width="100">
                                         </td>
                                         <td>
                                             <strong>{{ $banner->judul }}</strong>
