@@ -87,15 +87,27 @@
     </div>
 </div>
 <script>
-    document.getElementById('gambar').addEventListener('change', function (e) {
-        const preview = document.getElementById('bannerPreview');
+    const gambarInput = document.getElementById('gambar');
+    const preview = document.getElementById('bannerPreview');
+    const maxSizeMb = 2;
+
+    gambarInput.addEventListener('change', function (e) {
         const file = e.target.files[0];
-        if (file) {
-            preview.src = URL.createObjectURL(file);
-            preview.classList.remove('d-none');
-        } else {
+
+        if (!file) {
             preview.classList.add('d-none');
+            return;
         }
+
+        if (file.size > maxSizeMb * 1024 * 1024) {
+            alert('Ukuran gambar tidak boleh lebih dari ' + maxSizeMb + 'MB. Pilih file yang lebih kecil.');
+            e.target.value = '';
+            preview.classList.add('d-none');
+            return;
+        }
+
+        preview.src = URL.createObjectURL(file);
+        preview.classList.remove('d-none');
     });
 </script>
 @endsection

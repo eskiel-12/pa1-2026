@@ -35,18 +35,20 @@ class BannerController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'link' => 'nullable|url',
             'urutan' => 'nullable|integer|min:0',
             'status' => 'nullable|boolean',
         ]);
 
         $gambarPath = $request->file('gambar')->store('banner', 'public');
+        $urlGambar = Storage::url($gambarPath);
 
         Banner::create([
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
             'gambar' => $gambarPath,
+            'url_gambar' => $urlGambar,
             'link' => $request->link,
             'urutan' => $request->urutan ?? 0,
             'status' => $request->status ?? true,
@@ -80,7 +82,7 @@ class BannerController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'link' => 'nullable|url',
             'urutan' => 'nullable|integer|min:0',
             'status' => 'nullable|boolean',
@@ -102,6 +104,7 @@ class BannerController extends Controller
 
             $gambarPath = $request->file('gambar')->store('banner', 'public');
             $data['gambar'] = $gambarPath;
+            $data['url_gambar'] = Storage::url($gambarPath);
         }
 
         $banner->update($data);

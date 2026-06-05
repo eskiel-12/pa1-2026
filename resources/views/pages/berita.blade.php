@@ -60,14 +60,14 @@
     color: #5a6e7c;
 }
 
-/* HERO dengan background berita.jpg - TIDAK TERPOTONG */
+/* HERO untuk halaman Berita - latar solid (hitam) */
 .berita-hero {
     height: auto;
     min-height: 400px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #0d1b2a;
+    background-color: #000; /* solid black background */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -421,8 +421,8 @@
 </style>
 
 
-<!-- HERO dengan background berita.jpg -->
-<section class="berita-hero" style="background-image: url('{{ $heroImage }}');">
+<!-- HERO untuk halaman Berita (latar hitam, bukan gambar) -->
+<section class="berita-hero">
     <div>
         <h1 data-aos="fade-up">Berita & Event</h1>
         <p data-aos="fade-up">Informasi terkini seputar Geopark Danau Toba</p>
