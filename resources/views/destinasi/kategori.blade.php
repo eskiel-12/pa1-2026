@@ -46,31 +46,6 @@
         padding: 0 20px;
     }
     
-    .back-btn {
-        position: absolute;
-        top: 30px;
-        left: 30px;
-        z-index: 20;
-        background: rgba(255,255,255,0.2);
-        backdrop-filter: blur(10px);
-        padding: 12px 24px;
-        border-radius: 50px;
-        color: white;
-        text-decoration: none;
-        font-size: 0.8rem;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-    }
-    
-    .back-btn:hover {
-        background: #c6a43b;
-        color: #1a1a1a;
-        transform: translateX(-5px);
-    }
-    
     .hero-badge {
         display: inline-block;
         padding: 6px 20px;
@@ -346,12 +321,6 @@
         .hero-content h1 {
             font-size: 1.8rem;
         }
-        .back-btn {
-            top: 80px;
-            left: 20px;
-            padding: 8px 16px;
-            font-size: 0.7rem;
-        }
     }
 </style>
 
@@ -359,9 +328,6 @@
 <section class="kategori-hero">
     <div class="hero-bg" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)), url('/image/destinasi-{{ strtolower($kategori) }}.jpg');"></div>
     <div class="hero-overlay"></div>
-    <a href="{{ url('/destinasi') }}" class="back-btn">
-        <i class="fas fa-arrow-left"></i> Kembali
-    </a>
     <div class="hero-content">
         <span class="hero-badge">{{ strtoupper($kategori) }}</span>
         <h1>Destinasi {{ $kategori }}</h1>

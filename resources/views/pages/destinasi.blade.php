@@ -82,33 +82,36 @@
         
         /* Filter Buttons */
         .filter-btn {
-            background: transparent;
-            border: 2px solid rgba(255,255,255,0.3);
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border: 2px solid rgba(255,255,255,0.4);
             color: white;
-            padding: 10px 24px;
+            padding: 12px 28px;
             border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            margin: 5px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 8px;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
             animation: scaleIn 0.5s ease-out backwards;
+            backdrop-filter: blur(10px);
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
         .filter-btn:hover {
-            background: #c6a43b;
+            background: linear-gradient(135deg, #c6a43b, #d4b76e);
             border-color: #c6a43b;
             color: #1a1a1a;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(198, 164, 59, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(198, 164, 59, 0.4);
         }
 
         .filter-btn.active {
-            background: #c6a43b;
+            background: linear-gradient(135deg, #c6a43b, #d4b76e);
             border-color: #c6a43b;
             color: #1a1a1a;
-            box-shadow: 0 5px 15px rgba(198, 164, 59, 0.3);
+            box-shadow: 0 8px 25px rgba(198, 164, 59, 0.4);
         }
         
         /* Destination Cards */
@@ -163,14 +166,15 @@
             right: 20px;
             background: #c6a43b;
             color: #1a1a1a;
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 1px;
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
             z-index: 2;
             animation: scaleIn 0.5s ease-out 0.3s backwards;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 20px rgba(198, 164, 59, 0.3);
+            text-transform: uppercase;
         }
         
         .dest-badge.geologi {
@@ -198,11 +202,11 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.5), transparent);
-            padding: 30px 20px 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.6), transparent);
+            padding: 35px 20px 25px;
             opacity: 0;
-            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateY(10px);
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(15px);
         }
         
         .dest-card:hover .dest-overlay {
@@ -218,29 +222,32 @@
         }
         
         .dest-info {
-            padding: 25px;
+            padding: 28px;
             text-align: center;
+            background: linear-gradient(180deg, #ffffff, #fafaf8);
         }
         
         .dest-info h3 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-weight: 700;
+            margin-bottom: 12px;
             color: #1a1a1a;
             transition: color 0.3s ease;
+            letter-spacing: 0.5px;
         }
         
         .dest-location {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #c6a43b;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
+            letter-spacing: 0.8px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
+            gap: 6px;
             transition: all 0.3s ease;
+            font-weight: 600;
         }
         
         .dest-location i {
@@ -248,10 +255,10 @@
         }
         
         .dest-desc {
-            font-size: 0.85rem;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 24px;
             transition: color 0.3s ease;
         }
         
@@ -259,24 +266,26 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 8px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 25px;
         }
         
         .dest-tags span {
-            background: #f5f4f0;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.7rem;
+            background: linear-gradient(135deg, #f5f4f0, #efefec);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.75rem;
             color: #333;
             transition: all 0.3s ease;
             display: inline-block;
+            border: 1px solid rgba(198, 164, 59, 0.15);
         }
 
         .dest-tags span:hover {
-            background: #c6a43b;
+            background: linear-gradient(135deg, #c6a43b, #d4b76e);
             color: white;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(198, 164, 59, 0.25);
         }
         
         .btn-destinasi {

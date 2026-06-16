@@ -1,21 +1,26 @@
 @extends('layouts.admin')
 
 @section('content')
+<style>
+    .management-header { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 30px; flex-wrap: wrap; }
+    .management-header h5 { font-size: 1.5rem; font-weight: 600; color: #1a1a1a; margin: 0; }
+    .management-card { background: white; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 25px; margin-bottom: 20px; }
+    .btn-primary-custom { background: linear-gradient(135deg, #c6a43b, #a88a2f); border: none; color: white; padding: 10px 22px; border-radius: 8px; }
+    .btn-primary-custom:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(198, 164, 59, 0.3); }
+    .badge { padding: 6px 12px; border-radius: 6px; }
+</style>
 <div class="container-fluid">
+    <div class="management-header">
+        <h5><i class="fas fa-phone me-2" style="color: #c6a43b;"></i> Kelola Kontak</h5>
+        <a href="{{ route('admin.kontak.create') }}" class="btn btn-primary-custom">
+            <i class="fas fa-plus me-2"></i> Tambah Kontak
+        </a>
+    </div>
     <div class="row">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Kelola Kontak</h3>
-                    <div class="card-tools">
-                        <a href="{{ route('admin.kontak.create') }}" class="btn btn-primary btn-sm">
-                            <i class="fas fa-plus"></i> Tambah Kontak
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
+            <div class="management-card">
                     @if(session('success'))
-                        <div class="alert alert-success">
+                        <div class="alert" style="background: #f0fdf4; border: 1px solid #86efac; color: #166534; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px;">
                             {{ session('success') }}
                         </div>
                     @endif
@@ -126,7 +131,6 @@
                             Belum ada data kontak. <a href="{{ route('admin.kontak.create') }}" class="alert-link">Tambah data kontak baru</a>
                         </div>
                     @endif
-                </div>
             </div>
         </div>
     </div>

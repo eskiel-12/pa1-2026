@@ -3,77 +3,82 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<!-- Stats Row -->
-<div class="row g-3">
-    <div class="col-6 col-md-3">
-        <div class="stat-card">
-            <div class="stat-number">{{ $totalGaleri ?? 0 }}</div>
-            <div class="stat-label">Total Galeri</div>
-        </div>
-    </div>
-    <div class="col-6 col-md-3">
-        <div class="stat-card">
-            <div class="stat-number">{{ $totalBerita ?? 0 }}</div>
-            <div class="stat-label">Total Berita</div>
-        </div>
-    </div>
-    <div class="col-6 col-md-3">
-        <div class="stat-card">
-            <div class="stat-number">{{ $totalInformasi ?? 0 }}</div>
-            <div class="stat-label">Total Informasi</div>
-        </div>
-    </div>
-    <div class="col-6 col-md-3">
-        <div class="stat-card">
-            <div class="stat-number">{{ number_format($totalViews ?? 0) }}</div>
-            <div class="stat-label">Total Views</div>
-        </div>
-    </div>
-</div>
+<style>
+    .dashboard-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 16px;
+        margin-bottom: 30px;
+    }
+    
+    .stat-card-dashboard {
+        background: linear-gradient(135deg, #ffffff, #f8f9fa);
+        border-left: 4px solid #c6a43b;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        min-height: 110px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .stat-card-dashboard:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 8px 20px rgba(198, 164, 59, 0.25);
+        border-left-color: #2c5f8a;
+    }
+    
+    .stat-number-dashboard {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #c6a43b;
+        margin-bottom: 8px;
+    }
+    
+    .stat-label-dashboard {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #666;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+</style>
 
-<!-- Additional Stats Row -->
-<div class="row g-3 mt-2">
-    <div class="col-6 col-md-3">
-        <div class="stat-card">
-            <div class="stat-number">{{ \App\Models\Destinasi::count() }}</div>
-            <div class="stat-label">Total Destinasi</div>
-        </div>
+<!-- Stats Row - All Side by Side -->
+<div class="dashboard-stats">
+    <div class="stat-card-dashboard">
+        <div class="stat-number-dashboard">{{ $totalGaleri ?? 0 }}</div>
+        <div class="stat-label-dashboard">Galeri</div>
     </div>
-    <div class="col-6 col-md-3">
-        <div class="stat-card">
-            <div class="stat-number">{{ \App\Models\Destinasi::where('status', true)->count() }}</div>
-            <div class="stat-label">Destinasi Aktif</div>
-        </div>
+    <div class="stat-card-dashboard">
+        <div class="stat-number-dashboard">{{ $totalBerita ?? 0 }}</div>
+        <div class="stat-label-dashboard">Berita</div>
     </div>
-    <div class="col-6 col-md-3">
-        <div class="stat-card">
-            <div class="stat-number">{{ \App\Models\Umkm::count() }}</div>
-            <div class="stat-label">Total UMKM</div>
-        </div>
+    <div class="stat-card-dashboard">
+        <div class="stat-number-dashboard">{{ $totalInformasi ?? 0 }}</div>
+        <div class="stat-label-dashboard">Informasi</div>
     </div>
-    <div class="col-6 col-md-3">
-        <div class="stat-card">
-            <div class="stat-number">{{ \App\Models\Banner::count() }}</div>
-            <div class="stat-label">Total Banner</div>
-        </div>
+    <div class="stat-card-dashboard">
+        <div class="stat-number-dashboard">{{ number_format($totalViews ?? 0) }}</div>
+        <div class="stat-label-dashboard">Views</div>
     </div>
-    <div class="col-6 col-md-3">
-        <div class="stat-card">
-            <div class="stat-number">{{ \App\Models\Akomodasi::count() }}</div>
-            <div class="stat-label">Total Akomodasi</div>
-        </div>
+    <div class="stat-card-dashboard">
+        <div class="stat-number-dashboard">{{ \App\Models\Destinasi::count() }}</div>
+        <div class="stat-label-dashboard">Destinasi</div>
     </div>
-    <div class="col-6 col-md-3">
-        <div class="stat-card">
-            <div class="stat-number">{{ \App\Models\Transportasi::count() }}</div>
-            <div class="stat-label">Total Transportasi</div>
-        </div>
+    <div class="stat-card-dashboard">
+        <div class="stat-number-dashboard">{{ \App\Models\Umkm::count() }}</div>
+        <div class="stat-label-dashboard">UMKM</div>
     </div>
-    <div class="col-6 col-md-3">
-        <div class="stat-card">
-            <div class="stat-number">{{ \App\Models\User::count() }}</div>
-            <div class="stat-label">Total User</div>
-        </div>
+    <div class="stat-card-dashboard">
+        <div class="stat-number-dashboard">{{ \App\Models\Akomodasi::count() }}</div>
+        <div class="stat-label-dashboard">Akomodasi</div>
+    </div>
+    <div class="stat-card-dashboard">
+        <div class="stat-number-dashboard">{{ \App\Models\Transportasi::count() }}</div>
+        <div class="stat-label-dashboard">Transportasi</div>
     </div>
 </div>
 
