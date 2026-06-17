@@ -440,7 +440,7 @@
 <!-- MODAL DETAIL BERITA -->
 <div class="modal" id="modal">
     <div class="modal-content">
-        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <button type="button" class="modal-close" onclick="event.stopPropagation(); closeModal();" aria-label="Tutup modal">&times;</button>
         <div class="modal-body">
             <img id="modalImage" class="modal-image" src="" alt="">
             <span id="modalDate" class="modal-date"></span>
@@ -564,7 +564,15 @@
         document.getElementById('modal').classList.remove('active');
         document.body.style.overflow = '';
     }
-    
+
+    // Direct close handler for the modal overlay and close button
+    const modalOverlay = document.getElementById('modal');
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) closeModal();
+        });
+    }
+
     // Tutup modal dengan ESC
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {

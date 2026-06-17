@@ -85,26 +85,78 @@
     line-height: 1.75;
 }
 
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1rem;
-}
+    /* Gallery swiper */
+    .gallery-card {
+        background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(250,245,255,0.98));
+        border-left: 6px solid rgba(58,123,213,0.12);
+    }
 
-.gallery img {
-    width: 100%;
-    min-height: 200px;
-    max-height: 260px;
-    object-fit: cover;
-    border-radius: 16px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    box-shadow: 0 16px 35px rgba(15, 23, 42, 0.08);
-}
+    .gallery-swiper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
 
-.gallery img:hover {
-    transform: translateY(-3px) scale(1.01);
-    opacity: 0.98;
-}
+    .gs-track {
+        display: flex;
+        gap: 1rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 12px 6px;
+        scrollbar-width: thin;
+    }
+
+    .gs-item {
+        flex: 0 0 calc(33.333% - 1rem);
+        scroll-snap-align: center;
+        border-radius: 12px;
+        overflow: hidden;
+        background: white;
+        box-shadow: 0 12px 30px rgba(58,123,213,0.06);
+        border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .gs-item img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.35s ease;
+    }
+
+    .gs-item:hover img { transform: scale(1.02); }
+
+    .gs-btn {
+        background: linear-gradient(90deg,#3a7bd5,#a63fa1);
+        color: white;
+        border: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 8px 22px rgba(58,123,213,0.16);
+    }
+
+    .gs-btn:active { transform: translateY(1px); }
+
+    .gs-dots { display:flex; gap:8px; justify-content:center; margin-top:12px; }
+    .gs-dot { width:10px; height:10px; border-radius:50%; background: rgba(0,0,0,0.12); border:none; }
+    .gs-dot.active { background: linear-gradient(90deg,#3a7bd5,#a63fa1); box-shadow:0 6px 14px rgba(58,123,213,0.14); }
+
+    @media (max-width: 992px) {
+        .gs-item { flex: 0 0 calc(50% - 1rem); }
+        .gs-item img { height: 200px; }
+    }
+
+    @media (max-width: 576px) {
+        .gs-item { flex: 0 0 calc(85% - 1rem); }
+        .gs-item img { height: 180px; }
+    }
 
 .info-card {
     display: block;
@@ -176,20 +228,74 @@
     </div>
 
     <!-- GALERI -->
-    <div class="card-custom">
+    <div class="card-custom gallery-card">
         <h2>Galeri</h2>
-        <div class="row gallery">
-            @forelse($galeri as $img)
-                <div class="col-md-4 mb-3">
-                    <img src="{{ $img }}" class="w-100" alt="Galeri {{ $destinasi->nama }}">
+        @if(count($galeri))
+            <div class="gallery-swiper">
+                <button class="gs-btn prev" aria-label="Sebelumnya">‹</button>
+                <div class="gs-track">
+                    @foreach($galeri as $img)
+                        <div class="gs-item">
+                            <img src="{{ $img }}" alt="Galeri {{ $destinasi->nama }}">
+                        </div>
+                    @endforeach
                 </div>
-            @empty
-                <div class="col-12">
-                    <p>Tidak ada galeri untuk destinasi ini.</p>
-                </div>
-            @endforelse
-        </div>
+                <button class="gs-btn next" aria-label="Selanjutnya">›</button>
+            </div>
+            <div class="gs-dots" aria-hidden="false"></div>
+        @else
+            <p>Tidak ada galeri untuk destinasi ini.</p>
+        @endif
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const track = document.querySelector('.gs-track');
+            if(!track) return;
+            const items = Array.from(track.querySelectorAll('.gs-item'));
+            const prev = document.querySelector('.gs-btn.prev');
+            const next = document.querySelector('.gs-btn.next');
+            const dotsWrap = document.querySelector('.gs-dots');
+
+            items.forEach((it, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'gs-dot';
+                btn.setAttribute('aria-label', 'Gambar ' + (idx+1));
+                btn.addEventListener('click', () => it.scrollIntoView({behavior:'smooth', inline:'center'}));
+                dotsWrap.appendChild(btn);
+            });
+
+            const dots = Array.from(dotsWrap.querySelectorAll('.gs-dot'));
+
+            function updateActive(){
+                const trackRect = track.getBoundingClientRect();
+                const center = trackRect.left + trackRect.width/2;
+                let active = 0; let minDist = Infinity;
+                items.forEach((it, idx) => {
+                    const r = it.getBoundingClientRect();
+                    const itCenter = r.left + r.width/2;
+                    const dist = Math.abs(center - itCenter);
+                    if(dist < minDist){ minDist = dist; active = idx; }
+                });
+                dots.forEach(d => d.classList.remove('active'));
+                if(dots[active]) dots[active].classList.add('active');
+            }
+
+            track.addEventListener('scroll', () => { window.requestAnimationFrame(updateActive); });
+            window.addEventListener('resize', updateActive);
+            updateActive();
+
+            prev.addEventListener('click', () => track.scrollBy({left: - (track.clientWidth * 0.8), behavior:'smooth'}));
+            next.addEventListener('click', () => track.scrollBy({left: track.clientWidth * 0.8, behavior:'smooth'}));
+
+            // mouse drag support
+            let isDown = false, startX, scrollLeft;
+            track.addEventListener('pointerdown', (e) => { isDown = true; track.style.cursor='grabbing'; startX = e.pageX; scrollLeft = track.scrollLeft; track.setPointerCapture(e.pointerId); });
+            track.addEventListener('pointermove', (e) => { if(!isDown) return; const x = e.pageX; const walk = (startX - x); track.scrollLeft = scrollLeft + walk; });
+            track.addEventListener('pointerup', (e) => { isDown = false; track.style.cursor='grab'; try{ track.releasePointerCapture(e.pointerId); }catch(e){} });
+            track.addEventListener('pointerleave', (e) => { isDown = false; track.style.cursor='grab'; });
+        });
+    </script>
 
     <!-- GOOGLE MAPS -->
     <div class="card-custom">

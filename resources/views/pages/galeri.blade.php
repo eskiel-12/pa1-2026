@@ -54,14 +54,14 @@ body {
 .story-card {
     min-width: 260px;
     height: 380px;
-    border-radius: 18px;
+    border-radius: 20px;
     overflow: hidden;
     position: relative;
     flex-shrink: 0;
     margin-left: -50px;
     cursor: pointer;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    transition: 0.3s;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+    transition: transform 0.45s ease, box-shadow 0.45s ease;
 }
 
 .story-card:first-child {
@@ -74,21 +74,42 @@ body {
     object-fit: cover;
 }
 
+.story-card::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(255,255,255,0.16), rgba(255,255,255,0.00));
+    transition: background 0.25s ease;
+}
+
 .story-text {
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 15px;
-    color: #fff;
-    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    bottom: 18px;
+    left: 18px;
+    right: 18px;
+    padding: 14px 16px;
+    color: #0f172a;
+    background: rgba(255,255,255,0.90);
+    border-radius: 16px;
+    box-shadow: 0 10px 26px rgba(15,23,42,0.08);
+    backdrop-filter: blur(10px);
+}
+
+.story-text h3 {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.3;
+    font-weight: 700;
 }
 
 /* hover */
 .story-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 14px 36px rgba(0,0,0,0.11);
 }
 
 /* ===================== LIGHTBOX ===================== */
+
 .lightbox {
     position: fixed;
     inset: 0;
@@ -96,12 +117,9 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 99999;
-
-    /* blur background */
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
-
-    animation: fadeIn 0.3s ease;
+    background: rgba(255,255,255,0.78);
+    backdrop-filter: blur(8px) saturate(130%);
+    animation: fadeIn 0.34s ease-out;
 }
 
 .lightbox.show {
@@ -115,21 +133,31 @@ body {
 
 .lightbox-content {
     position: relative;
-    text-align: center;
-    animation: zoomIn 0.25s ease;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    animation: zoomIn 0.3s ease-out;
+    padding: 18px;
+    max-width: 1100px;
+    border-radius: 24px;
+    overflow: hidden;
 }
 
 @keyframes zoomIn {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from { transform: translateY(12px) scale(0.98); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
 }
 
 .lightbox img {
-    max-width: 90vw;
-    max-height: 80vh;
+    /* shrink image to leave room for full description on the right */
+    width: 48%;
+    max-width: 48%;
+    max-height: 78vh;
+    object-fit: contain;
     border-radius: 12px;
     transition: opacity 0.3s ease, transform 0.3s ease;
     opacity: 1;
+    box-shadow: 0 20px 50px rgba(15,23,42,0.18);
 }
 
 .lightbox img.fade-out {
@@ -137,20 +165,53 @@ body {
     transform: scale(0.96);
 }
 
-/* description */
+/* description (right column) */
+
 .lightbox-desc {
-    margin-top: 15px;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 500;
-    background: rgba(0,0,0,0.72);
-    padding: 15px;
-    border-radius: 10px;
-    max-width: 80vw;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
+    width: 48%;
+    color: #04263b;
+    font-size: 1.08rem;
+    font-weight: 600;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,252,0.98));
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(15,23,42,0.14);
+    line-height: 1.7;
+    overflow: auto;
 }
+
+.lightbox-desc .body {
+    max-height: 220px;
+    overflow: auto;
+    margin-top: 8px;
+    color: inherit;
+    font-weight: 500;
+}
+
+.lightbox-desc .show-more-btn {
+    display: inline-block;
+    margin-top: 12px;
+    background: linear-gradient(90deg,#3a7bd5,#a63fa1);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+}
+
+.lightbox-desc.expanded .body { max-height: 60vh; }
+.lightbox-desc.dark { background: rgba(6,10,14,0.9); color: #fff; }
+.lightbox-desc.dark .title { color: #fff; }
+.lightbox-desc.dark .meta { color: rgba(255,255,255,0.78); }
+
+/* small helper for title inside desc */
+.lightbox-desc .title { font-weight: 700; color: #0b3f68; margin-bottom: 8px; font-size: 1.15rem; }
+.lightbox-desc .meta { color: #6b7280; font-size: 0.9rem; margin-bottom: 10px; }
+
+/* close + nav tweaks to fit side layout */
+.close { top: 14px; right: 22px; font-size: 30px; }
+.nav { font-size: 34px; padding: 12px 14px; }
 
 /* close */
 .close {
@@ -186,11 +247,18 @@ body {
 .nav.left { left: 20px; }
 .nav.right { right: 20px; }
 
-@media (max-width: 768px) {
-    .story-card {
-        min-width: 200px;
-        height: 300px;
-    }
+@media (max-width: 1024px) {
+    .story-card { min-width: 220px; height: 320px; }
+}
+
+@media (max-width: 900px) {
+    .lightbox-content { flex-direction: column; gap: 14px; padding: 12px; }
+    .lightbox img { max-width: 92vw; max-height: 60vh; }
+    .lightbox-desc { max-width: 92vw; font-size: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
 }
 </style>
 
@@ -211,7 +279,6 @@ body {
                             <img src="{{ $item->gambar_url }}" alt="{{ $item->judul }}">
                             <div class="story-text">
                                 <h3>{{ $item->judul }}</h3>
-                                <p>{{ \Illuminate\Support\Str::limit($item->deskripsi ?? '', 60) }}</p>
                             </div>
                         </div>
                     @endforeach
@@ -332,19 +399,84 @@ function outsideClick(e){
 /* ================= SWIPE MOBILE ================= */
 let startX = 0;
 
-document.getElementById('lightbox').addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-});
-
-document.getElementById('lightbox').addEventListener('touchend', e => {
+const lb = document.getElementById('lightbox');
+lb.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+lb.addEventListener('touchend', e => {
     let endX = e.changedTouches[0].clientX;
-
-    if(startX - endX > 50){
-        nextImage(e);
-    } else if(endX - startX > 50){
-        prevImage(e);
-    }
+    if(startX - endX > 50) nextImage(e);
+    else if(endX - startX > 50) prevImage(e);
 });
+
+/* make description rich with contrast detection and show-more */
+function updateLightbox(isOpen = false){
+    const img = document.getElementById('lightbox-img');
+    const desc = document.getElementById('lightbox-desc');
+    const nextSrc = images[currentIndex].src;
+    const nextDesc = images[currentIndex].desc || '';
+
+    function renderContent(){
+        const parts = nextDesc.split(' - ');
+        const title = parts.shift() || 'Gambar';
+        const body = parts.join(' - ');
+        // always show full text so it appears to the right of the image
+        const bodyHtml = `<div class=\"body\">${body}</div>`;
+        desc.classList.remove('dark','expanded');
+        desc.innerHTML = `<div class="title">${title}</div><div class="meta">Gambar ${currentIndex+1} dari ${images.length}</div>${bodyHtml}`;
+    }
+
+    function analyzeAndApplyContrast(imgEl, descEl){
+        try{
+            const tmp = new Image();
+            tmp.crossOrigin = 'Anonymous';
+            tmp.src = imgEl.src;
+            tmp.onload = function(){
+                const canvas = document.createElement('canvas');
+                const w = Math.min(80, tmp.width);
+                const h = Math.min(60, tmp.height);
+                canvas.width = w; canvas.height = h;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(tmp, 0, 0, w, h);
+                const data = ctx.getImageData(0,0,w,h).data;
+                let r,g,b,avg; let total=0;
+                for(let i=0;i<data.length;i+=4){ r=data[i]; g=data[i+1]; b=data[i+2]; avg = 0.2126*r + 0.7152*g + 0.0722*b; total += avg; }
+                const lum = total / (data.length/4);
+                // only switch to dark panel for extremely bright images
+                if(lum > 220) descEl.classList.add('dark');
+                else descEl.classList.remove('dark');
+            };
+            tmp.onerror = function(){ descEl.classList.remove('dark'); };
+        }catch(e){ desc.classList.remove('dark'); }
+    }
+
+    if (!isOpen) {
+        isTransitioning = true;
+        img.classList.add('fade-out');
+        setTimeout(() => {
+            img.src = nextSrc;
+            renderContent();
+            img.classList.remove('fade-out');
+            // analyze contrast after image loads
+            img.onload = () => analyzeAndApplyContrast(img, desc);
+            isTransitioning = false;
+        }, 220);
+    } else {
+        img.src = nextSrc;
+        renderContent();
+        img.onload = () => analyzeAndApplyContrast(img, desc);
+        isTransitioning = false;
+    }
+}
+
+function toggleDesc(btn){
+    const desc = document.getElementById('lightbox-desc');
+    if(desc.classList.contains('expanded')){
+        desc.classList.remove('expanded');
+        btn.innerText = 'Tampilkan lebih';
+    } else {
+        desc.classList.add('expanded');
+        btn.innerText = 'Tutup';
+    }
+}
 
 document.addEventListener('keydown', function(e) {
     if (!document.getElementById('lightbox').classList.contains('show')) return;
