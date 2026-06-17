@@ -1152,9 +1152,8 @@
                     <div class="result-card-rating">
                         <i class="fas fa-star"></i> ${destinasi.rating}
                     </div>
-                    <div style="display: flex; gap: 8px;">
-                        <a href="/destinasi/${destinasi.id}" class="result-card-btn">Jelajahi</a>
-                        <a href="/destinasi/${destinasi.id}" class="result-card-btn" style="background: #c6a43b; color: #1a1a1a; border-color: #c6a43b;">Detail →</a>
+                    <div>
+                        <a href="/destinasi/${destinasi.id}" class="result-card-btn">Jelajahi Lebih Lanjut</a>
                     </div>
                 </div>
             </div>
