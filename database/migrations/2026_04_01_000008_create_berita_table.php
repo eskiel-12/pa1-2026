@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('views')->default(0);
             $table->integer('komentar')->default(0);
             $table->foreignId('kategori_id')->constrained('kategori')->onDelete('cascade');
-            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('admin')->nullOnDelete();
             $table->timestamps();
         });
     }

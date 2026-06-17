@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('link')->nullable();
             $table->integer('urutan')->default(0);
             $table->boolean('status')->default(true);
-            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('admin')->nullOnDelete();
             $table->timestamps();
         });
     }

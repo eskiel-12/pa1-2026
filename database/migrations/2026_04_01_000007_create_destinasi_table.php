@@ -25,7 +25,7 @@ return new class extends Migration
             $table->boolean('status')->default(true);
             $table->integer('views')->default(0);
             $table->foreignId('kategori_id')->nullable()->constrained('kategori')->nullOnDelete();
-            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('admin')->nullOnDelete();
             $table->timestamps();
 
             $table->index('kategori');

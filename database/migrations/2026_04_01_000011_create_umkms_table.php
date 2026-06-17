@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('lokasi');
             $table->string('kontak');
             $table->foreignId('kategori_id')->nullable()->constrained('kategori')->nullOnDelete();
-            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('admin')->nullOnDelete();
             $table->foreignId('destinasi_id')->nullable()->constrained('destinasi')->onDelete('cascade');
             $table->string('tipe')->nullable();
             $table->timestamps();

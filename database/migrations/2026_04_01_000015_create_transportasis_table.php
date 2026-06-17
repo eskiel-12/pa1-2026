@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('lokasi')->nullable();
             $table->string('kontak')->nullable();
             $table->boolean('status')->default(true);
-            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('admin')->nullOnDelete();
             $table->foreignId('destinasi_id')->nullable()->constrained('destinasi')->onDelete('cascade');
             $table->timestamps();
 
