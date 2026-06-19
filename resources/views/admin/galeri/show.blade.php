@@ -53,7 +53,7 @@
 
                     <div class="mb-3">
                         <strong>Tanggal Foto:</strong><br>
-                        {{ $galeri->tanggal_foto ? $galeri->tanggal_foto->format('d/m/Y') : '-' }}
+                        {{ optional($galeri->tanggal_foto)->format('d/m/Y') ?? '-' }}
                     </div>
 
                     <div class="mb-3">

@@ -874,8 +874,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('informasi') ? 'active' : '' }}" href="{{ url('/informasi') }}">
-                            <i class="fas fa-info-circle me-1"></i> Informasi
+                        <a class="nav-link {{ request()->routeIs('informasi') ? 'active' : '' }}" href="{{ url('/sejarah') }}">
+                            <i class="fas fa-info-circle me-1"></i> Sejarah
                         </a>
                     </li>
                     
@@ -952,7 +952,7 @@
                     <h5>Tautan</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="{{ url('/') }}">Beranda</a></li>
-                        <li class="mb-2"><a href="{{ url('/informasi') }}">Informasi</a></li>
+                        <li class="mb-2"><a href="{{ url('/sejarah') }}">Sejarah</a></li>
                         <li class="mb-2"><a href="{{ url('/galeri') }}">Galeri</a></li>
                         <li class="mb-2"><a href="{{ url('/berita') }}">Berita</a></li>
                         <li class="mb-2"><a href="{{ url('/kontak') }}">Kontak</a></li>

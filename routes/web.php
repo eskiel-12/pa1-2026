@@ -28,14 +28,14 @@ Route::get('/destinasi/{id}', [DestinasiController::class, 'show'])->name('desti
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Informasi
-Route::get('/informasi', function () {
+// Sejarah
+Route::get('/sejarah', function () {
     $informasi = App\Models\Informasi::where('status', true)->latest()->paginate(10);
     return view('pages.informasi', compact('informasi'));
 })->name('informasi');
 
-// Detail Informasi
-Route::get('/informasi/{slug}', function ($slug) {
+// Detail Sejarah
+Route::get('/sejarah/{slug}', function ($slug) {
     $informasi = App\Models\Informasi::where('slug', $slug)->firstOrFail();
     $informasi->increment('views');
     return view('pages.informasi-detail', compact('informasi'));
@@ -101,11 +101,6 @@ Route::post('/kontak/pesan', [KontakController::class, 'storeMessage'])->name('k
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])->name('password.request');
-Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])->name('password.email');
-Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
-Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
 
 // ==================== ADMIN ROUTES ====================
 Route::prefix('admin')->middleware('auth')->group(function () {

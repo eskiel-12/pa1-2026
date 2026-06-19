@@ -23,6 +23,11 @@ class Galeri extends Model
         'user_id',
     ];
 
+    protected $casts = [
+        'tanggal_foto' => 'date',
+        'status' => 'boolean',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

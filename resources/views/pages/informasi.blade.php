@@ -1,6 +1,6 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Informasi & Sejarah Caldera Toba - Geosite Danau Toba')
+@section('title', 'Sejarah Caldera Toba - Geosite Danau Toba')
 
 @section('content')
 
